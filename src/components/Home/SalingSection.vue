@@ -93,11 +93,10 @@ export default defineComponent({
     GetSales() {
       this.axios({
         method: "GET",
-        url: "sales",
+        url: "more-seller",
       })
         .then((response) => {
           this.Sales = response.data.data;
-          console.log(this.Sales);
         })
         .catch((error) => {
           console.log(error);
