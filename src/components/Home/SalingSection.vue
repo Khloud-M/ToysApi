@@ -85,6 +85,24 @@ export default defineComponent({
       MoreSaling: "products/MoreSaling",
     }),
   },
+  created(){
+    this.GetSales();
+  },
+  methods:{
+    GetSales() {
+      this.axios({
+        method: "GET",
+        url: "sales",
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+          // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
+    },
+  }
 });
 </script>
 
