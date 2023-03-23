@@ -13,20 +13,20 @@
         :autoplay="2000"
         :breakpoints="breakpoints"
       >
-        <Slide v-for="slide in MoreSaling" :key="slide">
+        <Slide v-for="slide in Sales" :key="slide">
           <div class="carousel__item container_item">
             <div class="image">
-              <div class="sale">{{ slide.Sale }}</div>
+              <div class="sale">Sale {{ slide.sale_price }}</div>
               <!-- sale-->
               <img :src="slide.image" alt="" />
             </div>
             <!-- end image -->
             <div class="content_image">
-              <h5 class="name">{{ slide.name }}</h5>
+              <h5 class="name">{{ slide.title }}</h5>
               <div class="content_foot d-flex">
                 <div class="price">
                   <b> {{ slide.price }} KWD</b>
-                  <small> {{ slide.oldPrice }} KWD </small>
+                  <small> {{ slide.sale_price }} KWD </small>
                 </div>
                 <button class="btn_cart">
                   <v-icon icon="mdi-basket-fill"> </v-icon>
@@ -60,23 +60,24 @@ export default defineComponent({
   props: ["id"],
   data() {
     return {
+      Sales: null,
       breakpoints: {
         320: {
           itemsToShow: 1,
           snapAlign: "center",
         },
-        481:{
+        481: {
           itemsToShow: 2,
           snapAlign: "start",
         },
-        769:{
+        769: {
           itemsToShow: 3,
           snapAlign: "start",
         },
-        1025:{
+        1025: {
           itemsToShow: 4,
           snapAlign: "center",
-        }
+        },
       },
     };
   },
@@ -85,24 +86,25 @@ export default defineComponent({
       MoreSaling: "products/MoreSaling",
     }),
   },
-  created(){
+  created() {
     this.GetSales();
   },
-  methods:{
+  methods: {
     GetSales() {
       this.axios({
         method: "GET",
         url: "sales",
       })
         .then((response) => {
-          console.log(response);
+          this.Sales = response.data.data;
+          console.log(this.Sales);
         })
         .catch((error) => {
           console.log(error);
           // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
         });
     },
-  }
+  },
 });
 </script>
 
