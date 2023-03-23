@@ -1,0 +1,147 @@
+ /* auth page*/
+ .auth_page {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../assets/images/bg-pattern.svg");
+    background-size: cover;
+    &::before{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: rgba(255, 255, 255,0.8);
+    }
+    .logo {
+      position: absolute;
+      left:7%;
+      top: 50px;
+
+    }
+    .row {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    inset: 0;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    min-height: 500px;
+    width: 55%;
+    margin: auto; 
+    @media (max-width: 768px) {
+      &{
+      width: 95%;
+      top: 150px;
+      position: absolute;
+
+      }
+    }
+  }
+  
+  }
+  .form{
+    padding: 20px 30px;
+    text-transform: capitalize;
+    h3 {
+        font-weight: 500;
+        margin: 15px 0;
+        text-align: center;
+        color: var(--main-color);
+        font-size: 25px;
+      }
+      p{
+        text-align: center;
+        font-size: 16px;
+      }
+      a:hover{
+        color: red;
+       }
+    label {
+        text-transform: capitalize;
+        font-size: 20px;
+      }
+      input {
+        margin: 15px 0;
+        outline: none;
+        border: 1px solid var(--border-color);
+        padding: 15px 10px;
+        border-radius: 10px;
+        width: 100%;
+        transition: all var(--transtion) ease-in-out;
+      }
+      input:focus {
+        border-color: var(--color-yellow);
+      }
+      .phone ,
+      .check_pass{
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+
+        .form-select:focus {
+            border-color: var(--border-color);
+            outline: 0;
+            box-shadow: 0 0 0 0;
+        }
+        .form-select{
+        padding: 15px 10px;
+        border-radius: 10px;
+        }
+      }
+      .phone{
+       @media (max-width: 1024px) {
+        &{
+          display: flex;
+          flex-direction: column;
+
+        }
+        & > div {
+          width: 100%;
+          
+        }
+        
+       }
+      }
+      .check_pass{
+        @media (max-width: 1024px) {
+          &{
+            flex-direction: column;
+            row-gap: 10px;
+            label{
+              font-size: 15px;
+            }
+          }
+          
+        }
+        input{
+            width: 30px !important;
+        }
+        & > :nth-child(2)
+        {
+            text-align: right;
+        }
+      }
+      .form_submit
+      {
+        width: 100% !important;
+        margin: 20px 0;
+      }
+      .footer_form{
+        a , p  {
+            font-weight: 500;
+            font-size: 18px !important;
+            margin-right: 5px;
+        }
+        a{
+            text-decoration: underline;
+        }
+       
+      
+      }
+  }

@@ -1,0 +1,78 @@
+.product_item{
+    margin: var(--margin) auto;
+    flex-wrap: wrap;
+    row-gap: 50px;
+    column-gap: 10px;
+    justify-content: flex-start;
+    .container_item{
+        text-transform: capitalize;
+        width: 300px;   
+        @media (max-width: 768px) {
+            &{
+              width: 250px !important; 
+              margin: auto;  
+            }        
+        }         
+         .image{
+         background-color: var( --bg-color-light);
+         border-radius: 15px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         padding: 15px;
+         aspect-ratio: 1/1;
+         position: relative;
+         .sale{
+            position: absolute;
+            right: 15px;
+            top: 20px;
+            background-color: var(--red-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+         }
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: contain;         
+            }
+         }
+         .content_image{
+           padding: 20px 5px ;
+           .content_foot{
+            justify-content: space-between;
+            align-items: center;
+            .price{
+                display: flex;
+                column-gap: 10px;
+                align-items: center;
+                b{    
+                    color: var(--red-color);
+                    font-size: 15px;
+                }
+                small{
+                    text-decoration: line-through;
+                    color: var( --gray-color  );
+                    font-size: 15px;
+                }
+            }
+            .btn_cart{
+                width: 50px;
+                padding: 7px;
+                background-color: #fff6cd;
+                border-radius: 10px;
+                transition: all var(--transtion) ease-in-out;
+                &:hover{
+                    background-color: var(--color-yellow);
+                }
+                .v-icon {
+                    font-size: 25px;
+                }
+            }
+           }
+         }
+        }
+   
+}

@@ -1,0 +1,184 @@
+/* auth page*/
+.auth_page {
+  position: relative;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: url("../../assets/images/bg-pattern.svg");
+  background-size: cover;
+}
+
+.auth_page::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.auth_page .logo {
+  position: absolute;
+  left: 7%;
+  top: 50px;
+}
+
+.auth_page .row {
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  inset: 0;
+  border-radius: 10px;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  min-height: 500px;
+  width: 55%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .auth_page .row {
+    width: 95%;
+    top: 150px;
+    position: absolute;
+  }
+}
+
+.form {
+  padding: 20px 30px;
+  text-transform: capitalize;
+}
+
+.form h3 {
+  font-weight: 500;
+  margin: 15px 0;
+  text-align: center;
+  color: var(--main-color);
+  font-size: 25px;
+}
+
+.form p {
+  text-align: center;
+  font-size: 16px;
+}
+
+.form a:hover {
+  color: red;
+}
+
+.form label {
+  text-transform: capitalize;
+  font-size: 20px;
+}
+
+.form input {
+  margin: 15px 0;
+  outline: none;
+  border: 1px solid var(--border-color);
+  padding: 15px 10px;
+  border-radius: 10px;
+  width: 100%;
+  -webkit-transition: all var(--transtion) ease-in-out;
+  transition: all var(--transtion) ease-in-out;
+}
+
+.form input:focus {
+  border-color: var(--color-yellow);
+}
+
+.form .phone,
+.form .check_pass {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form .phone .form-select:focus,
+.form .check_pass .form-select:focus {
+  border-color: var(--border-color);
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 0;
+          box-shadow: 0 0 0 0;
+}
+
+.form .phone .form-select,
+.form .check_pass .form-select {
+  padding: 15px 10px;
+  border-radius: 10px;
+}
+
+@media (max-width: 1024px) {
+  .form .phone {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .form .phone > div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .form .check_pass {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 10px;
+  }
+  .form .check_pass label {
+    font-size: 15px;
+  }
+}
+
+.form .check_pass input {
+  width: 30px !important;
+}
+
+.form .check_pass > :nth-child(2) {
+  text-align: right;
+}
+
+.form .form_submit {
+  width: 100% !important;
+  margin: 20px 0;
+}
+
+.form .footer_form a, .form .footer_form p {
+  font-weight: 500;
+  font-size: 18px !important;
+  margin-right: 5px;
+}
+
+.form .footer_form a {
+  text-decoration: underline;
+}
+/*# sourceMappingURL=form.css.map */
