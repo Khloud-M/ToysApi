@@ -5,25 +5,86 @@
         {{ $t("placeholder.brand") }}
       </div>
     </heading-section>
-    <div class="container d-flex brands">
-      <div class="brand_image" v-for="brand in Brands" :key="id">
-        <router-link :to="`/brand/${brand.id}`">
-          <img :src="brand.image" alt="" width="150" height="150" />
-        </router-link>
-      </div>
+    <div class="container product_item d-flex">
+      <Carousel
+        :items-to-show="4"
+        :wrap-around="true"
+        :transition="300"
+        :autoplay="2000"
+        :breakpoints="breakpoints"
+      >
+        <Slide v-for="slide in brands" :key="slide">
+          <div class="carousel__item container_item">
+            <div class="image">
+              <!-- sale-->
+              <img :src="slide.image" alt="" />
+            </div>
+            <!-- end image -->
+          </div>
+        </Slide>
+
+        <template #addons>
+          <Navigation />
+        </template>
+      </Carousel>
     </div>
   </section>
 </template>
 <script>
-import { mapGetters } from "vuex";
-export default {
+import { defineComponent } from "vue";
+import { Carousel, Slide, Navigation } from "vue3-carousel";
+import "vue3-carousel/dist/carousel.css";
+export  default defineComponent( {
   props: ["id"],
-  computed: {
-    ...mapGetters({
-      Brands: "products/Brands",
-    }),
+  components: {
+    Carousel,
+    Slide,
+    Navigation,
   },
-};
+  data() {
+    return {
+      brands: null,
+      breakpoints: {
+        320: {
+          itemsToShow: 1,
+          snapAlign: "center",
+        },
+        481: {
+          itemsToShow: 2,
+          snapAlign: "start",
+        },
+        769: {
+          itemsToShow: 3,
+          snapAlign: "start",
+        },
+        1025: {
+          itemsToShow: 4,
+          snapAlign: "center",
+        },
+      },
+    };
+  },
+  created() {
+    this.Getbrands();
+  },
+  methods: {
+    Getbrands() {
+      this.axios({
+        method: "GET",
+        url: "brands",
+      })
+        .then((response) => {
+          this.brands = response.data.brands;
+          console.log(this.brands);
+        })
+        .catch((error) => {
+          console.log(error);
+          // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
+    },
+  },
+});
+
 </script>
 <style lang="scss" scoped>
 section {

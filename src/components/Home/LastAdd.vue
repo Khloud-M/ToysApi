@@ -91,7 +91,6 @@ export default defineComponent({
       })
         .then((response) => {
           this.latest = response.data.data;
-          console.log(this.latest);
         })
         .catch((error) => {
           console.log(error);
