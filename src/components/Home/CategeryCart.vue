@@ -31,9 +31,9 @@
       </div>
       <hr />
       <div class="offcanvas-body">
-        <div v-for="cat in Categories" data-bs-dismiss="offcanvas">
+        <div v-for="cat in categery" data-bs-dismiss="offcanvas">
           <router-link :to="`/category/${cat.id}`">
-            {{ cat.itemName }}
+            {{ cat.title }}
           </router-link>
         </div>
       </div>
@@ -41,13 +41,31 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
 export default {
   props: ["id"],
-  computed: {
-    ...mapGetters({
-      Categories: "products/Categories",
-    }),
+  data(){
+    return{
+      categery:null,
+    }
+  },
+  created() {
+    this.GetCategery();
+  },
+  methods: {
+    GetCategery() {
+      this.axios({
+        method: "GET",
+        url: "cats",
+      })
+        .then((response) => {
+          this.categery = response.data.data;
+          console.log(this.categery);
+        })
+        .catch((error) => {
+          console.log(error);
+          // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
+    },
   },
 };
 </script>
