@@ -34,7 +34,7 @@
           </h5>
           <!-- end price -->
           <div class="addCart d-flex">
-            <div><product-quantity :selectitem="selectitem" /></div>
+            <!-- <div><product-quantity :selectitem="selectitem" /></div> -->
             <base-button @click="addToCart">
               <v-icon icon="mdi-shopping-outline" size="20"></v-icon>
               {{ $t("placeholder.addCart") }}</base-button
@@ -69,12 +69,12 @@
   </section>
 </template>
 <script>
-import ProductQuantity from "@/components/Products/ProductQuantity.vue";
+// import ProductQuantity from "@/components/Products/ProductQuantity.vue";
 import LandingProduct from "@/components/Products/LandingProduct.vue";
 export default {
   props: ["id"],
   components: {
-    ProductQuantity,
+    // ProductQuantity,
     LandingProduct,
   },
   data() {
@@ -91,7 +91,7 @@ export default {
     GetProductID() {
       this.axios({
         method: "GET",
-        url: `product${this.id}`,
+        url: `product/${this.id}`,
       })
         .then((response) => {
           this.productId = response.data.data;
