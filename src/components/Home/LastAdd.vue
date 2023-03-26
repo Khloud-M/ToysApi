@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import { defineComponent } from "vue";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
@@ -75,16 +74,12 @@ export default defineComponent({
         },
         1025: {
           itemsToShow: 4,
-          snapAlign: "center",
+          snapAlign: "start",
         },
       },
     };
   },
-  computed: {
-    ...mapGetters({
-      LastAndHegh: "products/LastAndHegh",
-    }),
-  },
+
   created() {
     this.GetLast();
   },

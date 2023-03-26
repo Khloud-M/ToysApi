@@ -17,6 +17,16 @@
 .is-rtl {
   direction: rtl;
 }
+.carousel {
+  width: 100% !important;
+}
+.carousel__prev {
+  display: none !important;
+ 
+}
+.carousel__next {
+  display: none !important;
+}
 button{
   border: none;
 }
