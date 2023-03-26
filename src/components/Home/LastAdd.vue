@@ -15,11 +15,13 @@
       >
         <Slide v-for="slide in latest" :key="slide">
           <div class="carousel__item container_item">
-            <div class="image">
-              <div class="sale">Sale {{ slide.sale_price }}</div>
-              <!-- sale-->
-              <img :src="slide.image" alt="" />
-            </div>
+            <router-link :to="`/products${slide.id}`">
+              <div class="image">
+                <div class="sale">Sale {{ slide.sale_price }}</div>
+                <!-- sale-->
+                <img :src="slide.image" alt="" />
+              </div>
+            </router-link>
             <!-- end image -->
             <div class="content_image">
               <h5 class="name">{{ slide.title }}</h5>

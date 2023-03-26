@@ -1,14 +1,14 @@
 <template>
   <section>
-    <LandingProduct  :selectitem="selectitem" />
-    <div class="container d-flex" v-if="selectitem">
+    <LandingProduct :selectitem="selectitem" />
+    <div class="container d-flex"  v-if="productId">
       <div class="col-lg-5 image">
-        <img :src="selectitem.image" />
+        <img :src="productId.image" />
       </div>
       <!-- end image div -->
       <div class="col-lg-6 content_details">
         <div class="item_details">
-          <h6>{{ selectitem.name }}</h6>
+          <h6>{{ productId.title }}</h6>
           <div class="discription">
             <h6>description</h6>
             <p>
@@ -20,7 +20,7 @@
             </p>
           </div>
           <div class="item_name d-flex">
-            <h4>{{ selectitem.name }}</h4>
+            <h4>{{ productId.title }}</h4>
             <button class="button">
               <v-icon icon="mdi-cards-heart-outline" size="20"> </v-icon>
               {{ $t("placeholder.fav") }}
@@ -28,7 +28,7 @@
           </div>
           <!-- item_name -->
           <h5 class="price">
-            <b> {{ selectitem.price }} </b>
+            <b> {{ productId.price }} </b>
 
             <span> KWD</span>
           </h5>
@@ -69,37 +69,51 @@
   </section>
 </template>
 <script>
-import { mapGetters } from "vuex";
 import ProductQuantity from "@/components/Products/ProductQuantity.vue";
 import LandingProduct from "@/components/Products/LandingProduct.vue";
 export default {
   props: ["id"],
   components: {
     ProductQuantity,
-    LandingProduct
+    LandingProduct,
   },
   data() {
     return {
       selectitem: null,
+      productId: null,
     };
   },
-  computed: {
-    ...mapGetters({
-      MoreSaling: "products/MoreSaling",
-    }),
+
+  created() {
+    this.GetProductID();
   },
   methods: {
+    GetProductID() {
+      this.axios({
+        method: "GET",
+        url: `product${this.id}`,
+      })
+        .then((response) => {
+          this.productId = response.data.data;
+          console.log("id");
+          console.log(this.productId);
+        })
+        .catch((error) => {
+          console.log(error);
+          // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
+    },
     addToCart() {
       this.$store.commit("products/addToCart", this.selectitem);
     },
   },
-  mounted() {
-    this.selectitem = this.MoreSaling.find(
-      (selectitem) => selectitem.id === this.id
-    );
-    console.log("selcteditem");
-    console.log(this.selectitem);
-  },
+  // mounted() {
+  //   this.selectitem = this.MoreSaling.find(
+  //     (selectitem) => selectitem.id === this.id
+  //   );
+  //   console.log("selcteditem");
+  //   console.log(this.selectitem);
+  // },
 };
 </script>
 
@@ -148,7 +162,7 @@ export default {
         text-transform: capitalize;
         @media (max-width: 768px) {
           & {
-            font-size: 19px ;
+            font-size: 19px;
           }
         }
       }
@@ -202,13 +216,11 @@ export default {
   }
 }
 .is-rtl {
-  h4{
-    &::before{
+  h4 {
+    &::before {
       left: auto;
       right: -25px;
       border-radius: 12px 0px 0px 12px;
-
-
     }
   }
 }

@@ -40,27 +40,28 @@
                 </router-link>
               </li>
               <!-- Example split danger button -->
-              <div class="btn-group">
-                <button type="button" class="btn btn-danger">Action</button>
-                <button
-                  type="button"
-                  class="btn btn-danger dropdown-toggle dropdown-toggle-split"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <span class="visually-hidden">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">Separated link</a></li>
-                </ul>
-              </div>
-
+              <li>
+                <div class="dropdown mt-3">
+                  <button
+                    class="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-bs-toggle="dropdown"
+                  >
+                    categery
+                  </button>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <li v-for="cat in categery" @click="toggle">
+                      <router-link :to="`/category/${cat.id}`">
+                        {{ cat.title }}
+                      </router-link>
+                    </li>
+                  </ul>
+                </div>
+              </li>
               <li>
                 <router-link to="/offer" @click="toggle">
                   {{ $t("navs.offer") }}</router-link
