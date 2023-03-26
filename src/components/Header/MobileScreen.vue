@@ -39,15 +39,28 @@
                   <h3>Main List</h3>
                 </router-link>
               </li>
-              <li>
-                <select class="form-select" aria-label="Default select example">
-                  <option v-for="cat in categery">
-                    <router-link :to="`/category/${cat.id}`">
-                      {{ cat.title }}
-                    </router-link>
-                  </option>
-                </select>
-              </li>
+              <!-- Example split danger button -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-danger">Action</button>
+                <button
+                  type="button"
+                  class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+              </div>
+
               <li>
                 <router-link to="/offer" @click="toggle">
                   {{ $t("navs.offer") }}</router-link
@@ -86,7 +99,7 @@ export default {
     return {
       mobileNav: false,
       mobile: false,
-      categery:null
+      categery: null,
     };
   },
   created() {
