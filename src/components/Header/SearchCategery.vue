@@ -12,10 +12,11 @@
       <input
         type="search"
         :placeholder="$t('placeholder.Search')"
-        v-model="search"
+        v-model="keyword"
         @blur="rebackWidth"
         @click="changeWidth"
         :style="{ width: Width + 'px' }"
+
       />
       <v-icon icon="mdi-magnify"></v-icon>
     </div>
@@ -27,7 +28,7 @@ export default {
   data() {
     return {
       Width: "90",
-      search: "",
+      keyword: null,
     };
   },
   methods: {
@@ -40,6 +41,10 @@ export default {
         return (this.Width = "250");
       }
     },
+    getSearch(){
+      
+    }
+
   },
 };
 </script>
