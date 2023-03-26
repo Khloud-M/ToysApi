@@ -6,7 +6,9 @@ export default {
   state() {
     return {
       cart:[],
-       
+      data:null,
+
+
     }
   },
   getters ,

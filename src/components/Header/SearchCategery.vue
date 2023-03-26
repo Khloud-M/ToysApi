@@ -9,15 +9,16 @@
       </select>
     </div>
     <div class="search">
-      <input
-        type="search"
-        :placeholder="$t('placeholder.Search')"
-        v-model="keyword"
-        @blur="rebackWidth"
-        @click="changeWidth"
-        :style="{ width: Width + 'px' }"
-
-      />
+      <form @submit.prevent="getSearch">
+        <input
+          type="search"
+          :placeholder="$t('placeholder.Search')"
+          v-model="keyword"
+          @blur="rebackWidth"
+          @click="changeWidth"
+          :style="{ width: Width + 'px' }"
+        />
+      </form>
       <v-icon icon="mdi-magnify"></v-icon>
     </div>
   </div>
@@ -41,10 +42,9 @@ export default {
         return (this.Width = "250");
       }
     },
-    getSearch(){
-      
-    }
-
+    getSearch() {
+      this.$store.commit("products/getSearch", this.keyword);
+    },
   },
 };
 </script>

@@ -1,4 +1,18 @@
+import axios from "axios";
 export default {
+  getSearch(state ,payload){
+    const myData = new FormData();
+    myData.append("name" , payload);
+     axios({
+      method:"GET",
+      url:`search${payload}`,
+      data:myData
+     })
+     .then((res)=>{
+      state.data= res.data.data;
+      // router.push('/searchPage');
+     })
+  },
   decrementQty(state, payload) {
     payload.qty -= 1;
     if (payload.qty <= 1) {
