@@ -75,7 +75,6 @@ export  default defineComponent( {
       })
         .then((response) => {
           this.brands = response.data.brands;
-          console.log(this.brands);
         })
         .catch((error) => {
           console.log(error);

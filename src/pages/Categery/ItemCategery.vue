@@ -32,27 +32,33 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   props: ["id"],
   data() {
     return {
       selectitem: null,
       data: null,
+      CatId:null
     };
   },
-  computed: {
-    ...mapGetters({
-      Categories: "products/Categories",
-    }),
+  created() {
+    this.GetCategeryID();
   },
-  mounted() {
-    this.selectitem = this.Categories.find(
-      (selectitem) => selectitem.id === this.id
-    );
-    console.log("selcteditem");
-    console.log(this.selectitem.detailsCar[0]);
-    this.data = this.selectitem.detailsCar[0];
+  methods: {
+    GetCategeryID() {
+      this.axios({
+        method: "GET",
+        url: `category${this.id}`,
+      })
+        .then((response) => {
+          this.CatId = response;
+          console.log(this.CatId);
+        })
+        .catch((error) => {
+          console.log(error);
+          // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
+    },
   },
 };
 </script>
