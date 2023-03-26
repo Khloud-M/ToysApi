@@ -14,5 +14,8 @@ export default {
   cart(state)
   {
     return state.cart
+  },
+  data(state){
+    return state.data
   }
 };

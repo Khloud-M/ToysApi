@@ -9,6 +9,7 @@ const router = createRouter({
       component: () => import("@/pages/nav/ContactSection.vue"),
     },
     { path: "/offer", component: () => import("@/pages/nav/OfferSection.vue") },
+    { path: "/searchpage", component: () => import("@/components/SearchPage.vue") },
     // auth page
     {
       path: "/:auth",
