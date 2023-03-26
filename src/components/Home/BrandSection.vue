@@ -59,7 +59,7 @@ export  default defineComponent( {
         },
         1025: {
           itemsToShow: 4,
-          snapAlign: "center",
+          snapAlign: "start",
         },
       },
     };
