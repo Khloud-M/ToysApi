@@ -1,17 +1,16 @@
 import axios from "axios";
 export default {
-  getSearch(state ,payload){
+  getSearch(state, payload) {
     const myData = new FormData();
-    myData.append("name" , payload);
-     axios({
-      method:"GET",
-      url:`search${payload}`,
-      data:myData
-     })
-     .then((res)=>{
-      state.data= res.data.data;
+    myData.append("name", payload);
+    axios({
+      method: "POST",
+      url: "search",
+      data: myData,
+    }).then((res) => {
+      state.data = res.data.data;
       // router.push('/searchPage');
-     })
+    });
   },
   decrementQty(state, payload) {
     payload.qty -= 1;
