@@ -159,6 +159,21 @@ export default {
   },
   methods: {
     submit() {
+      const myData = new FormData();
+      myData.append("name", this.name);
+      myData.append("message", this.message);
+      this.axios({
+        method: "POST",
+        url: "contact-us",
+        data: myData,
+      })
+        .then((response) => {
+          console.log("contact");
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       this.name = "";
       this.email = "";
       this.message = "";
