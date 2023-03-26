@@ -41,9 +41,9 @@
               </li>
               <li>
                 <select class="form-select" aria-label="Default select example">
-                  <option selected v-for="cat in Categories">
+                  <option v-for="cat in categery">
                     <router-link :to="`/category/${cat.id}`">
-                      {{ cat.itemName }}
+                      {{ cat.title }}
                     </router-link>
                   </option>
                 </select>
@@ -74,7 +74,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import SearchCategery from "./SearchCategery.vue";
 import ChangeLang from "@/components/Header/ChangeLang.vue";
 export default {
@@ -87,17 +86,30 @@ export default {
     return {
       mobileNav: false,
       mobile: false,
+      categery:null
     };
   },
-  computed: {
-    ...mapGetters({
-      Categories: "products/Categories",
-    }),
+  created() {
+    this.GetCategery();
   },
   methods: {
     toggle() {
       this.mobileNav = !this.mobileNav;
       console.log("close");
+    },
+    GetCategery() {
+      this.axios({
+        method: "GET",
+        url: "cats",
+      })
+        .then((response) => {
+          this.categery = response.data.data;
+          console.log(this.categery);
+        })
+        .catch((error) => {
+          console.log(error);
+          // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
     },
   },
 };
