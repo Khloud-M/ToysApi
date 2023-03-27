@@ -126,12 +126,13 @@ export default {
             phone: response.data.data.phone,
           });
 
-          console.log( "token" + response.data.token );
+          console.log( "token" + response.data );
 
           this.$router.push("/");
           this.$toast.success(`    لسه شوية ونوصل `);
 
           localStorage.setItem("phone", this.phone);
+          localStorage.setItem("name", this.firstname);
         })
         .catch((error) => {
           console.log(error);

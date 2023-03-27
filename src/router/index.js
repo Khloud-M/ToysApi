@@ -57,6 +57,18 @@ const router = createRouter({
       component: () => import("@/pages/ProductDetails.vue"),
       props: true,
     },
+    // account user
+    {
+      path: "/Account",
+      component: () => import("@/pages/Account/DefultPage.vue"),
+      props: true,
+      children: [
+        // { path: "", component: () => import("@/pages/auth/LoginPage.vue") },
+
+      ],
+    },
+
+
   ],
   scrollBehavior(to, from, savedPosition) {
     console.log(savedPosition);

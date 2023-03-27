@@ -20,7 +20,9 @@
           <v-icon icon="  mdi-home-outline"> </v-icon>
           {{ $t("navs.home") }}
         </router-link>
-        <button  @click="removeToken" v-if="isLoggedIn"> logout</button>
+        <button v-if="isLoggedIn">
+          <router-link to="/Account"> welcome {{ name }} </router-link>
+        </button>
         <router-link to="/:auth" v-else>
           <v-icon icon="mdi-account"> </v-icon>
           {{ $t("buttons.signIn") }}</router-link
@@ -42,26 +44,29 @@ import SearchCategery from "./SearchCategery.vue";
 import { mapGetters } from "vuex";
 export default {
   props: ["id"],
-
+  data() {
+    return {
+      name: localStorage.getItem("name"),
+    };
+  },
   components: {
     ChangeLang,
-     CategeryCart,
+    CategeryCart,
     TheCart,
     SearchCategery,
   },
   computed: {
     ...mapGetters({
       cart: "products/cart",
-      isLoggedIn:"auth/isLoggedIn",
-
+      isLoggedIn: "auth/isLoggedIn",
     }),
   },
-  methods:{
-    removeToken(){
+  methods: {
+    removeToken() {
       this.$store.commit("auth/logout");
       this.$router.push("/");
-    }
-  }
+    },
+  },
 };
 </script>
 
