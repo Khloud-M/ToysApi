@@ -84,7 +84,27 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$router.push("/:auth/varifaction/verify");
+      const myData = new FormData();
+      myData.append("name", this.name);
+      myData.append("email", this.email);
+      myData.append("phone", this.phone);
+      myData.append("password", this.password);
+      myData.append("confirm_password", this.confirmpassword);
+      this.axios({
+        method: "POST",
+        url: "register",
+        data: myData,
+      })
+        .then((response) => {
+          console.log(response);
+          this.$router.push("/:auth/varifaction/verify");
+          this.$toast.success(`    لسه شوية ونوصل `);
+          localStorage.setItem("phone", this.phone);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
     },
   },
 };

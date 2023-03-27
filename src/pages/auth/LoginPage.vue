@@ -59,7 +59,28 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$router.push("/");
+      const myData = new FormData();
+      myData.append("password", this.password);
+      myData.append("phone", this.phone);
+      this.axios({
+        method: "POST",
+        url: "login",
+        data: myData,
+      })
+        .then((response) => {
+          console.log("login ")
+          console.log(response);
+            // this.$store.commit("auth/setCurrentUserData", {
+            //   token: response.data.data.token,
+            //   email: response.data.data.email, });
+
+            this.$router.push("/");
+            this.$toast.success(`    حمدالله ع السلامة وصلت `);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
     },
   },
 };
