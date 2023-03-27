@@ -15,7 +15,7 @@
       >
         <Slide v-for="slide in Sales" :key="slide">
           <div class="carousel__item container_item">
-          <router-link :to="`/products${slide.id}`">
+          <router-link :to="`/products/${slide.id}`">
             <div class="image">
               <div class="sale">Sale {{ slide.sale_price }}</div>
               <!-- sale-->

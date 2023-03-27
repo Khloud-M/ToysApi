@@ -20,7 +20,8 @@
           <v-icon icon="  mdi-home-outline"> </v-icon>
           {{ $t("navs.home") }}
         </router-link>
-        <router-link to="/:auth">
+        <button  @click="removeToken" v-if="isLoggedIn"> logout</button>
+        <router-link to="/:auth" v-else>
           <v-icon icon="mdi-account"> </v-icon>
           {{ $t("buttons.signIn") }}</router-link
         >
@@ -51,8 +52,16 @@ export default {
   computed: {
     ...mapGetters({
       cart: "products/cart",
+      isLoggedIn:"auth/isLoggedIn",
+
     }),
   },
+  methods:{
+    removeToken(){
+      this.$store.commit("auth/logout");
+      this.$router.push("/");
+    }
+  }
 };
 </script>
 

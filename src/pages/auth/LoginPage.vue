@@ -70,10 +70,11 @@ export default {
         .then((response) => {
           console.log("login ")
           console.log(response);
-            // this.$store.commit("auth/setCurrentUserData", {
-            //   token: response.data.data.token,
-            //   email: response.data.data.email, });
-
+          this.$store.commit("auth/setCurrentUserData", {
+            token: response.data.token,
+            email: response.data.data.email,
+            phone: response.data.data.phone,
+          });
             this.$router.push("/");
             this.$toast.success(`    حمدالله ع السلامة وصلت `);
         })

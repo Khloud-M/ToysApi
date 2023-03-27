@@ -3,11 +3,29 @@
     <form @submit.prevent="submitForm">
       <h3>{{ $t("placeholder.Welcome") }}</h3>
       <p>{{ $t("placeholder.register") }}</p>
+      <!-- <div class="name">
+        <input
+          type="text"
+          v-model="firstname"
+          placeholder="first name"
+          required
+        />
+      </div> -->
+      <!-- name -->
       <div class="name">
         <input
           type="text"
-          :placeholder="$t('placeholder.userName')"
-          v-model="name"
+          v-model="firstname"
+          placeholder="first name"
+          required
+        />
+      </div>
+      <!-- name -->
+      <div class="name">
+        <input
+          type="text"
+          v-model="lastname"
+          placeholder="last name"
           required
         />
       </div>
@@ -80,12 +98,16 @@ export default {
       confirmpassword: null,
       phone: null,
       check: null,
+      lastname: null,
+      firstname: null,
     };
   },
   methods: {
     submitForm() {
       const myData = new FormData();
-      myData.append("name", this.name);
+      // myData.append("name", this.name);
+      myData.append("first_name", this.firstname);
+      myData.append("last_name", this.lastname);
       myData.append("email", this.email);
       myData.append("phone", this.phone);
       myData.append("password", this.password);
@@ -96,9 +118,19 @@ export default {
         data: myData,
       })
         .then((response) => {
+          console.log("register");
           console.log(response);
-          this.$router.push("/:auth/varifaction/verify");
+          this.$store.commit("auth/setCurrentUserData", {
+            token: response.data.token,
+            email: response.data.data.email,
+            phone: response.data.data.phone,
+          });
+
+          console.log( "token" + response.data.token );
+
+          this.$router.push("/");
           this.$toast.success(`    لسه شوية ونوصل `);
+
           localStorage.setItem("phone", this.phone);
         })
         .catch((error) => {
