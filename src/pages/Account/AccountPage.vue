@@ -53,9 +53,11 @@
           />
         </div>
       </div>
-      <base-button> change phone</base-button>
-      <base-button> change password</base-button>
-      <a href="#"> delete account </a>
+      <div class="changes">
+        <base-button> change phone</base-button>
+        <base-button class="change_password"> change password</base-button>
+        <a href="#"> delete account </a>
+      </div>
     </form>
   </div>
 </template>
@@ -105,6 +107,20 @@ export default {
   }
   input:focus {
     border-color: var(--color-yellow);
+  }
+  .changes {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+    .change_password {
+      color: white;
+      background-color: var(--main-color);
+      background-image: linear-gradient(
+        50deg,
+        transparent 50%,
+        #242323 50%
+      ) !important;
+    }
   }
 }
 </style>
