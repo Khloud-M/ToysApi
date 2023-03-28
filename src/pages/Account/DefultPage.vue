@@ -33,7 +33,7 @@
         <hr />
         <button @click="removeToken">logout</button>
       </div>
-      <div class="contentt col-lg-8">
+      <div class="col-lg-8">
         <router-view></router-view>
       </div>
     </div>
