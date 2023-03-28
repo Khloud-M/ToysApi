@@ -36,7 +36,7 @@
         <div class="col-lg-6">
           <label for="name"> phone</label>
           <input
-            type="number"
+            type="text"
             id="phone"
             placeholder="Enter phone "
             v-model="phone"
