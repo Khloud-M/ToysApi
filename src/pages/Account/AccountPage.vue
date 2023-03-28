@@ -11,7 +11,7 @@
           <label for="name"> first name</label>
           <input
             type="text"
-            id="name"
+            id="firstname"
             placeholder="Enter first name "
             v-model="firstname"
           />
@@ -21,7 +21,7 @@
           <label for="name">last name</label>
           <input
             type="text"
-            id="name"
+            id="lastname"
             placeholder="Enter last  name "
             v-model="lastname"
           />
@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="changes">
-        <base-button> change phone</base-button>
+        <base-button @click="ChangePhone"> change phone</base-button>
         <base-button class="change_password"> change password</base-button>
         <a href="#"> delete account </a>
       </div>
@@ -73,6 +73,34 @@ export default {
       phone: localStorage.getItem("phone"),
       password: localStorage.getItem("password"),
     };
+  },
+  methods: {
+    ChangePhone() {
+      const myData = new FormData();
+      // myData.append("first_name", this.firstname);
+      // myData.append("last_name", this.lastname);
+      myData.append("phone", this.phone);
+      myData.append("password", this.password);
+      this.axios({
+        method: "POST",
+        url: "edit-profile",
+        data: myData,
+      })
+        .then((response) => {
+          console.log(response);
+          // this.$store.commit("auth/setCurrentUserData", {
+          //   // token: response.data.token,
+          //   // email: response.data.data.email,
+          //   phone: response.data.data.phone,
+          // });
+          localStorage.setItem("phone", this.phone);
+
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
+    },
   },
 };
 </script>

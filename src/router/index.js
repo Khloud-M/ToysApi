@@ -65,6 +65,7 @@ const router = createRouter({
       children: [
         { path: "", component: () => import("@/pages/Account/AccountPage.vue") },
         { path: "address", component: () => import("@/pages/Account/AddressPage.vue") },
+        { path: "editaddress", component: () => import("@/pages/Account/EditAddress.vue") },
         { path: "favourite", component: () => import("@/pages/Account/FavouritePage.vue") },
         { path: "myorder", component: () => import("@/pages/Account/OrderPage.vue") },
 
