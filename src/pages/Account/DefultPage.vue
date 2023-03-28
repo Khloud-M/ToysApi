@@ -57,7 +57,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .account_defult {
   background-color: var(--bg-color-light);
   .container {
