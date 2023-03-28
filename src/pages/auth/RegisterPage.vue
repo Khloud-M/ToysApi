@@ -133,6 +133,8 @@ export default {
 
           localStorage.setItem("phone", this.phone);
           localStorage.setItem("name", this.firstname);
+          localStorage.setItem("lastname", this.lastname);
+          localStorage.setItem("password", this.password);
         })
         .catch((error) => {
           console.log(error);

@@ -63,7 +63,10 @@ const router = createRouter({
       component: () => import("@/pages/Account/DefultPage.vue"),
       props: true,
       children: [
-        // { path: "", component: () => import("@/pages/auth/LoginPage.vue") },
+        { path: "", component: () => import("@/pages/Account/AccountPage.vue") },
+        { path: "address", component: () => import("@/pages/Account/AddressPage.vue") },
+        { path: "favourite", component: () => import("@/pages/Account/FavouritePage.vue") },
+        { path: "myorder", component: () => import("@/pages/Account/OrderPage.vue") },
 
       ],
     },
