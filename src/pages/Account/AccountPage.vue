@@ -4,7 +4,7 @@
       <h4>My Account</h4>
       <p>You can control your account information and change your password</p>
     </div>
-   <form>
+   <form @submit.prevent="SubmitForm">
     <div class="general_information">
       <h5>General Info</h5>
       <div class="full_name d-flex">
@@ -55,7 +55,7 @@
         </div>
       </div>
       <div class="changes">
-        <base-button @click="ChangePhone"> change phone</base-button>
+        <base-button> change phone</base-button>
         <base-button class="change_password"> change password</base-button>
         <a href="#"> delete account </a>
       </div>
@@ -77,7 +77,7 @@ export default {
     };
   },
   methods: {
-    ChangePhone() {
+    SubmitForm() {
       const myData = new FormData();
       // myData.append("first_name", this.firstname);
       // myData.append("last_name", this.lastname);
@@ -89,6 +89,7 @@ export default {
         data: myData,
       })
         .then((response) => {
+          console.log("edit profile");
           console.log(response);
           // this.$store.commit("auth/setCurrentUserData", {
           //   // token: response.data.token,

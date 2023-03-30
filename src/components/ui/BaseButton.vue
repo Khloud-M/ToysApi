@@ -16,7 +16,7 @@ a {
   text-align: center;
   text-transform: capitalize;
   margin-top: 20px;
-  padding: 10px 30px;
+  padding:10px 20px;
   border-radius: 10px;
   width: max-content;
   margin: 0;

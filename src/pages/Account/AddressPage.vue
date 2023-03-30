@@ -5,9 +5,11 @@
         <h4>Addresses</h4>
         <p>You can control your added addresses here</p>
       </div>
-      <router-link to="/Account/editaddress">
-        <v-icon icon="mdi-map-marker-plus-outline"></v-icon> add new address
-      </router-link>
+      <base-button>
+        <router-link to="/Account/editaddress">
+          <v-icon icon="mdi-map-marker-plus-outline"></v-icon> add new address
+        </router-link>
+      </base-button>
     </div>
   </div>
 </template>
@@ -19,7 +21,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .Address {
   padding: 20px 0;
   .heading_address {
