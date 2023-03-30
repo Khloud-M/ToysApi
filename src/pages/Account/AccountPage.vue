@@ -4,7 +4,8 @@
       <h4>My Account</h4>
       <p>You can control your account information and change your password</p>
     </div>
-    <form class="general_information">
+   <form>
+    <div class="general_information">
       <h5>General Info</h5>
       <div class="full_name d-flex">
         <div class="col-lg-6">
@@ -29,8 +30,8 @@
       </div>
 
       <base-button> submit info</base-button>
-    </form>
-    <form class="Profile_information">
+    </div>
+    <div class="Profile_information">
       <h5>Profile information</h5>
       <div class="full_name d-flex">
         <div class="col-lg-6">
@@ -58,7 +59,8 @@
         <base-button class="change_password"> change password</base-button>
         <a href="#"> delete account </a>
       </div>
-    </form>
+    </div>
+   </form>
   </div>
 </template>
 

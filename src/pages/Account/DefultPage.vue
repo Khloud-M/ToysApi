@@ -10,7 +10,7 @@
         <!-- end heading -->
         <ul class="myData">
           <li>
-            <router-link to="/Account">
+            <router-link to="/Account/user">
               <v-icon icon="mdi-account"></v-icon> my account
             </router-link>
           </li>
