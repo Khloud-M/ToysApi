@@ -34,7 +34,7 @@
           </h5>
           <!-- end price -->
           <div class="addCart d-flex">
-            <!-- <div><product-quantity :selectitem="selectitem" /></div> -->
+            <!-- <div><product-quantity :productId="productId.option_values" /></div> -->
             <base-button @click="addToCart">
               <v-icon icon="mdi-shopping-outline" size="20"></v-icon>
               {{ $t("placeholder.addCart") }}</base-button
@@ -79,7 +79,6 @@ export default {
   },
   data() {
     return {
-      selectitem: null,
       productId: null,
     };
   },

@@ -1,21 +1,13 @@
 <template>
   <div class="quanty d-flex gap-3">
-    <button @click="decrementQty">-</button>
-    <span>
-      {{ selectitem.qty }}
-    </span>
-    <button
-      @click="increaseQty"
-      :disabled="selectitem.qty >= selectitem.quantity"
-    >
-      +
-    </button>
+    <li v-for="p in productId">
+      {{ p.quantity }}
+    </li>
   </div>
-  <!-- :disabled="selectitem.qty >= selectitem.quantity" -->
 </template>
 <script>
 export default {
-  props: ["selectitem", "quantity"],
+  props: ["productId"],
   methods: {
     decrementQty() {
       this.$store.commit("products/decrementQty", this.selectitem);
