@@ -16,18 +16,24 @@
     <div class="bottom_header">
       <search-categery />
       <ul>
-        <router-link to="/">
+        <li>
           <v-icon icon="  mdi-home-outline"> </v-icon>
-          {{ $t("navs.home") }}
-        </router-link>
-        <button v-if="isLoggedIn">
-          <router-link to="/Account"> welcome {{ name }} </router-link>
-        </button>
-        <router-link to="/:auth" v-else>
-          <v-icon icon="mdi-account"> </v-icon>
-          {{ $t("buttons.signIn") }}</router-link
-        >
-        <v-icon size="27" icon="mdi-bell"></v-icon>
+          <router-link to="/">
+            {{ $t("navs.home") }}
+          </router-link>
+        </li>
+        <li>
+          <v-icon icon="  mdi-account-outline"> </v-icon>
+          <button v-if="isLoggedIn">
+            <router-link to="/Account"> welcome {{ name }} </router-link>
+          </button>
+          <router-link to="/:auth" v-else>
+            <v-icon icon="mdi-account"> </v-icon>
+            {{ $t("buttons.signIn") }}</router-link
+          >
+        </li>
+
+        <v-icon icon="mdi-bell-outline"></v-icon>
 
         <TheCart />
       </ul>
@@ -72,37 +78,29 @@ export default {
 
 <style lang="scss">
 .large_nav {
+  .v-icon {
+    color: rgba(0, 0, 0, 0.519) !important;
+    font-size: 22px;
+  }
   .top_header,
   .bottom_header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 7px 0;
     ul {
       display: flex;
       flex-direction: row;
-      column-gap: 15px;
+      column-gap: 22px;
       align-items: center;
+      li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 10px;
+      }
     }
   }
   .top_header {
-    // .icon_categery {
-    //   cursor: pointer;
-    //   transition: all var(--transtion) ease-in-out;
-    //   &:hover h3,
-    //   &:hover .v-icon {
-    //     color: var(--color-yellow);
-    //   }
-    //   h3 {
-    //     color: var(--main-color);
-    //     font-size: 15px;
-    //     transition: all var(--transtion) ease-in-out;
-    //     .v-icon {
-    //       color: var(--main-color);
-    //       transition: all var(--transtion) ease-in-out;
-    //     }
-    //   }
-    // }
     a {
       transition: all var(--transtion) ease-in-out;
       &:hover {

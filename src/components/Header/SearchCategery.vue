@@ -18,8 +18,9 @@
           @click="changeWidth"
           :style="{ width: Width + 'px' }"
         />
+        <v-icon icon="mdi-magnify"></v-icon>
+
       </form>
-      <v-icon icon="mdi-magnify"></v-icon>
     </div>
   </div>
 </template>
@@ -52,8 +53,8 @@ export default {
 <style lang="scss">
 .sellect_search {
   background-color: var(--bg-color-light);
-  border-radius: 15px;
-  padding: 10px 15px;
+  border-radius: 10px;
+  padding: 5px 15px;
   width: 450px;
   justify-content: space-between;
   align-items: center;

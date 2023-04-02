@@ -7,7 +7,7 @@
       data-bs-target="#offcanvasRight"
       aria-controls="offcanvasRight"
     >
-      <v-icon size="27" icon="mdi-shopping-outline"></v-icon>
+      <v-icon icon="mdi-shopping-outline"></v-icon>
       <span class="overlay"> {{ cart.length }}</span>
     </button>
     <div
