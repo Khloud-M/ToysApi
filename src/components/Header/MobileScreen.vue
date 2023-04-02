@@ -39,20 +39,20 @@
                   <h3>Main List</h3>
                 </router-link>
               </li>
-              <!-- Example split danger button -->
               <li>
-                <div class="dropdown mt-3">
+                <div class="dropdown">
                   <button
                     class="btn btn-secondary dropdown-toggle"
                     type="button"
-                    id="dropdownMenuButton"
+                    id="dropdownMenuButton1"
                     data-bs-toggle="dropdown"
+                    aria-expanded="false"
                   >
                     categery
                   </button>
                   <ul
                     class="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton"
+                    aria-labelledby="dropdownMenuButton1"
                   >
                     <li v-for="cat in categery" @click="toggle">
                       <router-link :to="`/category/${cat.id}`">
@@ -62,6 +62,7 @@
                   </ul>
                 </div>
               </li>
+
               <li>
                 <router-link to="/offer" @click="toggle">
                   {{ $t("navs.offer") }}</router-link
@@ -179,8 +180,8 @@ export default {
       }
     }
     .nav_phone {
-      display: flex;
       flex-direction: column;
+      display: flex;
       row-gap: 10px;
       .login_cart {
         display: flex;
@@ -195,11 +196,12 @@ export default {
       }
     }
     ul {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      justify-content: space-between;
-      height: 50%;
+      // display: flex;
+      // flex-direction: column;
+      // gap: 20px;
+      // justify-content: space-between;
+      // height: 50%;
+      // background-color: red;
       a {
         font-family: Medium;
         color: black;
@@ -241,9 +243,10 @@ export default {
 }
 ul {
   padding-left: 0;
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
+  // display: flex;
+  // flex-direction: column;
+  // row-gap: 10px;
+  // background-color: blue;
   li {
     border-radius: 10px;
     padding: 10px 15px;
