@@ -33,36 +33,30 @@
               </div>
               <ChangeLang />
             </div>
-            <ul>
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                categery
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li v-for="cat in categery" @click="toggle">
+                  <router-link :to="`/category/${cat.id}`">
+                    {{ cat.title }}
+                  </router-link>
+                </li>
+              </ul>
+            </div>
+            <ul class="list_nav">
               <li>
                 <router-link to="/" @click="toggle">
                   <h3>Main List</h3>
                 </router-link>
               </li>
-              <li>
-                <div class="dropdown">
-                  <button
-                    class="btn btn-secondary dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    categery
-                  </button>
-                  <ul
-                    class="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton1"
-                  >
-                    <li v-for="cat in categery" @click="toggle">
-                      <router-link :to="`/category/${cat.id}`">
-                        {{ cat.title }}
-                      </router-link>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-
               <li>
                 <router-link to="/offer" @click="toggle">
                   {{ $t("navs.offer") }}</router-link
@@ -195,13 +189,11 @@ export default {
         }
       }
     }
-    ul {
-      // display: flex;
-      // flex-direction: column;
-      // gap: 20px;
-      // justify-content: space-between;
-      // height: 50%;
-      // background-color: red;
+    .list_nav {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: space-between;
       a {
         font-family: Medium;
         color: black;
@@ -209,6 +201,26 @@ export default {
         &::before {
           display: none;
         }
+      }
+    }
+    .dropdown {
+      // background-color: red;
+      margin: 20px 0;
+      button {
+        width: 100%;
+        background-color: var(--bg-color-light);
+        color: black;
+        border-radius: 10px;
+        padding: 10px 15px;
+        text-align: justify;
+        font-size: 18px;
+
+      }
+      .btn:focus {
+        box-shadow: 0 0 0 0rem;
+      }
+      .btn-secondary {
+        border-color: transparent;
       }
     }
   }
@@ -243,10 +255,6 @@ export default {
 }
 ul {
   padding-left: 0;
-  // display: flex;
-  // flex-direction: column;
-  // row-gap: 10px;
-  // background-color: blue;
   li {
     border-radius: 10px;
     padding: 10px 15px;
