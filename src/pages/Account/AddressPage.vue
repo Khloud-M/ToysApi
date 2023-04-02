@@ -1,5 +1,5 @@
 <template>
-  <div class="Address">
+  <div class="account_page">
     <div class="heading_address d-flex">
       <div class="heading">
         <h4>Addresses</h4>
@@ -23,7 +23,6 @@ export default {
 
 <style lang="scss" scoped>
 .Address {
-  padding: 20px 0;
   .heading_address {
     flex-direction: row;
     justify-content: space-between;

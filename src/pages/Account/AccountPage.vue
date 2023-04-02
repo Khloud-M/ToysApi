@@ -4,63 +4,67 @@
       <h4>My Account</h4>
       <p>You can control your account information and change your password</p>
     </div>
-   <form @submit.prevent="SubmitForm">
-    <div class="general_information">
-      <h5>General Info</h5>
-      <div class="full_name d-flex">
-        <div class="col-lg-6">
-          <label for="name"> first name</label>
-          <input
-            type="text"
-            id="firstname"
-            placeholder="Enter first name "
-            v-model="firstname"
-          />
+    <form @submit.prevent="SubmitForm">
+      <div class="general_information">
+        <h5>General Info</h5>
+        <div class="full_name d-flex">
+          <div class="col-lg-6">
+            <label for="name"> first name</label>
+            <input
+              type="text"
+              id="firstname"
+              placeholder="Enter first name "
+              v-model="firstname"
+            />
+          </div>
+          <!--  first name -->
+          <div class="col-lg-5">
+            <label for="name">last name</label>
+            <input
+              type="text"
+              id="lastname"
+              placeholder="Enter last  name "
+              v-model="lastname"
+            />
+          </div>
+          <!-- last name -->
         </div>
-        <!-- name -->
-        <div class="col-lg-5">
-          <label for="name">last name</label>
-          <input
-            type="text"
-            id="lastname"
-            placeholder="Enter last  name "
-            v-model="lastname"
-          />
-        </div>
-      </div>
+        <!-- full name  -->
 
-      <base-button> submit info</base-button>
-    </div>
-    <div class="Profile_information">
-      <h5>Profile information</h5>
-      <div class="full_name d-flex">
-        <div class="col-lg-6">
-          <label for="name"> phone</label>
-          <input
-            type="text"
-            id="phone"
-            placeholder="Enter phone "
-            v-model="phone"
-          />
+        <base-button> submit info</base-button>
+      </div>
+      <!-- end general_information  -->
+      <div class="Profile_information">
+        <h5>Profile information</h5>
+        <div class="full_name d-flex">
+          <div class="col-lg-6">
+            <label for="name"> phone</label>
+            <input
+              type="text"
+              id="phone"
+              placeholder="Enter phone "
+              v-model="phone"
+            />
+          </div>
+          <!-- name -->
+          <div class="col-lg-5">
+            <label for="name"> Password </label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter password "
+              v-model="password"
+            />
+          </div>
         </div>
-        <!-- name -->
-        <div class="col-lg-5">
-          <label for="name"> Password </label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter password "
-            v-model="password"
-          />
+        <div class="changes">
+          <base-button> change phone</base-button>
+          <base-button class="change_password"> change password</base-button>
+          <a href="#"> delete account </a>
         </div>
       </div>
-      <div class="changes">
-        <base-button> change phone</base-button>
-        <base-button class="change_password"> change password</base-button>
-        <a href="#"> delete account </a>
-      </div>
-    </div>
-   </form>
+      <!-- Profile_information -->
+    </form>
   </div>
 </template>
 
@@ -97,7 +101,6 @@ export default {
           //   phone: response.data.data.phone,
           // });
           localStorage.setItem("phone", this.phone);
-
         })
         .catch((error) => {
           console.log(error);
@@ -110,8 +113,6 @@ export default {
 
 <style lang="scss" scoped>
 .account_page {
-  width: 100%;
-  padding: 20px 0;
   .general_information,
   .Profile_information {
     background-color: white;
@@ -122,22 +123,6 @@ export default {
   .full_name {
     justify-content: space-between;
     margin-top: 15px;
-  }
-  label {
-    text-transform: capitalize;
-    font-size: 20px;
-  }
-  input {
-    margin: 15px 0;
-    outline: none;
-    border: 1px solid var(--border-color);
-    padding: 15px 10px;
-    border-radius: 10px;
-    width: 100%;
-    transition: all var(--transtion) ease-in-out;
-  }
-  input:focus {
-    border-color: var(--color-yellow);
   }
   .changes {
     display: flex;

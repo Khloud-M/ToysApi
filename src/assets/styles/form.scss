@@ -145,3 +145,24 @@
       
       }
   }
+  // user account 
+  .account_page {
+    width: 100%;
+    padding: 20px 0;
+    label {
+      text-transform: capitalize;
+      font-size: 20px;
+    }
+    input {
+      margin: 15px 0;
+      outline: none;
+      border: 1px solid var(--border-color);
+      padding: 15px 10px;
+      border-radius: 10px;
+      width: 100%;
+      transition: all var(--transtion) ease-in-out;
+    }
+    input:focus {
+      border-color: var(--color-yellow);
+    }
+  }

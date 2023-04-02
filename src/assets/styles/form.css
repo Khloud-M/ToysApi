@@ -129,4 +129,25 @@
 }
 .form .footer_form a {
   text-decoration: underline;
+}
+
+.account_page {
+  width: 100%;
+  padding: 20px 0;
+}
+.account_page label {
+  text-transform: capitalize;
+  font-size: 20px;
+}
+.account_page input {
+  margin: 15px 0;
+  outline: none;
+  border: 1px solid var(--border-color);
+  padding: 15px 10px;
+  border-radius: 10px;
+  width: 100%;
+  transition: all var(--transtion) ease-in-out;
+}
+.account_page input:focus {
+  border-color: var(--color-yellow);
 }/*# sourceMappingURL=form.css.map */
