@@ -5,10 +5,10 @@
         <h4>Addresses</h4>
         <p>You can control your added addresses here</p>
       </div>
-      <base-button>
-        <router-link to="/Account/editaddress">
-          <v-icon icon="mdi-map-marker-plus-outline"></v-icon> add new address
-        </router-link>
+      <base-button class="edit_button">
+      <router-link to="/Account/editaddress" >
+        <v-icon icon="mdi-map-marker-plus-outline"></v-icon> add new address
+      </router-link>
       </base-button>
     </div>
   </div>
@@ -22,13 +22,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.Address {
+.account_page {
   .heading_address {
     flex-direction: row;
     justify-content: space-between;
     button {
       font-size: 15px !important;
-      padding: 0px 15px !important;
+      height: 40px;
+      a {
+        color: black;
+      }
       .v-icon {
         margin-right: 10px;
       }
