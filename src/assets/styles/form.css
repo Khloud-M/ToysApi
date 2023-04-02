@@ -135,6 +135,10 @@
   width: 100%;
   padding: 20px 0;
 }
+.account_page .full_name {
+  justify-content: space-between;
+  margin-top: 15px;
+}
 .account_page label {
   text-transform: capitalize;
   font-size: 20px;
@@ -150,4 +154,13 @@
 }
 .account_page input:focus {
   border-color: var(--color-yellow);
+}
+.account_page .form-select:focus {
+  border-color: var(--border-color);
+  outline: 0;
+  box-shadow: 0 0 0 0;
+}
+.account_page .form-select {
+  padding: 15px 10px;
+  border-radius: 10px;
 }/*# sourceMappingURL=form.css.map */

@@ -5,46 +5,54 @@
       <p>You can edit your address here</p>
     </div>
     <!-- heading -->
-    <form class="d-flex">
-      <div class="edit_address_form">
+    <form class="d-flex" @submit.prevent="SubmitForm">
+      <div class="edit_address_form col-lg-6">
         <h5>edit address</h5>
         <div>
-          <select class="form-select" aria-label="Default select example">
+          <select class="form-select" aria-label="Default select example" v-model="select_city">
             <option value="1">{{ $t("placeholder.Saudi") }}</option>
-            <option value="1">{{ $t("placeholder.egypt") }}</option>
+            <option value="2">{{ $t("placeholder.egypt") }}</option>
           </select>
         </div>
-        <div class="col-lg-6">
-          <label for="name"> first name</label>
-          <input type="text" id="firstname" placeholder="Enter first name " />
+        <!-- select your country -->
+        <div>
+          <label for="address"> The full address</label>
+          <input type="text" id="address" placeholder="Enter full address " />
         </div>
+        <!-- enter address -->
         <div class="check_pass">
-          <div>
-            <input type="checkbox" id="check" v-model="check" />
+            <input type="checkbox" id="check" v-model="check"/>
             <label for="check"> {{ $t("placeholder.remember2") }}</label>
           </div>
+          <!-- end check_pass -->
         </div>
-      </div>
-      <div class="edit_Contact_details">
-        <div class="name">
-          <input
-            type="text"
-            v-model="firstname"
-            placeholder="first name"
-            required
-          />
+      <div class="edit_Contact_details col-lg-5">
+        <div class="full_name d-flex">
+          <div class="col-lg-6">
+            <label for="name"> first name</label>
+            <input
+              type="text"
+              id="firstname"
+              placeholder="Enter first name "
+              v-model="firstname"
+            />
+          </div>
+          <!--  first name -->
+          <div class="col-lg-5">
+            <label for="name">last name</label>
+            <input
+              type="text"
+              id="lastname"
+              placeholder="Enter last  name "
+              v-model="lastname"
+            />
+          </div>
+          <!-- last name -->
         </div>
-        <!-- name -->
-        <div class="name">
-          <input
-            type="text"
-            v-model="lastname"
-            placeholder="last name"
-            required
-          />
-        </div>
-        <!-- name -->
-        <div class="col-lg-8">
+        <!-- full name  -->
+        <div>
+          <label for="name"> Phone </label>
+
           <input
             type="tel"
             id="phone"
@@ -53,17 +61,52 @@
             required
           />
         </div>
+        <base-button> Save information</base-button>
       </div>
+      <!-- end edit_Contact_details -->
     </form>
   </div>
 </template>
 
 <script>
+import BaseButton from '@/components/ui/BaseButton.vue';
 export default {
+  components: { BaseButton },
   data() {
     return {
       check: null,
+      lastname: null,
+      firstname: null,
+      phone:null ,
+      select_city:null,
     };
+  },
+  methods: {
+    SubmitForm() {
+      const myData = new FormData();
+      myData.append("first_name", this.firstname);
+      myData.append("last_name", this.lastname);
+      myData.append("mobile", this.phone);
+      myData.append("city_id", this.select_city);
+      this.axios({
+        method: "POST",
+        url: "store-address",
+        data: myData,
+      })
+        .then((response) => {
+          console.log("store-address");
+          console.log(response);
+          // this.$store.commit("auth/setCurrentUserData", {
+          //   // token: response.data.token,
+          //   // email: response.data.data.email,
+          //   phone: response.data.data.phone,
+          // });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
+    },
   },
 };
 </script>
@@ -73,7 +116,38 @@ export default {
   form {
     background-color: white;
     border-radius: 15px;
-    padding: 15px;
+    padding: 20px;
+    justify-content: space-between;
+    & > :nth-child(2) {
+      position: relative;
+      &::before {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 1px;
+        background-color: var(--border-color);
+        left: -20px;
+      }
+    }
+    .check_pass{
+      label{
+        font-size: 16px;
+      }
+      input {
+        display: inline-block;
+        background-color: blue;
+        width: 30px !important;
+      }
+    }
+    button{
+      margin: 15px 0 ;
+      float: right;
+    }
+  }
+  .edit_address_form{
+    & > :nth-child(3){
+      margin: 15px 0;
+    }
   }
 }
 </style>

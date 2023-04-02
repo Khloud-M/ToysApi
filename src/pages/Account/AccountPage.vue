@@ -120,10 +120,7 @@ export default {
     border-radius: 15px;
     margin: 15px 0;
   }
-  .full_name {
-    justify-content: space-between;
-    margin-top: 15px;
-  }
+ 
   .changes {
     display: flex;
     flex-direction: row;

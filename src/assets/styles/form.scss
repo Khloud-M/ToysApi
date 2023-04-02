@@ -149,6 +149,10 @@
   .account_page {
     width: 100%;
     padding: 20px 0;
+    .full_name {
+      justify-content: space-between;
+      margin-top: 15px;
+    }
     label {
       text-transform: capitalize;
       font-size: 20px;
@@ -165,4 +169,13 @@
     input:focus {
       border-color: var(--color-yellow);
     }
+    .form-select:focus {
+      border-color: var(--border-color);
+      outline: 0;
+      box-shadow: 0 0 0 0;
+  }
+  .form-select{
+  padding: 15px 10px;
+  border-radius: 10px;
+  }
   }
