@@ -1,7 +1,7 @@
 <template>
   <section>
     <!-- <LandingProduct :selectitem="selectitem" /> -->
-    <div class="container d-flex"  v-if="productId">
+    <div class="container d-flex" v-if="productId">
       <div class="col-lg-5 image">
         <img :src="productId.image" />
       </div>
@@ -35,7 +35,7 @@
           <!-- end price -->
           <div class="addCart d-flex">
             <!-- <div><product-quantity :productId="productId.option_values" /></div> -->
-            <base-button @click="addToCart">
+            <base-button @click="addToCart(product_id)">
               <v-icon icon="mdi-shopping-outline" size="20"></v-icon>
               {{ $t("placeholder.addCart") }}</base-button
             >
@@ -102,8 +102,21 @@ export default {
           // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
         });
     },
-    addToCart() {
-      this.$store.commit("products/addToCart", this.selectitem);
+    addToCart(product_id) {
+      const form = new FormData();
+      form.append("products", product_id);
+      this.axios({
+        method: "POST",
+        url: "cart-products",
+        data: form,
+      })
+        .then(() => {
+          this.$toast.success(`added Successfully`);
+        })
+        .catch((err) => {
+          this.$toast.error("error");
+          console.log(err);
+        });
     },
   },
   // mounted() {
