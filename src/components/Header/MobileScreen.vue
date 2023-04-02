@@ -33,6 +33,11 @@
               </div>
               <ChangeLang />
             </div>
+            <div class="main_list">
+              <router-link to="/" @click="toggle">
+                <h3>Main List</h3>
+              </router-link>
+            </div>
             <div class="dropdown">
               <button
                 class="btn btn-secondary dropdown-toggle"
@@ -52,11 +57,6 @@
               </ul>
             </div>
             <ul class="list_nav">
-              <li>
-                <router-link to="/" @click="toggle">
-                  <h3>Main List</h3>
-                </router-link>
-              </li>
               <li>
                 <router-link to="/offer" @click="toggle">
                   {{ $t("navs.offer") }}</router-link
@@ -194,18 +194,32 @@ export default {
       flex-direction: column;
       gap: 20px;
       justify-content: space-between;
-      a {
-        font-family: Medium;
-        color: black;
-        font-size: 18px;
-        &::before {
-          display: none;
+      padding-left: 0;
+      li {
+        border-radius: 10px;
+        padding: 10px 15px;
+        background-color: var(--bg-color-light);
+        a {
+          font-family: Medium;
+          color: black;
+          font-size: 18px;
+          &::before {
+            display: none;
+          }
         }
       }
     }
+    .main_list {
+      background-color: #fff6cd;
+      border-radius: 10px;
+      padding: 10px 15px;
+      a {
+        color: var(--color-yellow);
+      }
+    }
+    // end list nav
     .dropdown {
-      // background-color: red;
-      margin: 20px 0;
+      margin: 18px 0;
       button {
         width: 100%;
         background-color: var(--bg-color-light);
@@ -214,7 +228,6 @@ export default {
         padding: 10px 15px;
         text-align: justify;
         font-size: 18px;
-
       }
       .btn:focus {
         box-shadow: 0 0 0 0rem;
@@ -223,6 +236,7 @@ export default {
         border-color: transparent;
       }
     }
+    // end dropdown
   }
 }
 .bar {
@@ -252,14 +266,9 @@ export default {
   flex-direction: row;
   column-gap: 10px;
   align-items: center;
+  margin: 18px 0;
 }
 ul {
-  padding-left: 0;
-  li {
-    border-radius: 10px;
-    padding: 10px 15px;
-    background-color: var(--bg-color-light);
-  }
   & > :nth-child(1) {
     background-color: #fff6cd;
     a {
