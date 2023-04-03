@@ -118,8 +118,6 @@ export default {
         data: myData,
       })
         .then((response) => {
-          console.log("register");
-          console.log(response);
           this.$store.commit("auth/setCurrentUserData", {
             token: response.data.token,
             email: response.data.data.email,

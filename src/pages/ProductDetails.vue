@@ -35,7 +35,7 @@
           <!-- end price -->
           <div class="addCart d-flex">
             <!-- <div><product-quantity :productId="productId.option_values" /></div> -->
-            <base-button @click="addToCart(product_id)">
+            <base-button @click="addToCart">
               <v-icon icon="mdi-shopping-outline" size="20"></v-icon>
               {{ $t("placeholder.addCart") }}</base-button
             >
@@ -82,7 +82,6 @@ export default {
       productId: null,
     };
   },
-
   created() {
     this.GetProductID();
   },
@@ -94,24 +93,25 @@ export default {
       })
         .then((response) => {
           this.productId = response.data.data;
-          console.log("id");
-          console.log(this.productId);
         })
         .catch((error) => {
           console.log(error);
           // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
         });
     },
-    addToCart(product_id) {
+    addToCart() {
       const form = new FormData();
-      form.append("products", product_id);
+      form.append("products", this.productId);
       this.axios({
         method: "POST",
         url: "cart-products",
         data: form,
       })
-        .then(() => {
+        .then((res) => {
           this.$toast.success(`added Successfully`);
+          this.$store.commit("products/addToCart", this.productId);
+          console.log("cart");
+          console.log(res);
         })
         .catch((err) => {
           this.$toast.error("error");
