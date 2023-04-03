@@ -14,7 +14,7 @@
         :breakpoints="breakpoints"
       >
         <Slide v-for="slide in brands" :key="slide">
-          <div class="carousel__item container_item">
+          <div class="carousel__item brands">
             <div class="image">
               <!-- sale-->
               <img :src="slide.image" alt="" />
@@ -34,7 +34,7 @@
 import { defineComponent } from "vue";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-export  default defineComponent( {
+export default defineComponent({
   props: ["id"],
   components: {
     Carousel,
@@ -83,22 +83,20 @@ export  default defineComponent( {
     },
   },
 });
-
 </script>
 <style lang="scss" scoped>
 section {
   margin: var(--margin) 0;
 }
 .brands {
-  flex-wrap: wrap;
-  margin: var(--margin) auto;
-  justify-content: flex-start;
-  column-gap: 50px;
-  align-items: center;
-  .brand_image {
+  .image {
+    height: 200px;
+    width: 200px;
     cursor: pointer;
     img {
       object-fit: contain;
+      width: 100%;
+      height: 100%;
     }
   }
 }

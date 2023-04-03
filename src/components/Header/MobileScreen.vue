@@ -235,6 +235,11 @@ export default {
       .btn-secondary {
         border-color: transparent;
       }
+      .dropdown-menu.show {
+        width: 100%;
+        padding: 5px 10px;
+        line-height: 40px;
+      }
     }
     // end dropdown
   }
@@ -267,21 +272,6 @@ export default {
   column-gap: 10px;
   align-items: center;
   margin: 18px 0;
-}
-ul {
-  & > :nth-child(1) {
-    background-color: #fff6cd;
-    a {
-      color: var(--color-yellow);
-    }
-  }
-  .form-select {
-    background-color: transparent !important;
-    border: 0 !important;
-  }
-  .form-select:focus {
-    box-shadow: 0 0 0 0;
-  }
 }
 </style>
 
