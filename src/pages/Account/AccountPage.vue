@@ -95,11 +95,7 @@ export default {
         .then((response) => {
           console.log("edit profile");
           console.log(response);
-          // this.$store.commit("auth/setCurrentUserData", {
-          //   // token: response.data.token,
-          //   // email: response.data.data.email,
-          //   phone: response.data.data.phone,
-          // });
+          // update your numberphone
           localStorage.setItem("phone", this.phone);
         })
         .catch((error) => {
