@@ -120,7 +120,7 @@ export default {
     border-radius: 15px;
     margin: 15px 0;
   }
- 
+
   .changes {
     display: flex;
     flex-direction: row;
