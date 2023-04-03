@@ -15,20 +15,20 @@
       <div class="name">
         <input
           type="text"
-          v-model="firstname"
+          v-model="name"
           placeholder="first name"
           required
         />
       </div>
       <!-- name -->
-      <div class="name">
+      <!-- <div class="name">
         <input
           type="text"
           v-model="lastname"
           placeholder="last name"
           required
         />
-      </div>
+      </div> -->
       <!-- name -->
       <div class="phone d-flex">
         <div class="col-lg-3">
@@ -107,7 +107,7 @@ export default {
       const myData = new FormData();
       // myData.append("name", this.name);
       myData.append("first_name", this.firstname);
-      myData.append("last_name", this.lastname);
+      myData.append("name", this.name);
       myData.append("email", this.email);
       myData.append("phone", this.phone);
       myData.append("password", this.password);
@@ -124,7 +124,8 @@ export default {
             phone: response.data.data.phone,
           });
 
-          console.log( "token" + response.data );
+          console.log("token");
+          console.log(response.data.token);
 
           this.$router.push("/");
           this.$toast.success(`    لسه شوية ونوصل `);

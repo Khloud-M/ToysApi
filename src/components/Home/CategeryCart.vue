@@ -59,7 +59,6 @@ export default {
       })
         .then((response) => {
           this.categery = response.data.data;
-          console.log(this.categery);
         })
         .catch((error) => {
           console.log(error);

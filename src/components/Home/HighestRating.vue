@@ -91,7 +91,6 @@ export default defineComponent({
       })
         .then((response) => {
           this.heghest = response.data.data;
-          console.log(this.heghest);
         })
         .catch((error) => {
           console.log(error);

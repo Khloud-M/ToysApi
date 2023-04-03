@@ -94,8 +94,6 @@ export default defineComponent({
       })
         .then((response) => {
           this.Sales = response.data.data;
-          console.log("sales");
-          console.log(this.Sales);
         })
         .catch((error) => {
           console.log("sales");

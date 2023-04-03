@@ -41,12 +41,11 @@ import Toaster from "@meforma/vue-toaster";
 import axios from "axios";
 import VueAxios from "vue-axios";
 axios.defaults.baseURL = "https://vip.toyshomekw.com/api/";
-axios.defaults.headers = {
-  'Authorization':`Bearer ${localStorage.getItem('user_token_toys')}`,
-  Accept: "application/json",
-"Accept-Language": i18n.global.locale,
-
-};
+// axios.defaults.headers = {
+//   Authorization: `Bearer ${localStorage.getItem("user_token_toys")}`,
+//   Accept: "application/json",
+//   "Accept-Language": i18n.global.locale,
+// };
 
 const app = createApp(App);
 app.component("the-header", TheHeader);
@@ -66,6 +65,5 @@ app.use(vuetify);
 app.use(VueAxios, axios);
 
 // app.use(bootstrap);
-
 
 app.mount("#app");

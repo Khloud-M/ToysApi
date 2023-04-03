@@ -51,7 +51,7 @@ export default {
   props: ["id"],
   data() {
     return {
-      name: localStorage.getItem("name"),
+      name: localStorage.getItem("user_name_toys"),
     };
   },
   components: {
