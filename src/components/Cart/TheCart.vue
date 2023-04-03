@@ -28,7 +28,6 @@
         ></button>
       </div>
       <hr />
-
       <div class="offcanvas-body">
         <div class="inCart" v-if="cart.length">
           <!-- <div class="row" v-for="item in cart"> -->
@@ -88,7 +87,6 @@
 import { mapGetters } from "vuex";
 // import ProductQuantity from "../Products/ProductQuantity.vue";
 export default {
-  // components: { ProductQuantity },
   computed: {
     ...mapGetters({
       cart: "products/cart",
@@ -106,6 +104,7 @@ export default {
     cartt() {
       console.log(this.cart);
     },
+  
   },
 };
 </script>

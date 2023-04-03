@@ -28,10 +28,6 @@ export default {
         state.cart = JSON.parse(cart);
       }
     }
-    // let cart = localStorage.getItem("freeCart");
-    // if (cart) {
-    //   state.cart = JSON.parse(cart);
-    // }
   },
   addToCart(state, selectitem) {
     // check if the item in the cart already
@@ -43,7 +39,7 @@ export default {
       });
     }
     if (itemFound) {
-      itemFound.quantity += 1;
+      selectitem.quantity += 1;
     }
     localStorage.setItem("freeCart", JSON.stringify(state.cart));
   },
@@ -52,4 +48,5 @@ export default {
     // update local Storage
     localStorage.setItem("freeCart", JSON.stringify(state.cart));
   },
+  // get product
 };

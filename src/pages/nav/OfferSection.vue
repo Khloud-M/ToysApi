@@ -17,7 +17,7 @@
             <div class="price">
               <b> {{ item.price }} KWD</b>
 
-              <small> {{ item.sale_price }} KWD </small>
+              <small :class="{active:IsActive}"> {{ item.sale_price }} KWD </small>
             </div>
             <button class="btn_cart">
               <v-icon icon="mdi-basket-fill"> </v-icon>
@@ -36,6 +36,7 @@ export default {
   data(){
     return{
       salesOffer:null,
+      IsActive:true
     }
   },
   created() {

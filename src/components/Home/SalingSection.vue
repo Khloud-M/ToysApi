@@ -15,13 +15,13 @@
       >
         <Slide v-for="slide in Sales" :key="slide">
           <div class="carousel__item container_item">
-          <router-link :to="`/products/${slide.id}`">
-            <div class="image">
-              <div class="sale">Sale {{ slide.sale_price }}</div>
-              <!-- sale-->
-              <img :src="slide.image" alt="" />
-            </div>
-          </router-link>
+            <router-link :to="`/products/${slide.id}`">
+              <div class="image">
+                <div class="sale">Sale {{ slide.sale_price }}</div>
+                <!-- sale-->
+                <img :src="slide.image" alt="" />
+              </div>
+            </router-link>
             <!-- end image -->
             <div class="content_image">
               <h5 class="name">{{ slide.title }}</h5>
@@ -94,8 +94,11 @@ export default defineComponent({
       })
         .then((response) => {
           this.Sales = response.data.data;
+          console.log("sales");
+          console.log(this.Sales);
         })
         .catch((error) => {
+          console.log("sales");
           console.log(error);
           // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
         });

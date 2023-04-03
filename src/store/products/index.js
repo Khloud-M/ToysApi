@@ -7,8 +7,6 @@ export default {
     return {
       cart:[],
       data:null,
-
-
     }
   },
   getters ,

@@ -100,4 +100,23 @@ section {
     }
   }
 }
+.test {
+  width: 200px;
+  border: 1px solid black;
+  padding: 20px 20px 0;
+  flex: 1;
+  overflow: auto;
+}
+.test::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+.test::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.test::-webkit-scrollbar-thumb {
+  background-color: var(--border-color) !important;
+  border-radius: 10px !important;
+}
 </style>

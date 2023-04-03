@@ -100,23 +100,8 @@ export default {
         });
     },
     addToCart() {
-      const form = new FormData();
-      form.append("products", this.productId);
-      this.axios({
-        method: "POST",
-        url: "cart-products",
-        data: form,
-      })
-        .then((res) => {
-          this.$toast.success(`added Successfully`);
-          this.$store.commit("products/addToCart", this.productId);
-          console.log("cart");
-          console.log(res);
-        })
-        .catch((err) => {
-          this.$toast.error("error");
-          console.log(err);
-        });
+      this.$toast.success("added Successfully");
+      this.$store.commit("products/addToCart", this.productId);
     },
   },
   // mounted() {

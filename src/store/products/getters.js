@@ -8,14 +8,16 @@ export default {
   LastAndHegh(state) {
     return state.LastAndHegh;
   },
-  Brands(state){
+  Brands(state) {
     return state.Brands;
   },
-  cart(state)
-  {
-    return state.cart
+  cart(state) {
+    return state.cart;
   },
-  data(state){
-    return state.data
-  }
+  data(state) {
+    return state.data;
+  },
+  ProductInCart(state) {
+    return state.ProductInCart;
+  },
 };

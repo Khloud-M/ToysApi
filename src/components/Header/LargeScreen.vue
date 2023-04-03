@@ -28,7 +28,6 @@
             <router-link to="/Account"> welcome {{ name }} </router-link>
           </button>
           <router-link to="/:auth" v-else>
-            <v-icon icon="mdi-account"> </v-icon>
             {{ $t("buttons.signIn") }}</router-link
           >
         </li>
