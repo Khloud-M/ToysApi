@@ -1,8 +1,11 @@
 <template>
-  <div class="quanty d-flex gap-3">
-    <li v-for="p in productId">
+  <div class="quanty d-flex gap-3" v-if="productId">
+    <button>-</button>
+
+    <li v-for="p in productId.option_values">
       {{ p.quantity }}
     </li>
+    <button>+</button>
   </div>
 </template>
 <script>

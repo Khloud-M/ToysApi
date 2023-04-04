@@ -27,8 +27,8 @@
               <h5 class="name">{{ slide.title }}</h5>
               <div class="content_foot d-flex">
                 <div class="price">
-                  <b> {{ slide.sale_price }} KWD </b>
-                  <small> {{ slide.price }} KWD</small>
+                  <b v-if="slide.sale_price"> {{ slide.sale_price }} KWD </b>
+                  <small v-if="slide.price"> {{ slide.price }} KWD</small>
                 </div>
                 <button class="btn_cart">
                   <v-icon icon="mdi-basket-fill"> </v-icon>
@@ -83,6 +83,10 @@ export default defineComponent({
   created() {
     this.GetHeghest();
   },
+  computed: {
+    // classObject(){
+    // }
+  },
   methods: {
     GetHeghest() {
       this.axios({
@@ -91,6 +95,8 @@ export default defineComponent({
       })
         .then((response) => {
           this.heghest = response.data.data;
+          console.log("heghest");
+          console.log(this.heghest);
         })
         .catch((error) => {
           console.log(error);

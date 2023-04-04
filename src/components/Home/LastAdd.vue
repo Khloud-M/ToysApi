@@ -27,8 +27,8 @@
               <h5 class="name">{{ slide.title }}</h5>
               <div class="content_foot d-flex">
                 <div class="price">
-                  <b> {{ slide.sale_price }} KWD </b>
-                  <small :class="{ active: IsActive }">
+                  <b  v-if="slide.sale_price"> {{ slide.sale_price }} KWD </b>
+                  <small  v-if="slide.price">
                     {{ slide.price }} KWD</small
                   >
                 </div>

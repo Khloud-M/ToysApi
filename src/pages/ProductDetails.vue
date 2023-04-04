@@ -34,7 +34,7 @@
           </h5>
           <!-- end price -->
           <div class="addCart d-flex">
-            <!-- <div><product-quantity :productId="productId.option_values" /></div> -->
+            <div><product-quantity :productId="productId" /></div>
             <base-button @click="addToCart">
               <v-icon icon="mdi-shopping-outline" size="20"></v-icon>
               {{ $t("placeholder.addCart") }}</base-button
@@ -69,12 +69,12 @@
   </section>
 </template>
 <script>
-// import ProductQuantity from "@/components/Products/ProductQuantity.vue";
+import ProductQuantity from "@/components/Products/ProductQuantity.vue";
 import LandingProduct from "@/components/Products/LandingProduct.vue";
 export default {
   props: ["id"],
   components: {
-    // ProductQuantity,
+    ProductQuantity,
     LandingProduct,
   },
   data() {
@@ -92,7 +92,8 @@ export default {
         url: `product/${this.id}`,
       })
         .then((response) => {
-          this.productId = response.data.data;
+          this.productId = response.data.data.option_values;
+          console.log(this.productId);
         })
         .catch((error) => {
           console.log(error);

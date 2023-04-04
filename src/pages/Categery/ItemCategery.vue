@@ -1,6 +1,6 @@
 <template>
   <section>
-    <landing-cat  :selectitem="selectitem"/>
+    <landing-cat  :CatId="CatId"/>
     <div class="container product_item d-flex" v-if="CatId">
       <div
         class="container_item col-lg-3"
@@ -35,8 +35,6 @@ export default {
   props: ["id"],
   data() {
     return {
-      selectitem: null,
-      data: null,
       CatId:null
     };
   },
@@ -51,12 +49,9 @@ export default {
       })
         .then((response) => {
           this.CatId = response;
-          console.log("cart id")
-          console.log(this.CatId);
         })
         .catch((error) => {
           console.log(error);
-          // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
         });
     },
   },

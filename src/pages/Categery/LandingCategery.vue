@@ -1,7 +1,7 @@
 <template>
   <section class="landing">
-    <div class="container d-flex" v-if="selectitem">
-      <h3>{{ selectitem.itemName }}</h3>
+    <div class="container d-flex" v-if="CatId">
+      <h3>{{ CatId.title }}</h3>
       <ul>
         <li>
           <router-link to="/">
@@ -17,7 +17,7 @@
           <!-- dirction ltr -->
           <div v-else><v-icon icon="mdi-arrow-right-thin" /></div>
         </li>
-        <li>{{ selectitem.itemName }}</li>
+        <li>{{ CatId.title }}</li>
       </ul>
     </div>
   </section>
@@ -25,7 +25,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  props: ["id", "selectitem"],
+  props: ["id", "CatId"],
   computed: {
     ...mapGetters({
       Categories: "products/Categories",

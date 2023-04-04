@@ -27,10 +27,8 @@
               <h5 class="name">{{ slide.title }}</h5>
               <div class="content_foot d-flex">
                 <div class="price">
-                  <b> {{ slide.sale_price }} KWD </b>
-                  <small :class="[IsActive ? 'blockDiv' :'noneDiv' ]">
-                    {{ slide.price }} KWD</small
-                  >
+                  <b v-if="slide.sale_price"> {{ slide.sale_price }} KWD </b>
+                  <small v-if="slide.price"> {{ slide.price }} KWD</small>
                 </div>
                 <button class="btn_cart">
                   <v-icon icon="mdi-basket-fill"> </v-icon>
@@ -64,7 +62,7 @@ export default defineComponent({
   data() {
     return {
       Sales: null,
-      IsActive:true,
+      IsActive: true,
       breakpoints: {
         320: {
           itemsToShow: 1,
@@ -111,10 +109,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" >
-.noneDiv{
+.noneDiv {
   display: none;
 }
-.blockDiv{
+.blockDiv {
   display: block;
 }
 .More_Salling {
