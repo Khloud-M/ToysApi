@@ -15,8 +15,8 @@
           <h5 class="name">{{ item.title }}</h5>
           <div class="content_foot d-flex">
             <div class="price">
-              <b> {{ item.sale_price }} KWD </b>
-              <small> {{ item.price }} KWD</small>
+              <b  v-if="item.sale_price"> {{ item.sale_price }} KWD </b>
+              <small  v-if="item.price"> {{ item.price }} KWD</small>
             </div>
             <button class="btn_cart">
               <v-icon icon="mdi-basket-fill"> </v-icon>

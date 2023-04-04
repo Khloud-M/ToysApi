@@ -9,14 +9,10 @@
       <div class="col-lg-6 content_details">
         <div class="item_details">
           <h6>{{ productId.title }}</h6>
-          <div class="discription">
+          <div class="discription" v-if="productId.desc">
             <h6>description</h6>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Assumenda, autem! Lorem ipsum dolor sit, amet consectetur
-              adipisicing elit. Perferendis, odit? Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Aspernatur blanditiis repellendus
-              quia ducimus eum! Repellendus, repudiandae quae adipisci corrupti
+              {{ productId.desc }}
             </p>
           </div>
           <div class="item_name d-flex">
@@ -44,6 +40,17 @@
         </div>
         <!-- item_details-->
         <hr />
+        <li v-for="option in productId.option_values ">
+          {{ option.id }}
+          {{ option.name }}
+          {{ option.price }}
+          {{ option.quantity }}
+          <li v-for="p in option.values" >
+            {{  p.name  }}
+            {{  p.option_name  }}
+          </li>
+        </li>
+        <hr />
         <div class="product_option">
           <h4>Product Options</h4>
           <div class="Prod_code d-flex">
@@ -53,7 +60,7 @@
           <div class="Prod_brand d-flex">
             <h5>Brand</h5>
             :
-            <small> </small>
+            <small> {{ productId.brand }} </small>
           </div>
           <div class="Prod_Stock d-flex">
             <h5>Stock</h5>
@@ -92,7 +99,7 @@ export default {
         url: `product/${this.id}`,
       })
         .then((response) => {
-          this.productId = response.data.data.option_values;
+          this.productId = response.data.data;
           console.log(this.productId);
         })
         .catch((error) => {
