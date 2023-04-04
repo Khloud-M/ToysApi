@@ -9,7 +9,11 @@
       <div class="edit_address_form col-lg-6">
         <h5>edit address</h5>
         <div>
-          <select class="form-select" aria-label="Default select example" v-model="select_city">
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            v-model="select_city"
+          >
             <option value="1">{{ $t("placeholder.Saudi") }}</option>
             <option value="2">{{ $t("placeholder.egypt") }}</option>
           </select>
@@ -17,15 +21,20 @@
         <!-- select your country -->
         <div>
           <label for="address"> The full address</label>
-          <input type="text" id="address" placeholder="Enter full address " />
+          <input
+            type="text"
+            id="address"
+            placeholder="Enter full address"
+            v-model="address"
+          />
         </div>
         <!-- enter address -->
         <div class="check_pass">
-            <input type="checkbox" id="check" v-model="check"/>
-            <label for="check"> {{ $t("placeholder.remember2") }}</label>
-          </div>
-          <!-- end check_pass -->
+          <input type="checkbox" id="check" v-model="check" />
+          <label for="check"> {{ $t("placeholder.remember2") }}</label>
         </div>
+        <!-- end check_pass -->
+      </div>
       <div class="edit_Contact_details col-lg-5">
         <div class="full_name d-flex">
           <div class="col-lg-6">
@@ -69,43 +78,33 @@
 </template>
 
 <script>
-import BaseButton from '@/components/ui/BaseButton.vue';
+import BaseButton from "@/components/ui/BaseButton.vue";
 export default {
   components: { BaseButton },
   data() {
     return {
       check: null,
-      lastname: null,
       firstname: null,
-      phone:null ,
-      select_city:null,
+      lastname: null,
+      phone: null,
+      address: null,
+      select_city: null,
     };
   },
   methods: {
     SubmitForm() {
-      const myData = new FormData();
-      myData.append("first_name", this.firstname);
-      myData.append("last_name", this.lastname);
-      myData.append("mobile", this.phone);
-      myData.append("city_id", this.select_city);
-      this.axios({
-        method: "POST",
-        url: "store-address",
-        data: myData,
-      })
-        .then((response) => {
-          console.log("store-address");
-          console.log(response);
-          // this.$store.commit("auth/setCurrentUserData", {
-          //   // token: response.data.token,
-          //   // email: response.data.data.email,
-          //   phone: response.data.data.phone,
-          // });
-        })
-        .catch((error) => {
-          console.log(error);
-          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
-        });
+      this.$store.commit("auth/GetAddress", {
+        firstname: this.firstname,
+        lastname: this.lastname,
+        phone: this.phone,
+        address: this.address,
+        select_city: this.select_city,
+      });
+      this.firstname = "";
+      this.lastname = "";
+      this.phone = "";
+      this.address = "";
+      this.select_city = "";
     },
   },
 };
@@ -129,8 +128,8 @@ export default {
         left: -20px;
       }
     }
-    .check_pass{
-      label{
+    .check_pass {
+      label {
         font-size: 16px;
       }
       input {
@@ -139,13 +138,13 @@ export default {
         width: 30px !important;
       }
     }
-    button{
-      margin: 15px 0 ;
+    button {
+      margin: 15px 0;
       float: right;
     }
   }
-  .edit_address_form{
-    & > :nth-child(3){
+  .edit_address_form {
+    & > :nth-child(3) {
       margin: 15px 0;
     }
   }
