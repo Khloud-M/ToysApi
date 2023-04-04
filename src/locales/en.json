@@ -122,7 +122,8 @@
     "moreSale":"More Selling",
     "LastAdd":"Last Add",
     "HighestRating":"Highest Rating",
-    "mainList":"Main List"
+    "mainList":"Main List" ,
+    "edit":"Edit"
 
   },
   "buttons": {

@@ -13,6 +13,11 @@
     </div>
     <div class="details_Adress" v-if="getAdress">
       {{ getAdress }}
+      <div class="action col-lg-3">
+        <router-link to="/Account/editaddress">
+          {{ $t("placeholder.edit") }}
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
