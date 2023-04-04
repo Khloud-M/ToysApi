@@ -8,30 +8,35 @@
         </div>
         <hr />
         <!-- end heading -->
-        <ul class="myData">
-          <li>
-            <router-link to="/Account/user">
-              <v-icon icon="mdi-account"></v-icon> my account
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/Account/address">
-              <v-icon icon="mdi-map-marker-outline"></v-icon> Adresses
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/Account/favourite">
-              <v-icon icon="mdi-heart-outline"></v-icon> favourites
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/Account/myorder">
-              <v-icon icon="mdi-list-box-outline"></v-icon> order list
-            </router-link>
-          </li>
-        </ul>
-        <hr />
-        <button @click="removeToken">logout</button>
+        <div class="nav_sideBar">
+          <ul class="myData">
+            <li>
+              <router-link to="/Account/user">
+                <v-icon icon="mdi-account"></v-icon> my account
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/Account/address">
+                <v-icon icon="mdi-map-marker-outline"></v-icon> Adresses
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/Account/favourite">
+                <v-icon icon="mdi-heart-outline"></v-icon> favourites
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/Account/myorder">
+                <v-icon icon="mdi-list-box-outline"></v-icon> order list
+              </router-link>
+            </li>
+          </ul>
+          <hr />
+          <button @click="removeToken">
+            <v-icon icon="mdi-logout" size="20"></v-icon>
+            logout
+          </button>
+        </div>
       </div>
       <div class="col-lg-8">
         <router-view></router-view>
@@ -44,7 +49,7 @@
 export default {
   data() {
     return {
-      name: localStorage.getItem("name"),
+      name: localStorage.getItem("user_name_toys"),
       email: localStorage.getItem("user_email_toys"),
     };
   },
@@ -70,10 +75,9 @@ export default {
           color: var(--account-color);
         }
       }
-      ul{
+      ul {
         padding-left: 0;
         padding: 15px;
-
       }
       ul li {
         margin: 10px 0;
@@ -107,11 +111,25 @@ export default {
           }
         }
       }
-      button{
+      button {
         padding: 15px;
-
       }
     }
+  }
+}
+.nav_sideBar {
+  overflow: auto;
+  flex: 1;
+  height: 270px;
+  &::-webkit-scrollbar {
+    width: 0.3rem;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.3);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 10px !important;
   }
 }
 </style>

@@ -15,9 +15,8 @@
           <h5 class="name">{{ item.title }}</h5>
           <div class="content_foot d-flex">
             <div class="price">
-              <b> {{ item.price }} KWD</b>
-
-              <small :class="{active:IsActive}"> {{ item.sale_price }} KWD </small>
+              <b> {{ item.sale_price }} KWD </b>
+              <small> {{ item.price }} KWD</small>
             </div>
             <button class="btn_cart">
               <v-icon icon="mdi-basket-fill"> </v-icon>
@@ -33,11 +32,11 @@
 <script>
 export default {
   props: ["id"],
-  data(){
-    return{
-      salesOffer:null,
-      IsActive:true
-    }
+  data() {
+    return {
+      salesOffer: null,
+      IsActive: true,
+    };
   },
   created() {
     this.GetOffer();

@@ -27,8 +27,10 @@
               <h5 class="name">{{ slide.title }}</h5>
               <div class="content_foot d-flex">
                 <div class="price">
-                  <b> {{ slide.price }} KWD</b>
-                  <small> {{ slide.sale_price }} KWD </small>
+                  <b> {{ slide.sale_price }} KWD </b>
+                  <small :class="[IsActive ? 'blockDiv' :'noneDiv' ]">
+                    {{ slide.price }} KWD</small
+                  >
                 </div>
                 <button class="btn_cart">
                   <v-icon icon="mdi-basket-fill"> </v-icon>
@@ -62,6 +64,7 @@ export default defineComponent({
   data() {
     return {
       Sales: null,
+      IsActive:true,
       breakpoints: {
         320: {
           itemsToShow: 1,
@@ -94,6 +97,8 @@ export default defineComponent({
       })
         .then((response) => {
           this.Sales = response.data.data;
+          console.log("Sales");
+          // console.log(response.data.data[0].sale_price);
         })
         .catch((error) => {
           console.log("sales");
@@ -106,6 +111,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" >
+.noneDiv{
+  display: none;
+}
+.blockDiv{
+  display: block;
+}
 .More_Salling {
   margin: var(--margin) 0;
   .carousel {

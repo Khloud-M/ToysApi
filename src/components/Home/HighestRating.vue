@@ -27,8 +27,8 @@
               <h5 class="name">{{ slide.title }}</h5>
               <div class="content_foot d-flex">
                 <div class="price">
-                  <b> {{ slide.price }} KWD</b>
-                  <small> {{ slide.sale_price }} KWD </small>
+                  <b> {{ slide.sale_price }} KWD </b>
+                  <small> {{ slide.price }} KWD</small>
                 </div>
                 <button class="btn_cart">
                   <v-icon icon="mdi-basket-fill"> </v-icon>

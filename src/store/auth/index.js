@@ -22,10 +22,10 @@ export default {
         state.userPhone = payload.phone;
         localStorage.setItem("user_phone_toys", payload.phone);
       }
-      // if(payload.phone) {
-      //   state.userPhone = payload.phone;
-      //   localStorage.setItem("user_phone_toys", payload.phone);
-      // }
+      if(payload.name) {
+        state.username = payload.name;
+        localStorage.setItem("user_name_toys", payload.name);
+      }
     },
     logout(state) {
       state.userToken = null;
@@ -38,7 +38,8 @@ export default {
       return {
         token: state.userToken,
         email: state.userEmail,
-        phone : state.userPhone
+        phone : state.userPhone ,
+        
       };
     },
     isLoggedIn(state) {

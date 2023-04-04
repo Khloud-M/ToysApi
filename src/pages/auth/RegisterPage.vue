@@ -122,6 +122,7 @@ export default {
             token: response.data.token,
             email: response.data.data.email,
             phone: response.data.data.phone,
+            name: response.data.data.name,
           });
 
           console.log("token");
