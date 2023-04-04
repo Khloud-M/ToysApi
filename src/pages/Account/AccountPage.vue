@@ -7,29 +7,16 @@
     <form @submit.prevent="SubmitForm">
       <div class="general_information">
         <h5>General Info</h5>
-        <div class="full_name d-flex">
-          <div class="col-lg-6">
-            <label for="name"> first name</label>
-            <input
-              type="text"
-              id="firstname"
-              placeholder="Enter first name "
-              v-model="firstname"
-            />
-          </div>
-          <!--  first name -->
-          <div class="col-lg-5">
-            <label for="name">last name</label>
-            <input
-              type="text"
-              id="lastname"
-              placeholder="Enter last  name "
-              v-model="lastname"
-            />
-          </div>
-          <!-- last name -->
+        <div>
+          <label for="name"> name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter Your  name "
+            v-model="name"
+          />
         </div>
-        <!-- full name  -->
+        <!--  name  -->
 
         <base-button> submit info</base-button>
       </div>
@@ -74,17 +61,15 @@ export default {
   components: { BaseButton },
   data() {
     return {
-      firstname: localStorage.getItem("name"),
-      lastname: localStorage.getItem("lastname"),
-      phone: localStorage.getItem("phone"),
+      name: localStorage.getItem("user_name_toys"),
+      phone: localStorage.getItem("user_phone_toys"),
       password: localStorage.getItem("password"),
     };
   },
   methods: {
     SubmitForm() {
       const myData = new FormData();
-      // myData.append("first_name", this.firstname);
-      // myData.append("last_name", this.lastname);
+      myData.append("name", this.name);
       myData.append("phone", this.phone);
       myData.append("password", this.password);
       this.axios({
@@ -96,7 +81,9 @@ export default {
           console.log("edit profile");
           console.log(response);
           // update your numberphone
-          localStorage.setItem("phone", this.phone);
+          localStorage.setItem("user_name_toys", this.name);
+          localStorage.setItem("user_phone_toys", this.phone);
+          localStorage.setItem("password", this.password);
         })
         .catch((error) => {
           console.log(error);

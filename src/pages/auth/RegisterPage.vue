@@ -13,12 +13,7 @@
       </div> -->
       <!-- name -->
       <div class="name">
-        <input
-          type="text"
-          v-model="name"
-          placeholder="first name"
-          required
-        />
+        <input type="text" v-model="name" placeholder="first name" required />
       </div>
       <!-- name -->
       <!-- <div class="name">
@@ -131,9 +126,7 @@ export default {
           this.$router.push("/");
           this.$toast.success(`    لسه شوية ونوصل `);
 
-          localStorage.setItem("phone", this.phone);
-          localStorage.setItem("name", this.firstname);
-          localStorage.setItem("lastname", this.lastname);
+          localStorage.setItem("user_phone_toys", this.phone);
           localStorage.setItem("password", this.password);
         })
         .catch((error) => {
