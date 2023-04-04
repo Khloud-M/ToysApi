@@ -1,6 +1,6 @@
 <template>
   <section>
-    <!-- <LandingProduct :selectitem="selectitem" /> -->
+    <LandingProduct :productId="productId" />
     <div class="container d-flex" v-if="productId">
       <div class="col-lg-5 image">
         <img :src="productId.image" />
@@ -70,12 +70,12 @@
 </template>
 <script>
 // import ProductQuantity from "@/components/Products/ProductQuantity.vue";
-// import LandingProduct from "@/components/Products/LandingProduct.vue";
+import LandingProduct from "@/components/Products/LandingProduct.vue";
 export default {
   props: ["id"],
   components: {
     // ProductQuantity,
-    // LandingProduct,
+    LandingProduct,
   },
   data() {
     return {
@@ -96,9 +96,9 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
         });
     },
+    // end getting data
     addToCart() {
       this.$toast.success("added Successfully");
       this.$store.commit("products/addToCart", this.productId);

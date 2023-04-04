@@ -1,11 +1,13 @@
 <template>
   <section class="landing">
-    <div class="container d-flex" v-if="selectitem">
-      <h3>{{ selectitem.name }}</h3>
+    <div class="container d-flex" v-if="productId">
+      <h3>{{ productId.title }}</h3>
       <ul>
-        <li><router-link to="/">
-          {{ $t("navs.home") }}
-           </router-link></li>
+        <li>
+          <router-link to="/">
+            {{ $t("navs.home") }}
+          </router-link>
+        </li>
         <li>
           <!-- direction rtl -->
           <div v-if="$i18n.locale == 'ar'">
@@ -15,14 +17,24 @@
           <!-- dirction ltr -->
           <div v-else><v-icon icon="mdi-arrow-right-thin" /></div>
         </li>
-        <li>{{ selectitem.name }}</li>
+        <li>{{ productId.category }}</li>
+        <li>
+          <!-- direction rtl -->
+          <div v-if="$i18n.locale == 'ar'">
+            <v-icon icon="mdi-arrow-left-thin" />
+          </div>
+
+          <!-- dirction ltr -->
+          <div v-else><v-icon icon="mdi-arrow-right-thin" /></div>
+        </li>
+        <li>{{ productId.title }}</li>
       </ul>
     </div>
   </section>
 </template>
 <script>
 export default {
-  props: ["selectitem"],
+  props: ["productId"],
 };
 </script>
   <style lang="scss" scoped>
@@ -67,6 +79,7 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    column-gap: 10px;
     & > :nth-child(1) {
       a {
         color: rgb(237 26 44 / 70%);
@@ -77,6 +90,13 @@ export default {
       }
     }
     & > :nth-child(3) {
+      color: rgb(237 26 44 / 70%);
+      background-color: #fff;
+      text-transform: capitalize;
+      padding: 10px 10px;
+      border-radius: 7px;
+    }
+    & > :nth-child(5) {
       background-color: rgba(255, 255, 255, 0.15);
       padding: 10px 10px;
       border-radius: 7px;
