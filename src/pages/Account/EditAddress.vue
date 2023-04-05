@@ -100,11 +100,6 @@ export default {
         address: this.address,
         select_city: this.select_city,
       });
-      this.firstname = "";
-      this.lastname = "";
-      this.phone = "";
-      this.address = "";
-      this.select_city = "";
       this.$router.push("/Account/address");
     },
   },

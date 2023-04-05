@@ -5,6 +5,11 @@ export default {
     return {
       TheAdress: null,
       Address: localStorage.getItem("Address") || "",
+      fristName: localStorage.getItem("fristName") || "",
+      lastName: localStorage.getItem("lastName") || "",
+      Address_phone: localStorage.getItem("Address_phone") || "",
+      // end details Address
+      // start auth
       userToken: localStorage.getItem("user_token_toys") || "",
       userEmail: localStorage.getItem("user_email_toys") || "",
       userPhone: localStorage.getItem("user_phone_toys") || "",
@@ -35,6 +40,12 @@ export default {
       state.userPhone = null;
       state.userEmail = null;
     },
+    logoutAdress(state) {
+      state.Address = null;
+      state.fristName = null;
+      state.lastName = null;
+      state.Address_phone = null;
+    },
     GetAddress(state, payload) {
       const myData = new FormData();
       myData.append("first_name", payload.firstname);
@@ -52,8 +63,9 @@ export default {
           console.log(res);
           state.TheAdress = res.data.data;
           localStorage.setItem("Address", payload.address);
-          // this.$router.push("/Account/editaddress");
-
+          localStorage.setItem("fristName", payload.firstname);
+          localStorage.setItem("lastName", payload.lastname);
+          localStorage.setItem("Address_phone", payload.phone);
         })
         .catch((error) => {
           console.log(error);

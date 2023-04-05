@@ -24,32 +24,6 @@
     "Orders": "طلباتي",
     "Cart": "السله"
   },
-  "home": {
-    "aboutUs": " معلومات عنا",
-    "read more": "اقرأ المزيد",
-    "Latest additions": "أحدث الإضافات",
-    "showall": " عرض الكل",
-    "best seller": "الأكثر مبيعا",
-    "highest rated": " الأعلى تقييما ",
-    "myorder": "طلبا تي",
-    "accountbalance": "رصيد الحساب",
-    "addresses": "العناوين",
-    "commonquestions": "الأسئلة الشائعة ",
-    "privacypolicy": "سياسة الخصوصية ",
-    "help": "المساعدة",
-    "TermsConditions": "الشروط و الأحكام",
-    "Instructionsuse": "تعاليم الاستخدام",
-    "search": " ابحث عن  ...",
-
-    "Available Options": "الخيارات المتاحة",
-    "Create An Account": "انشئ حساب",
-    "Sign In To Your Account": "تسجيل الدخول إلى حسابك",
-    "Forget Your Password?": "نسيت كلمة المرور؟",
-    "Please Enter Your Mobile Number Or Your Email Adreess": "الرجاء إدخال رقم هاتفك المحمول أو عنوان بريدك الإلكتروني",
-    "Please Enter Your New Password": "الرجاء إدخال كلمة المرور الجديدة الخاصة بك",
-    "Verification": "تَحَقّق",
-    "Please Enter The Code That Sent To Your Email Address Or Mobile Number": "الرجاء إدخال الرمز المرسل إلى عنوان بريدك الإلكتروني أو رقم هاتفك المحمول"
-  },
   "placeholder": {
     "Search": "ابحث هنا",
     "Password": "كلمة المرور ",
@@ -103,7 +77,8 @@
     "HighestRating":"الأعلى تقييما",
     "LastAdd":"اخر إضافة",
     "mainList":"القائمة الرئيسية",
-    "edit":"تعديل"
+    "edit":"تعديل" ,
+    "home":"المنزل"
   },
   "buttons": {
     "signIn": "تسجيل الدخول",
