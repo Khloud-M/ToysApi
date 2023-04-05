@@ -105,6 +105,7 @@ export default {
       this.phone = "";
       this.address = "";
       this.select_city = "";
+      this.$router.push("/Account/address");
     },
   },
 };

@@ -52,7 +52,7 @@ export default {
           console.log(res);
           state.TheAdress = res.data.data;
           localStorage.setItem("Address", payload.address);
-          this.$router.push("/Account/editaddress");
+          // this.$router.push("/Account/editaddress");
 
         })
         .catch((error) => {
