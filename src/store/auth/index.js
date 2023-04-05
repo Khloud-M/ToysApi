@@ -36,9 +36,7 @@ export default {
       }
     },
     logout(state) {
-      state.userToken = null;
-      state.userPhone = null;
-      state.userEmail = null;
+      state.userToken = localStorage.removeItem("user_token_toys");
     },
     logoutAdress(state) {
       state.Address = null;

@@ -12,29 +12,33 @@
           <ul class="myData">
             <li>
               <router-link to="/Account/user">
-                <v-icon icon="mdi-account"></v-icon> my account
+                <v-icon icon="mdi-account"></v-icon>
+                {{ $t("footer.Account") }}
               </router-link>
             </li>
             <li>
               <router-link to="/Account/address">
-                <v-icon icon="mdi-map-marker-outline"></v-icon> Adresses
+                <v-icon icon="mdi-map-marker-outline"></v-icon>
+                {{ $t("placeholder.address2") }}
               </router-link>
             </li>
             <li>
               <router-link to="/Account/favourite">
-                <v-icon icon="mdi-heart-outline"></v-icon> favourites
+                <v-icon icon="mdi-heart-outline"></v-icon>
+                {{ $t("placeholder.Favourite") }}
               </router-link>
             </li>
             <li>
               <router-link to="/Account/myorder">
-                <v-icon icon="mdi-list-box-outline"></v-icon> order list
+                <v-icon icon="mdi-list-box-outline"></v-icon>
+                {{ $t("placeholder.orderList") }}
               </router-link>
             </li>
           </ul>
           <hr />
           <button @click="removeToken">
             <v-icon icon="mdi-logout" size="20"></v-icon>
-            logout
+            {{ $t("navs.logout") }}
           </button>
         </div>
       </div>

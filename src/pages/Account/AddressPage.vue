@@ -11,7 +11,7 @@
         </router-link>
       </base-button>
     </div>
-    <div v-if="Address" class="container_address">
+    <div v-if="Address" class="container_address" :class="{ show: ISshow }">
       <h5>
         <v-icon icon="mdi-map-marker-outline" size="23"></v-icon>
         {{ $t("placeholder.home") }}
@@ -49,25 +49,28 @@ import BaseButton from "@/components/ui/BaseButton.vue";
 export default {
   components: { BaseButton },
   data() {
-    return {
-      Address: {
-        address: localStorage.getItem("Address"),
-        fristName: localStorage.getItem("fristName"),
-        lastName: localStorage.getItem("lastName"),
-        Address_phone: localStorage.getItem("Address_phone"),
-      },
-    };
+    // return {
+    //   Address: {
+    //     address: localStorage.getItem("Address"),
+    //     fristName: localStorage.getItem("fristName"),
+    //     lastName: localStorage.getItem("lastName"),
+    //     Address_phone: localStorage.getItem("Address_phone"),
+    //   },
+    //   ISshow: false,
+    // };
   },
   computed: {
     ...mapGetters({
       getAdress: "auth/GetAddress",
     }),
   },
-  methods: {
-    removeAdress() {
-      this.$store.commit("auth/logoutAdress");
-    },
-  },
+  // methods: {
+  //   removeAdress() {
+  //     this.$store.commit("auth/logoutAdress");
+  //     console.log("delete");
+  //     this.ISshow = true;
+  //   },
+  // },
 };
 </script>
 
@@ -114,4 +117,7 @@ export default {
     }
   }
 }
+// .show {
+//   display: none;
+// }
 </style>

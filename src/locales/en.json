@@ -49,26 +49,7 @@
     "Our Client Say!": "Our Client Say!",
     "Exclusive Products": "Exclusive Products",
     "Best Selling": "Best Selling",
-    "Available Options": "Available Options",
-    "getInTouch": "Get in touch",
-    "bestOffers": "Best Offers",
-    "contactUs": "Contact Us",
-    "socialLinks": "Social links",
-    "keepTouchWithUs": "Keep touch with us",
-    "allServices": "All services",
-    "orderDetails": "Order details",
-    "attachDesign": "Attach design",
-    "checkout": "Checkout",
-    "yourOrder": "Your order",
-    "Create An Account": "Create An Account",
-    "Welcome To Davina": "Welcome To Davina",
-    "Sign In To Your Account": "Sign In To Your Account",
-    "Forget Your Password?": "Forget Your Password?",
-    "Please Enter Your Mobile Number Or Your Email Adreess": "Please Enter Your Mobile Number Or Your Email Adreess",
-    "Please Enter Your New Password": "Please Enter Your New Password",
-    "Verification": "Verification",
-    "Please Enter The Code That Sent To Your Email Address Or Mobile Number": "Please Enter The Code That Sent To Your Email Address Or Mobile Number",
-    "billingAndShipping": "Billing and shipping"
+    "Available Options": "Available Options"
   },
   "placeholder": {
     "Search": "Search",
@@ -108,6 +89,7 @@
     "chosecity": "Choose City",
     "mansours": "Mansoura",
     "address": "Address",
+    "address2":"Address",
     "coupon": "discount coupon",
     "addcopon": "Add Coupon",
     "editcart": "Edit Cart",
@@ -124,7 +106,9 @@
     "HighestRating": "Highest Rating",
     "mainList": "Main List",
     "edit": "Edit",
-    "home": " House"
+    "home": " House" ,
+    "Favourite" :"Favourite" ,
+    "orderList" :"Order List"
   },
   "buttons": {
     "signIn": "Login",
@@ -132,6 +116,6 @@
     "signUp": "Sign Up",
     "submit": "Submit",
     "CHECKOUT": "Checkout",
-    "Delete": "Delete"
+    "Delete": "Delete" 
   }
 }

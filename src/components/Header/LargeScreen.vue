@@ -22,14 +22,15 @@
             {{ $t("navs.home") }}
           </router-link>
         </li>
-        <li>
+        <li v-if="isLoggedIn">
           <v-icon icon="  mdi-account-outline"> </v-icon>
-          <button v-if="isLoggedIn">
+          <button>
             <router-link to="/Account"> welcome {{ name }} </router-link>
           </button>
-          <router-link to="/:auth" v-else>
-            {{ $t("buttons.signIn") }}</router-link
-          >
+        </li>
+        <li v-else>
+          <v-icon icon="  mdi-account-outline"> </v-icon>
+          <router-link to="/:auth"> {{ $t("buttons.signIn") }}</router-link>
         </li>
 
         <v-icon icon="mdi-bell-outline"></v-icon>
@@ -65,12 +66,6 @@ export default {
       cart: "products/cart",
       isLoggedIn: "auth/isLoggedIn",
     }),
-  },
-  methods: {
-    removeToken() {
-      this.$store.commit("auth/logout");
-      this.$router.push("/");
-    },
   },
 };
 </script>

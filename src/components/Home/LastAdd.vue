@@ -13,7 +13,7 @@
         :autoplay="2000"
         :breakpoints="breakpoints"
       >
-        <Slide v-for="slide in latest" :key="slide">
+        <Slide v-for="slide in latest">
           <div class="carousel__item container_item">
             <router-link :to="`/products/${slide.id}`">
               <div class="image">
