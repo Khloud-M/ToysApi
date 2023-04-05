@@ -64,6 +64,24 @@ export default {
       getAdress: "auth/GetAddress",
     }),
   },
+  created() {
+    this.GetAddress();
+  },
+  methods: {
+    GetAddress() {
+      this.axios({
+        method: "GET",
+        url: "my-addresses",
+      })
+        .then((res) => {
+          console.log("getAdress");
+          console.log(res);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
   // methods: {
   //   removeAdress() {
   //     this.$store.commit("auth/logoutAdress");

@@ -5,7 +5,7 @@
       <p>You can edit your address here</p>
     </div>
     <!-- heading -->
-    <form class="d-flex" @submit.prevent="SubmitForm">
+    <form class="d-flex" @submit.prevent="submitForm">
       <div class="edit_address_form col-lg-6">
         <h5>edit address</h5>
         <div>
@@ -92,15 +92,33 @@ export default {
     };
   },
   methods: {
-    SubmitForm() {
-      this.$store.commit("auth/GetAddress", {
-        firstname: this.firstname,
-        lastname: this.lastname,
-        phone: this.phone,
-        address: this.address,
-        select_city: this.select_city,
-      });
-      this.$router.push("/Account/address");
+    submitForm() {
+      const myData = new FormData();
+      myData.append("first_name", this.firstname);
+      myData.append("last_name", this.lastname);
+      myData.append("mobile", this.phone);
+      myData.append("address", this.address);
+      myData.append("city_id", this.select_city);
+      this.axios({
+        method: "POST",
+        url: "store-address",
+        data: myData,
+      })
+        .then((res) => {
+          console.log("store-address");
+          console.log(res);
+          // this.firstname = res.data.data.first_name;
+          // console.log("store-name");
+          // console.log(this.firstname);
+          this.$store.commit("auth/set", {
+            first_name: res.data.data.first_name,
+          });
+          this.$router.push("/Account/address");
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
     },
   },
 };
