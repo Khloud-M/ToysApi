@@ -40,16 +40,22 @@
         </div>
         <!-- item_details-->
         <hr />
-        <li v-for="option in productId.option_values ">
-          {{ option.id }}
-          {{ option.name }}
-          {{ option.price }}
-          {{ option.quantity }}
-          <li v-for="p in option.values" >
-            {{  p.name  }}
-            {{  p.option_name  }}
-          </li>
-        </li>
+        <h6>avalible</h6>
+        <div class="option_product">
+          <ul v-for="option in productId.option_values">
+            {{
+              option.price
+            }}
+            : price
+            {{
+              option.quantity
+            }}
+            : quantity
+            <li v-for="p in option.values">
+              <span> {{ p.option_name }}: {{ p.name }} </span>
+            </li>
+          </ul>
+        </div>
         <hr />
         <div class="product_option">
           <h4>Product Options</h4>
@@ -123,6 +129,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.option_product {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  ul {
+    background-color: blue;
+    cursor: pointer;
+  }
+}
 .container {
   margin: var(--margin) auto;
   justify-content: space-between;

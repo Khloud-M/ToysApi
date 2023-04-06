@@ -18,6 +18,7 @@
       v-for="Ad in Address"
       :key="Ad.id"
     >
+    {{ Ad.id }}
       <h5>
         <v-icon icon="mdi-map-marker-outline" size="23"></v-icon>
         {{ $t("placeholder.home") }}
@@ -33,9 +34,16 @@
             <router-link to="/Account/editaddress">
               {{ $t("placeholder.edit") }}
             </router-link>
-            <button @click="removeAdress">
+            <!-- <router-link to="Ad.id"> -->
+            <!-- <button @click="DeleteAdress">
               {{ $t("buttons.Delete") }}
-            </button>
+            </button> -->
+            <!-- <button @click="DeleteAdress">
+              {{ $t("buttons.Delete") }}
+            </button> -->
+            <input type="submit" v-model="idAddress" placeholder="delet" @click="DeleteAdress"/>
+
+            <!-- </router-link> -->
           </div>
         </div>
         <!-- end address -->
@@ -50,7 +58,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import BaseButton from "@/components/ui/BaseButton.vue";
 export default {
   components: { BaseButton },
@@ -58,6 +65,7 @@ export default {
     return {
       Address: null,
       ISshow: false,
+      idAddress: null,
     };
   },
   created() {
@@ -70,9 +78,26 @@ export default {
         url: "my-addresses",
       })
         .then((res) => {
-          console.log("getAdress");
+          // console.log("getAdress");
           this.Address = res.data.data;
           console.log(this.Address);
+          this.idAddress = res.data.data.id;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    DeleteAdress() {
+      this.axios({
+        method: "GET",
+        url: `delete-address/${this.idAddress}`,
+      })
+        // this.axios
+        //   .delete("delete-address/", { params: { ids: this.idAddress } })
+        .then((res) => {
+          console.log("delete-address");
+          console.log(res);
+          this.ISshow= ! this.ISshow;
         })
         .catch((error) => {
           console.log(error);
@@ -133,6 +158,7 @@ export default {
   }
 }
 // .show {
-//   display: none;
+//   // display: none;
+//   background-color: red;
 // }
 </style>
