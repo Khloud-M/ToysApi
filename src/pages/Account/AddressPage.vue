@@ -33,19 +33,9 @@
             <router-link to="/Account/editaddress">
               {{ $t("placeholder.edit") }}
             </router-link>
-            <!-- <router-link to="Ad.id"> -->
-            <!-- <button @click="DeleteAdress">
+            <button @click="DeleteAdress(Ad.id)">
               {{ $t("buttons.Delete") }}
-            </button> -->
-            <!-- <button @click="DeleteAdress">
-              {{ $t("buttons.Delete") }}
-            </button> -->
-            <button @click="DeleteAdress(Ad.id)"> delelt</button>
-
-
-
-
-            <!-- </router-link> -->
+            </button>
           </div>
         </div>
         <!-- end address -->
@@ -95,25 +85,17 @@ export default {
         method: "GET",
         url: `delete-address/${this.idAddress}`,
       })
-        // this.axios
-        //   .delete("delete-address/", { params: { ids: this.idAddress } })
         .then((res) => {
-          console.log("delete-address");
+          // console.log("delete-address");
           console.log(res);
-          this.ISshow = !this.ISshow;
+          // this.ISshow = !this.ISshow;
+          // this.$router.push("/Account/address");
         })
         .catch((error) => {
           console.log(error);
         });
     },
   },
-  // methods: {
-  //   removeAdress() {
-  //     this.$store.commit("auth/logoutAdress");
-  //     console.log("delete");
-  //     this.ISshow = true;
-  //   },
-  // },
 };
 </script>
 
