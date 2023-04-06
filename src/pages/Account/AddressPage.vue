@@ -18,7 +18,7 @@
       v-for="Ad in Address"
       :key="Ad.id"
     >
-    {{ Ad.id }}
+      {{ Ad.id }}
       <h5>
         <v-icon icon="mdi-map-marker-outline" size="23"></v-icon>
         {{ $t("placeholder.home") }}
@@ -41,7 +41,12 @@
             <!-- <button @click="DeleteAdress">
               {{ $t("buttons.Delete") }}
             </button> -->
-            <input type="submit" v-model="idAddress" placeholder="delet" @click="DeleteAdress"/>
+            <input
+              type="submit"
+              v-model="idAddress"
+              placeholder="delet"
+              @click="DeleteAdress"
+            />
 
             <!-- </router-link> -->
           </div>
@@ -51,6 +56,7 @@
           {{ Ad.mobile }}
         </span>
       </div>
+      <h1>{{ data | one }}</h1>
       <!-- end details_address -->
     </div>
     <!-- container_address -->
@@ -66,6 +72,7 @@ export default {
       Address: null,
       ISshow: false,
       idAddress: null,
+      data: 1255111,
     };
   },
   created() {
@@ -97,7 +104,7 @@ export default {
         .then((res) => {
           console.log("delete-address");
           console.log(res);
-          this.ISshow= ! this.ISshow;
+          this.ISshow = !this.ISshow;
         })
         .catch((error) => {
           console.log(error);

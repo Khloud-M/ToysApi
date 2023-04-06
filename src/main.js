@@ -38,6 +38,7 @@ const vuetify = createVuetify({
 import VOtpInput from "vue3-otp-input";
 import i18n from "./i18n";
 import Toaster from "@meforma/vue-toaster";
+import Paginate from "vuejs-paginate-next";
 import axios from "axios";
 import VueAxios from "vue-axios";
 axios.defaults.baseURL = "https://vip.toyshomekw.com/api/";
@@ -62,6 +63,7 @@ app.use(store);
 app.use(i18n);
 app.use(Toaster);
 app.use(vuetify);
+app.use(Paginate);
 app.use(VueAxios, axios);
 
 // app.use(bootstrap);
