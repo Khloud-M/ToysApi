@@ -11,18 +11,24 @@
         </router-link>
       </base-button>
     </div>
-    <div v-if="Address" class="container_address" :class="{ show: ISshow }">
+    <div
+      v-if="Address"
+      class="container_address"
+      :class="{ show: ISshow }"
+      v-for="Ad in Address"
+      :key="Ad.id"
+    >
       <h5>
         <v-icon icon="mdi-map-marker-outline" size="23"></v-icon>
         {{ $t("placeholder.home") }}
       </h5>
       <div class="details_Adress">
         <h4>
-          {{ Address.fristName }}
-          {{ Address.lastName }}
+          {{ Ad.first_name }}
+          {{ Ad.last_name }}
         </h4>
         <div class="_address">
-          {{ Address.address }}
+          {{ Ad.city_name }}
           <div class="action d-flex col-lg-3">
             <router-link to="/Account/editaddress">
               {{ $t("placeholder.edit") }}
@@ -34,7 +40,7 @@
         </div>
         <!-- end address -->
         <span>
-          {{ Address.Address_phone }}
+          {{ Ad.mobile }}
         </span>
       </div>
       <!-- end details_address -->
@@ -49,20 +55,10 @@ import BaseButton from "@/components/ui/BaseButton.vue";
 export default {
   components: { BaseButton },
   data() {
-    // return {
-    //   Address: {
-    //     address: localStorage.getItem("Address"),
-    //     fristName: localStorage.getItem("fristName"),
-    //     lastName: localStorage.getItem("lastName"),
-    //     Address_phone: localStorage.getItem("Address_phone"),
-    //   },
-    //   ISshow: false,
-    // };
-  },
-  computed: {
-    ...mapGetters({
-      getAdress: "auth/GetAddress",
-    }),
+    return {
+      Address: null,
+      ISshow: false,
+    };
   },
   created() {
     this.GetAddress();
@@ -75,7 +71,8 @@ export default {
       })
         .then((res) => {
           console.log("getAdress");
-          console.log(res);
+          this.Address = res.data.data;
+          console.log(this.Address);
         })
         .catch((error) => {
           console.log(error);

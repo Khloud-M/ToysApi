@@ -7,15 +7,16 @@
     <!-- heading -->
     <form class="d-flex" @submit.prevent="submitForm">
       <div class="edit_address_form col-lg-6">
-        <h5>edit address</h5>
+        <h5>City</h5>
         <div>
           <select
             class="form-select"
             aria-label="Default select example"
             v-model="select_city"
           >
-            <option value="1">{{ $t("placeholder.Saudi") }}</option>
-            <option value="2">{{ $t("placeholder.egypt") }}</option>
+            <option v-for="city in citites" v-bind:value="city.id">
+              {{ city.name }}
+            </option>
           </select>
         </div>
         <!-- select your country -->
@@ -83,6 +84,7 @@ export default {
   components: { BaseButton },
   data() {
     return {
+      citites: null,
       check: null,
       firstname: null,
       lastname: null,
@@ -91,7 +93,25 @@ export default {
       select_city: null,
     };
   },
+  created() {
+    this.getCity();
+  },
   methods: {
+    getCity() {
+      this.axios({
+        method: "GET",
+        url: "cities",
+      })
+        .then((res) => {
+          console.log("cities");
+          this.citites = res.data.cities;
+          console.log(this.citites);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
+    },
     submitForm() {
       const myData = new FormData();
       myData.append("first_name", this.firstname);
@@ -107,9 +127,6 @@ export default {
         .then((res) => {
           console.log("store-address");
           console.log(res);
-          // this.firstname = res.data.data.first_name;
-          // console.log("store-name");
-          // console.log(this.firstname);
           this.$store.commit("auth/set", {
             first_name: res.data.data.first_name,
           });
