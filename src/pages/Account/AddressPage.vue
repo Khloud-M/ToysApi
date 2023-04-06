@@ -18,7 +18,6 @@
       v-for="Ad in Address"
       :key="Ad.id"
     >
-      {{ Ad.id }}
       <h5>
         <v-icon icon="mdi-map-marker-outline" size="23"></v-icon>
         {{ $t("placeholder.home") }}
@@ -41,12 +40,10 @@
             <!-- <button @click="DeleteAdress">
               {{ $t("buttons.Delete") }}
             </button> -->
-            <input
-              type="submit"
-              v-model="idAddress"
-              placeholder="delet"
-              @click="DeleteAdress"
-            />
+            <button @click="DeleteAdress(Ad.id)"> delelt</button>
+
+
+
 
             <!-- </router-link> -->
           </div>
@@ -56,7 +53,6 @@
           {{ Ad.mobile }}
         </span>
       </div>
-      <h1>{{ data | one }}</h1>
       <!-- end details_address -->
     </div>
     <!-- container_address -->
@@ -72,7 +68,6 @@ export default {
       Address: null,
       ISshow: false,
       idAddress: null,
-      data: 1255111,
     };
   },
   created() {
@@ -94,7 +89,8 @@ export default {
           console.log(error);
         });
     },
-    DeleteAdress() {
+    DeleteAdress(id) {
+      this.idAddress = id;
       this.axios({
         method: "GET",
         url: `delete-address/${this.idAddress}`,
