@@ -5,46 +5,9 @@
         {{ $t("placeholder.HighestRating") }}
       </div>
     </heading-section>
-    <div class="container product_item d-flex">
-      <Carousel
-        :items-to-show="4"
-        :wrap-around="true"
-        :transition="300"
-        :autoplay="2000"
-        :breakpoints="breakpoints"
-      >
-        <Slide v-for="slide in heghest" :key="slide">
-          <div class="carousel__item container_item">
-            <router-link :to="`/products/${slide.id}`">
-              <div class="image">
-                <div class="sale">Sale {{ slide.sale_price }}</div>
-                <!-- sale-->
-                <img :src="slide.image" alt="" />
-              </div>
-            </router-link>
-            <!-- end image -->
-            <div class="content_image">
-              <h5 class="name">{{ slide.title }}</h5>
-              <div class="content_foot d-flex">
-                <div class="price">
-                  <b v-if="slide.sale_price"> {{ slide.sale_price }} KWD </b>
-                  <small v-if="slide.price"> {{ slide.price }} KWD</small>
-                </div>
-                <button class="btn_cart">
-                  <v-icon icon="mdi-basket-fill"> </v-icon>
-                </button>
-              </div>
-            </div>
-            <!-- contant_image -->
-          </div>
-        </Slide>
-
-        <template #addons>
-          <Navigation />
-        </template>
-      </Carousel>
-    </div>
+    <v-pagination dir="ltr" v-model="page" :length="pageCount"></v-pagination>
   </section>
+  {{ page }}
 </template>
 
 <script>
@@ -59,6 +22,8 @@ export default defineComponent({
   },
   data() {
     return {
+      page: 0,
+      pageCount: 0,
       heghest: null,
       breakpoints: {
         320: {
@@ -80,12 +45,14 @@ export default defineComponent({
       },
     };
   },
+  watch: {
+    page(value) {
+      this.getitesmPerPage(value);
+
+    },
+  },
   created() {
     this.GetHeghest();
-  },
-  computed: {
-    // classObject(){
-    // }
   },
   methods: {
     GetHeghest() {
@@ -103,6 +70,25 @@ export default defineComponent({
           // this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
         });
     },
+    getitesmPerPage(currPage) {
+      this.axios.get(`more-seller`, {
+          params: {
+            page: currPage,
+          },
+      }).then((res) => {
+        console.log("pagentiaon");
+        console.log(res);
+        // this.items = res.data.data;
+        // this.total = res.data.meta.total;
+        this.page = res.data.data.current_page;
+        this.pageCount = res.data.data.last_page;
+        console.log(this.page);
+        console.log(this.pageCount);
+      });
+    },
+  },
+  mounted() {
+    this.getitesmPerPage(1);
   },
 });
 </script>

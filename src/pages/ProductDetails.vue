@@ -43,15 +43,15 @@
         <h6>avalible</h6>
         <div class="option_product">
           <ul v-for="option in productId.option_values">
-            {{
+            <!-- {{
               option.price
             }}
             : price
             {{
               option.quantity
             }}
-            : quantity
-            <li v-for="p in option.values">
+            : quantity -->
+            <li v-for="p in option.values"  @click="chooseItem(p.id)">
               <span> {{ p.option_name }}: {{ p.name }} </span>
             </li>
           </ul>
@@ -111,6 +111,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    chooseItem(id){
+      console.log(id);
     },
     // end getting data
     addToCart() {

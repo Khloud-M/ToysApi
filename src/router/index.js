@@ -68,6 +68,7 @@ const router = createRouter({
         { path: "editaddress", component: () => import("@/pages/Account/EditAddress.vue") },
         { path: "favourite", component: () => import("@/pages/Account/FavouritePage.vue") },
         { path: "myorder", component: () => import("@/pages/Account/OrderPage.vue") },
+        { path: "editaddress/:id", component: () => import("@/pages/Account/IdAddress.vue") },
 
       ],
     },

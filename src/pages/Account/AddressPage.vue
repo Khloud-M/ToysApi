@@ -30,9 +30,9 @@
         <div class="_address">
           {{ Ad.city_name }}
           <div class="action d-flex col-lg-3">
-            <router-link to="/Account/editaddress">
+            <button @click="EditAdress(Ad.id)">
               {{ $t("placeholder.edit") }}
-            </router-link>
+            </button>
             <button @click="DeleteAdress(Ad.id)">
               {{ $t("buttons.Delete") }}
             </button>
@@ -86,14 +86,28 @@ export default {
         url: `delete-address/${this.idAddress}`,
       })
         .then((res) => {
-          // console.log("delete-address");
+          window.location.reload();
           console.log(res);
-          // this.ISshow = !this.ISshow;
-          // this.$router.push("/Account/address");
         })
         .catch((error) => {
           console.log(error);
         });
+    },
+    EditAdress(id) {
+      this.idAddress = id;
+      this.$router.push(`/Account/editaddress/${id}`);
+
+      // this.axios({
+      //   method: "GET",
+      //   url: `edit-address/${this.idAddress}`,
+      // })
+      // .then((res) => {
+      //   console.log(res);
+      //   // this.$router.push(`/Account/editaddress${this.idAddress}`);
+      // })
+      // .catch((error) => {
+      //   console.log(error);
+      // });
     },
   },
 };
