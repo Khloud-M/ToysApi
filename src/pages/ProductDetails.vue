@@ -24,13 +24,22 @@
           </div>
           <!-- item_name -->
           <h5 class="price">
-            <b> {{ productId.price }} </b>
-
-            <span> KWD</span>
+            <b v-if="quantityID === null && priceId === null">
+              {{ productId.price }}
+            </b>
+            <b v-else>
+              {{ priceId }}
+            </b>
+            : <span> KWD</span>
           </h5>
           <!-- end price -->
-          <div class="addCart d-flex">
-            <div><product-quantity :productId="productId" /></div>
+          <div class="addCart d-flex" v-if="quantityID != null">
+            <div class="quanty d-flex gap-3">
+              <button>-</button>
+              {{ quantityID }}
+              <button>+</button>
+            </div>
+            <!-- <div><product-quantity :productId="productId" /></div> -->
             <base-button @click="addToCart">
               <v-icon icon="mdi-shopping-outline" size="20"></v-icon>
               {{ $t("placeholder.addCart") }}</base-button
@@ -42,7 +51,10 @@
         <hr />
         <h6>avalible</h6>
         <div class="option_product">
-          <ul v-for="option in productId.option_values">
+          <ul
+            v-for="option in productId.option_values"
+            @click="chooseItem(option)"
+          >
             <!-- {{
               option.price
             }}
@@ -51,7 +63,7 @@
               option.quantity
             }}
             : quantity -->
-            <li v-for="p in option.values"  @click="chooseItem(p.id)">
+            <li v-for="p in option.values">
               <span> {{ p.option_name }}: {{ p.name }} </span>
             </li>
           </ul>
@@ -82,17 +94,19 @@
   </section>
 </template>
 <script>
-import ProductQuantity from "@/components/Products/ProductQuantity.vue";
+// import ProductQuantity from "@/components/Products/ProductQuantity.vue";
 import LandingProduct from "@/components/Products/LandingProduct.vue";
 export default {
   props: ["id"],
   components: {
-    ProductQuantity,
+    // ProductQuantity,
     LandingProduct,
   },
   data() {
     return {
       productId: null,
+      priceId: null,
+      quantityID: null,
     };
   },
   created() {
@@ -112,8 +126,9 @@ export default {
           console.log(error);
         });
     },
-    chooseItem(id){
-      console.log(id);
+    chooseItem(x) {
+      this.priceId = x.price;
+      this.quantityID = x.quantity;
     },
     // end getting data
     addToCart() {

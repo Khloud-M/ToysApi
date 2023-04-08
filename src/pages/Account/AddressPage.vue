@@ -30,9 +30,9 @@
         <div class="_address">
           {{ Ad.city_name }}
           <div class="action d-flex col-lg-3">
-            <button @click="EditAdress(Ad.id)">
+            <router-link :to="`/Account/editaddress/${Ad.id}`">
               {{ $t("placeholder.edit") }}
-            </button>
+            </router-link>
             <button @click="DeleteAdress(Ad.id)">
               {{ $t("buttons.Delete") }}
             </button>
@@ -53,6 +53,7 @@
 import BaseButton from "@/components/ui/BaseButton.vue";
 export default {
   components: { BaseButton },
+  props:["id"] ,
   data() {
     return {
       Address: null,
@@ -92,22 +93,6 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-    },
-    EditAdress(id) {
-      this.idAddress = id;
-      this.$router.push(`/Account/editaddress/${id}`);
-
-      // this.axios({
-      //   method: "GET",
-      //   url: `edit-address/${this.idAddress}`,
-      // })
-      // .then((res) => {
-      //   console.log(res);
-      //   // this.$router.push(`/Account/editaddress${this.idAddress}`);
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // });
     },
   },
 };

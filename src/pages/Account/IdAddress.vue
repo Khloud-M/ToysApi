@@ -82,7 +82,7 @@
 import BaseButton from "@/components/ui/BaseButton.vue";
 export default {
   components: { BaseButton },
-  props: ["id"],
+  // props: ["id"],
   data() {
     return {
       citites: null,
@@ -92,52 +92,54 @@ export default {
       phone: null,
       address: null,
       select_city: null,
+      id: this.$route.params.id,
     };
   },
   created() {
-    this.getIDAdress();
+    this.GetAddress();
   },
   methods: {
-    getIDAdress() {
+    GetAddress() {
       this.axios({
         method: "GET",
         url: `edit-address/${this.id}`,
       })
         .then((res) => {
-          console.log("id");
-          this.citites = res;
-          console.log(this.citites);
+          this.firstname = res.data.data.first_name;
+          this.lastname = res.data.data.last_name;
+          this.phone = res.data.data.mobile;
+          this.address = res.data.data.address;
+          this.select_city = res.data.data.city_id;
         })
         .catch((error) => {
           console.log(error);
-          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
         });
     },
-    submitForm() {
-      const myData = new FormData();
-      myData.append("first_name", this.firstname);
-      myData.append("last_name", this.lastname);
-      myData.append("mobile", this.phone);
-      myData.append("address", this.address);
-      myData.append("city_id", this.select_city);
-      this.axios({
-        method: "POST",
-        url: "store-address",
-        data: myData,
-      })
-        .then((res) => {
-          console.log("store-address");
-          console.log(res);
-          this.$store.commit("auth/set", {
-            first_name: res.data.data.first_name,
-          });
-          this.$router.push("/Account/address");
-        })
-        .catch((error) => {
-          console.log(error);
-          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
-        });
-    },
+    // submitForm() {
+    //   const myData = new FormData();
+    //   myData.append("first_name", this.firstname);
+    //   myData.append("last_name", this.lastname);
+    //   myData.append("mobile", this.phone);
+    //   myData.append("address", this.address);
+    //   myData.append("city_id", this.select_city);
+    //   this.axios({
+    //     method: "POST",
+    //     url: "store-address",
+    //     data: myData,
+    //   })
+    //     .then((res) => {
+    //       console.log("store-address");
+    //       console.log(res);
+    //       this.$store.commit("auth/set", {
+    //         first_name: res.data.data.first_name,
+    //       });
+    //       this.$router.push("/Account/address");
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //       this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+    //     });
+    // },
   },
 };
 </script>
