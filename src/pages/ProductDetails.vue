@@ -35,9 +35,10 @@
           <!-- end price -->
           <div class="addCart d-flex" v-if="quantityID != null">
             <div class="quanty d-flex gap-3">
-              <button>-</button>
+              <button @click="decrementQty()">-</button>
               {{ quantityID }}
-              <button>+</button>
+              {{ productId.qty }}
+              <button @click="increaseQty">+</button>
             </div>
             <!-- <div><product-quantity :productId="productId" /></div> -->
             <base-button @click="addToCart">
@@ -49,20 +50,13 @@
         </div>
         <!-- item_details-->
         <hr />
-        <h6>avalible</h6>
+        <h6 class="avilable">avalible</h6>
         <div class="option_product">
           <ul
             v-for="option in productId.option_values"
             @click="chooseItem(option)"
+            :class="{ IsShow: show }"
           >
-            <!-- {{
-              option.price
-            }}
-            : price
-            {{
-              option.quantity
-            }}
-            : quantity -->
             <li v-for="p in option.values">
               <span> {{ p.option_name }}: {{ p.name }} </span>
             </li>
@@ -107,6 +101,8 @@ export default {
       productId: null,
       priceId: null,
       quantityID: null,
+      show: false,
+      qty: 1,
     };
   },
   created() {
@@ -129,11 +125,26 @@ export default {
     chooseItem(x) {
       this.priceId = x.price;
       this.quantityID = x.quantity;
+      this.show = !this.show;
     },
+
     // end getting data
     addToCart() {
       this.$toast.success("added Successfully");
       this.$store.commit("products/addToCart", this.productId);
+    },
+    decrementQty() {
+      this.$store.commit("products/decrementQty", this.productId);
+    },
+    increaseQty() {
+      this.$store.commit("products/increaseQty", this.productId
+      //  {
+      //   qty: this.qty,
+      //   product :  this.productId
+      // }
+      );
+      console.log("dec");
+      console.log(this.qty);
     },
   },
   // mounted() {
@@ -147,15 +158,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.avilable {
+  color: var(--red-color);
+  font-weight: lighter;
+  font-size: 20px;
+}
 .option_product {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
   ul {
-    background-color: blue;
     cursor: pointer;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    width: 100px;
+    text-align: center;
+    li {
+      padding: 3px;
+    }
   }
+}
+.IsShow {
+  background-color: red;
 }
 .container {
   margin: var(--margin) auto;
@@ -262,5 +288,18 @@ export default {
       border-radius: 12px 0px 0px 12px;
     }
   }
+}
+.quanty {
+  width: 150px;
+  justify-content: space-between;
+  font-size: 25px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 8px;
+}
+.quanty button {
+  border: none;
+  background-color: white;
+  width: 30%;
 }
 </style>
