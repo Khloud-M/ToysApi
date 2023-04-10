@@ -17,7 +17,8 @@
           </div>
           <div class="item_name d-flex">
             <h4>{{ productId.title }}</h4>
-            <button class="button">
+            <button class="button" @click="addFav">
+              <input v-model="fav" />
               <v-icon icon="mdi-cards-heart-outline" size="20"> </v-icon>
               {{ $t("placeholder.fav") }}
             </button>
@@ -108,12 +109,27 @@ export default {
       quantityID: null,
       show: false,
       initalValue: 1,
+      fav: null,
     };
   },
   created() {
     this.GetProductID();
   },
   methods: {
+    addFav() {
+      this.axios({
+        method: "POST",
+        url: "update-favorite",
+      })
+        .then((res) => {
+          const myData = new FormData();
+          myData.append("product_id", this.fav);
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     GetProductID() {
       this.axios({
         method: "GET",

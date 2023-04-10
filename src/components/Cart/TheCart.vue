@@ -39,7 +39,6 @@
               <h5>{{ item.selectitem.name }}</h5>
               <span> {{ item.selectitem.price }} KWD</span>
               <h6>quantity : {{ item.quantity }}</h6>
-              <!-- <product-quantity :quantity="quantity" /> -->
             </div>
             <div class="remove col-lg-1">
               <button @click="RemoveItem">
@@ -104,7 +103,6 @@ export default {
     cartt() {
       console.log(this.cart);
     },
-  
   },
 };
 </script>
