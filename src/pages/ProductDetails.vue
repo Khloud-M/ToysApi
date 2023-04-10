@@ -37,8 +37,13 @@
             <div class="quanty d-flex gap-3">
               <button @click="decrementQty()">-</button>
               {{ quantityID }}
-              {{ productId.qty }}
-              <button @click="increaseQty">+</button>
+              {{ initalValue }}
+              <button
+                @click="increaseQty"
+                :disabled="initalValue >= quantityID"
+              >
+                +
+              </button>
             </div>
             <!-- <div><product-quantity :productId="productId" /></div> -->
             <base-button @click="addToCart">
@@ -102,7 +107,7 @@ export default {
       priceId: null,
       quantityID: null,
       show: false,
-      qty: 1,
+      initalValue: 1,
     };
   },
   created() {
@@ -130,21 +135,17 @@ export default {
 
     // end getting data
     addToCart() {
-      this.$toast.success("added Successfully");
+      this.$toast.success("added Successfully Cart");
       this.$store.commit("products/addToCart", this.productId);
     },
     decrementQty() {
-      this.$store.commit("products/decrementQty", this.productId);
+      if (this.initalValue == 1) {
+      } else {
+        this.initalValue--;
+      }
     },
     increaseQty() {
-      this.$store.commit("products/increaseQty", this.productId
-      //  {
-      //   qty: this.qty,
-      //   product :  this.productId
-      // }
-      );
-      console.log("dec");
-      console.log(this.qty);
+      this.initalValue++;
     },
   },
   // mounted() {
@@ -180,9 +181,9 @@ export default {
     }
   }
 }
-.IsShow {
-  background-color: red;
-}
+// .IsShow {
+//   background-color: red;
+// }
 .container {
   margin: var(--margin) auto;
   justify-content: space-between;

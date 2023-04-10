@@ -12,15 +12,15 @@ export default {
       // router.push('/searchPage');
     });
   },
-  decrementQty(state, payload) {
-    payload.qty -= 1;
-    if (payload.qty <= 1) {
-      payload.qty = 1;
-    }
-  },
-  increaseQty(state, payload) {
-    payload.qty += 1;
-  },
+  // decrementQty(state, payload) {
+  //   payload.qty -= 1;
+  //   if (payload.qty <= 1) {
+  //     payload.qty = 1;
+  //   }
+  // },
+  // increaseQty(state, payload) {
+  //   payload.qty += 1;
+  // },
   loadCart(state) {
     if (typeof window !== "undefined") {
       let cart = localStorage.getItem("freeCart");
