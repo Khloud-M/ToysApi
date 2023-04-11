@@ -89,7 +89,7 @@
     "chosecity": "Choose City",
     "mansours": "Mansoura",
     "address": "Address",
-    "address2":"Address",
+    "address2": "Address",
     "coupon": "discount coupon",
     "addcopon": "Add Coupon",
     "editcart": "Edit Cart",
@@ -106,9 +106,10 @@
     "HighestRating": "Highest Rating",
     "mainList": "Main List",
     "edit": "Edit",
-    "home": " House" ,
-    "Favourite" :"Favourite" ,
-    "orderList" :"Order List"
+    "home": " House",
+    "Favourite": "Favourite",
+    "orderList": "Order List",
+    "notfav": "Remove from Favourite"
   },
   "buttons": {
     "signIn": "Login",
@@ -116,6 +117,6 @@
     "signUp": "Sign Up",
     "submit": "Submit",
     "CHECKOUT": "Checkout",
-    "Delete": "Delete" 
+    "Delete": "Delete"
   }
 }

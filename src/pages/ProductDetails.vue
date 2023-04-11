@@ -17,10 +17,24 @@
           </div>
           <div class="item_name d-flex">
             <h4>{{ productId.title }}</h4>
-            <button class="button" @click="addFav">
-              <input v-model="fav" />
+
+            <button
+              class="button"
+              @click="addFav(productId.id)"
+              v-if="not_fav"
+              :class="{ Isshow: showFav }"
+            >
               <v-icon icon="mdi-cards-heart-outline" size="20"> </v-icon>
               {{ $t("placeholder.fav") }}
+            </button>
+            <button
+              class="button"
+              @click="removeFav(productId.id)"
+              v-if="fav"
+              :class="{ Isshow: showFav }"
+            >
+              <v-icon icon="mdi-cards-heart-outline" size="20"> </v-icon>
+              {{ $t("placeholder.notfav") }}
             </button>
           </div>
           <!-- item_name -->
@@ -109,22 +123,48 @@ export default {
       quantityID: null,
       show: false,
       initalValue: 1,
-      fav: null,
+      fav: false,
+      not_fav: true,
+      showFav: false,
     };
   },
   created() {
     this.GetProductID();
   },
   methods: {
-    addFav() {
+    addFav(productId) {
+      const myData = new FormData();
+      myData.append("product_id", productId);
       this.axios({
         method: "POST",
         url: "update-favorite",
+        data: myData,
       })
         .then((res) => {
-          const myData = new FormData();
-          myData.append("product_id", this.fav);
           console.log(res);
+          this.$toast.success("added Successfully to Fav");
+          this.fav = !this.fav;
+          this.not_fav = !this.not_fav;
+          this.showFav = true;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    removeFav(productId) {
+      const myData = new FormData();
+      myData.append("product_id", productId);
+      this.axios({
+        method: "POST",
+        url: "update-favorite",
+        data: myData,
+      })
+        .then((res) => {
+          console.log(res);
+          this.$toast.success("remove  Successfully to Fav");
+          this.fav = !this.fav;
+          this.not_fav = !this.not_fav;
+          this.showFav = false;
         })
         .catch((err) => {
           console.log(err);
@@ -164,13 +204,6 @@ export default {
       this.initalValue++;
     },
   },
-  // mounted() {
-  //   this.selectitem = this.MoreSaling.find(
-  //     (selectitem) => selectitem.id === this.id
-  //   );
-  //   console.log("selcteditem");
-  //   console.log(this.selectitem);
-  // },
 };
 </script>
 
@@ -197,9 +230,7 @@ export default {
     }
   }
 }
-// .IsShow {
-//   background-color: red;
-// }
+
 .container {
   margin: var(--margin) auto;
   justify-content: space-between;
@@ -261,7 +292,12 @@ export default {
           background-color: var(--red-color) !important;
         }
       }
+      .Isshow {
+        color: white !important;
+        background-color: var(--red-color) !important;
+      }
     }
+
     .price {
       color: var(--red-color);
     }
