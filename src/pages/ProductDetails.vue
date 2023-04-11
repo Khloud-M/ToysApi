@@ -126,6 +126,7 @@ export default {
       fav: false,
       not_fav: true,
       showFav: false,
+      optionId: null,
     };
   },
   created() {
@@ -177,7 +178,8 @@ export default {
       })
         .then((response) => {
           this.productId = response.data.data;
-          console.log(this.productId);
+          this.optionId = response.data.data.option_values;
+          console.log(this.optionId);
         })
         .catch((error) => {
           console.log(error);
@@ -192,7 +194,8 @@ export default {
     // end getting data
     addToCart() {
       this.$toast.success("added Successfully Cart");
-      this.$store.commit("products/addToCart", this.productId);
+      this.$store.commit("products/addToCart", this.optionId);
+      console.log("option id");
     },
     decrementQty() {
       if (this.initalValue == 1) {

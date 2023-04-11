@@ -9,9 +9,9 @@
 
 <script>
 export default {
-  // created() {
-  //   this.GetFav();
-  // },
+  created() {
+    this.GetFav();
+  },
   methods: {
     GetFav() {
       this.axios({

@@ -32,15 +32,22 @@ export default {
   addToCart(state, selectitem) {
     // check if the item in the cart already
     let itemFound = state.cart.find((p) => p.selectitem.id === selectitem.id);
+    // let selectitemId = selectitem.option_value_id;
+    // selectitemId = selectitem.find(item => item.id === selectitem.id);
+    console.log(selectitem);
+    selectitem.forEach((item, index)=>{
+      console.log(index, item)
+    })
     if (!itemFound) {
       state.cart.push({
         selectitem,
         quantity: 1,
       });
+      if (itemFound) {
+        selectitem.quantity += 1;
+      }
     }
-    if (itemFound) {
-      selectitem.quantity += 1;
-    }
+
     localStorage.setItem("freeCart", JSON.stringify(state.cart));
   },
   RemoveItem(state, index) {
