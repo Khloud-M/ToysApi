@@ -8,9 +8,28 @@
 </template>
 
 <script>
-export default {};
+export default {
+  // created() {
+  //   this.GetFav();
+  // },
+  methods: {
+    GetFav() {
+      this.axios({
+        method: "GET",
+        url: "myFavourites",
+      })
+        .then((res) => {
+          // this.Address = res.data.data;
+          console.log(res);
+          // this.idAddress = res.data.data.id;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-
 </style>

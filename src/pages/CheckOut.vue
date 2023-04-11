@@ -46,11 +46,17 @@
             <!-- end phone -->
             <div>
               <label> {{ $t("placeholder.city") }} </label>
-              <select class="form-select" aria-label="Default select example">
-                <option value="1">{{ $t("placeholder.chosecity") }}</option>
-                <option value="1">{{ $t("placeholder.mansours") }}</option>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                v-model="select_city"
+              >
+                <option v-for="city in citites" v-bind:value="city.id">
+                  {{ city.name }}
+                </option>
               </select>
             </div>
+            <!-- choose city -->
             <div class="address">
               <label for="address"> {{ $t("placeholder.address") }} </label>
               <input
@@ -67,7 +73,7 @@
         <!-- end  contact -->
         <div class="payment">
           <h2>{{ $t("placeholder.persnalInfo") }}</h2>
-          <div>
+          <div v-for="p in pay">
             <input
               type="radio"
               id="myfatoorah"
@@ -76,22 +82,8 @@
             />
             <label for="myfatoorah">
               <v-icon icon="mdi-credit-card"> </v-icon>
-              {{ $t("placeholder.remember") }}</label
-            >
-          </div>
-          <div>
-            <input type="radio" id="cash" name="payment" v-model="check" />
-            <label for="cash">
-              <v-icon icon="mdi-credit-card"> </v-icon>
-              {{ $t("placeholder.remember") }}</label
-            >
-          </div>
-          <div>
-            <input type="radio" id="bookeey" name="payment" v-model="check" />
-            <label for="bookeey">
-              <v-icon icon="mdi-credit-card"> </v-icon>
-              {{ $t("placeholder.remember") }}</label
-            >
+              {{ p.payment_name }}
+            </label>
           </div>
         </div>
         <!-- payment -->
@@ -172,7 +164,43 @@ export default {
       phone: null,
       address: null,
       coupon: null,
+      select_city: null,
+      citites: null,
+      pay: null,
     };
+  },
+  created() {
+    this.getCity();
+    this.payment();
+  },
+  methods: {
+    getCity() {
+      this.axios({
+        method: "GET",
+        url: "cities",
+      })
+        .then((res) => {
+          this.citites = res.data.cities;
+          console.log("res");
+          console.log(this.citites);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
+    },
+    payment() {
+      this.axios({
+        method: "GET",
+        url: "payment-methods",
+      })
+        .then((res) => {
+          this.pay = res.data.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
@@ -185,7 +213,7 @@ export default {
   span {
     display: block;
   }
-  h2{
+  h2 {
     font-size: 20px;
     padding: 15px 0;
   }
