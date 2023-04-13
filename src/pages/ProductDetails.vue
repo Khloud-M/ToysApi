@@ -75,10 +75,11 @@
           <ul
             v-for="option in productId.option_values"
             @click="chooseItem(option)"
-            :class="{ IsShow: show }"
           >
-            <li v-for="p in option.values">
-              <span> {{ p.option_name }}: {{ p.name }} </span>
+            <li v-for="p in option.values" ref="changeBorder">
+              <button @click="selectID(p.id)">
+                {{ p.option_name }}: {{ p.name }}
+              </button>
             </li>
           </ul>
         </div>
@@ -110,6 +111,7 @@
 <script>
 // import ProductQuantity from "@/components/Products/ProductQuantity.vue";
 import LandingProduct from "@/components/Products/LandingProduct.vue";
+
 export default {
   props: ["id"],
   components: {
@@ -127,6 +129,7 @@ export default {
       not_fav: true,
       showFav: false,
       optionId: null,
+      optionsId: [],
     };
   },
   created() {
@@ -192,9 +195,32 @@ export default {
     },
 
     // end getting data
+    selectID(id) {
+      this.optionsId.push(id);
+      localStorage.setItem("idOptionProduct", this.optionsId);
+      // this.$refs.changeBorder.classList.add("clickoptioon");
+    },
+    AddToProduct() {
+      const myData = new FormData();
+      myData.append("products", this.optionsId);
+      this.axios({
+        method: "POST",
+        url: "cart-products",
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     addToCart() {
       this.$toast.success("added Successfully Cart");
-      this.$store.commit("products/addToCart", this.optionId);
+      this.$store.commit("products/addToCart", {
+        s: this.optionsId ,
+        v: this.initalValue
+      });
       console.log("option id");
     },
     decrementQty() {
@@ -211,6 +237,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.Isshow {
+  color: white !important;
+  background-color: var(--red-color) !important;
+}
+.clickoptioon {
+  background-color: red;
+}
 .avilable {
   color: var(--red-color);
   font-weight: lighter;
@@ -228,8 +261,10 @@ export default {
     border: 1px solid var(--border-color);
     width: 100px;
     text-align: center;
+
     li {
       padding: 3px;
+      background-color: lawngreen;
     }
   }
 }
@@ -294,10 +329,6 @@ export default {
           color: white !important;
           background-color: var(--red-color) !important;
         }
-      }
-      .Isshow {
-        color: white !important;
-        background-color: var(--red-color) !important;
       }
     }
 
