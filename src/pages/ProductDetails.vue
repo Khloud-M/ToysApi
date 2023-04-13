@@ -216,12 +216,24 @@ export default {
     },
 
     addToCart() {
-      this.$toast.success("added Successfully Cart");
-      this.$store.commit("products/addToCart", {
-        s: this.optionsId ,
-        v: this.initalValue
-      });
-      console.log("option id");
+      const myData = new FormData();
+      myData.append("products", this.optionsId);
+      this.axios({
+        method: "POST",
+        url: "cart-products",
+      })
+        .then((response) => {
+          console.log(response);
+          this.$toast.success("added Successfully Cart");
+          this.$store.commit("products/addToCart", this.optionsId);
+          console.log("option id");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      // this.$toast.success("added Successfully Cart");
+      // this.$store.commit("products/addToCart", this.optionsId);
+      // console.log("option id");
     },
     decrementQty() {
       if (this.initalValue == 1) {

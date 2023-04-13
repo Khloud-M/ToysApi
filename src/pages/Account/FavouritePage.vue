@@ -9,6 +9,11 @@
 
 <script>
 export default {
+  data(){
+    return{
+      prductFav:null
+    }
+  },
   created() {
     this.GetFav();
   },
@@ -16,11 +21,12 @@ export default {
     GetFav() {
       this.axios({
         method: "GET",
-        url: "myFavourites",
+        url: "my-favourite",
       })
         .then((res) => {
           // this.Address = res.data.data;
-          console.log(res);
+          this.prductFav = res.data;
+          console.log( this.prductFav);
           // this.idAddress = res.data.data.id;
         })
         .catch((error) => {

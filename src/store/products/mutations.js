@@ -29,25 +29,19 @@ export default {
       }
     }
   },
-  addToCart(state, {s , v}) {
+  addToCart(state, payload) {
     // check if the item in the cart already
-    let itemFound = state.cart.find(
-      (p) => p.s.id === s.id
-    );
-    console.log(s);
-    // selectitem.forEach((item, index)=>{
-    //   console.log(index, item)
-    // })
+    let itemFound = state.cart.find((p) => p.payload.id === payload.id);
     if (!itemFound) {
       state.cart.push({
-        s,
-        v,
-      });
-      if (itemFound) {
-        v++;
-      }
-    }
+        payload ,
+        quantity: 1,
 
+      });
+    }
+      if (itemFound) {
+        itemFound.quantity += 1;
+      }
     localStorage.setItem("freeCart", JSON.stringify(state.cart));
   },
   RemoveItem(state, index) {
