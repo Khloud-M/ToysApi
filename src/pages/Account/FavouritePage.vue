@@ -10,7 +10,7 @@
         :key="fv.id"
       >
         <div class="col-lg-3 image">
-          <img :src="fv.image" width="150" height="100" />
+          <img :src="fv.image" width="200" height="100" />
         </div>
         <div class="col-lg-9 content">
           <h6>{{ fv.category }}</h6>
