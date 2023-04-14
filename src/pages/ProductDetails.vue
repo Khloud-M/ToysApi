@@ -262,7 +262,6 @@ export default {
 
     li {
       padding: 3px;
-      background-color: lawngreen;
     }
   }
 }
