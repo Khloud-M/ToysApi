@@ -129,7 +129,7 @@ export default {
       not_fav: true,
       showFav: false,
       optionId: null,
-      optionsId: [],
+      products: [],
     };
   },
   created() {
@@ -196,28 +196,13 @@ export default {
 
     // end getting data
     selectID(id) {
-      this.optionsId.push(id);
-      localStorage.setItem("idOptionProduct", this.optionsId);
+      this.products.push(id);
+      localStorage.setItem("products", JSON.stringify(this.products));
       // this.$refs.changeBorder.classList.add("clickoptioon");
     },
-    AddToProduct() {
-      const myData = new FormData();
-      myData.append("products", this.optionsId);
-      this.axios({
-        method: "POST",
-        url: "cart-products",
-      })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-
     addToCart() {
       const myData = new FormData();
-      myData.append("products", this.optionsId);
+      myData.append("products", this.products);
       this.axios({
         method: "POST",
         url: "cart-products",
@@ -225,8 +210,9 @@ export default {
         .then((response) => {
           console.log(response);
           this.$toast.success("added Successfully Cart");
-          this.$store.commit("products/addToCart", this.optionsId);
-          console.log("option id");
+          // this.$store.commit("products/addToCart", this.products);
+          // console.log("option id");
+          console.log(this.products);
         })
         .catch((error) => {
           console.log(error);
