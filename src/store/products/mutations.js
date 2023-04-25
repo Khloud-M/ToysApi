@@ -31,11 +31,12 @@ export default {
   },
   addToCart(state, payload) {
     let itemFound = state.cart.find((p) => p.payload.id === payload);
-    if(!itemFound) {
+    if (!itemFound) {
       state.cart.push({
         payload,
       });
     }
+    console.log(payload);
     // if(itemFound) {
     //   this.$toast.success("This product already exists");
     //   console.log("founnnndd");

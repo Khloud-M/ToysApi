@@ -197,7 +197,6 @@ export default {
     // end getting data
     selectID(id) {
       this.selectitem = this.products.some((selectitem) => selectitem === id);
-      console.log(this.selectitem);
       if (!this.selectitem) {
         this.products.push(id);
         localStorage.setItem("products", JSON.stringify(this.products));
