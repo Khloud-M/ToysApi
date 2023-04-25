@@ -130,6 +130,7 @@ export default {
       showFav: false,
       optionId: null,
       products: [],
+      selectitem: null,
     };
   },
   created() {
@@ -193,18 +194,35 @@ export default {
       this.quantityID = x.quantity;
       this.show = !this.show;
     },
-
     // end getting data
     selectID(id) {
       this.products.push(id);
-      localStorage.setItem("products", JSON.stringify(this.products));
-      // this.$refs.changeBorder.classList.add("clickoptioon");
+      const index = this.products.findIndex((object) => object.id === id);
+      if (index === -1) {
+        this.products.push(id);
+        localStorage.setItem("products", JSON.stringify(this.products));
+      }
+      // if(this.products.findIndex(item) === -1) {
+      //   this.products.push(item);
+
+      // this.products.push(id);
+      // this.products.find(
+      //   (selectitem) => selectitem.id === id  );
+      // if (!this.selectitem) {
+      //   this.products.push(id);
+      //   localStorage.setItem("products", JSON.stringify(this.products));
+      // }
+      // this.products.push(id);
+      // localStorage.setItem("products", JSON.stringify(this.products));
+      // if (this.products.id === id) {
+      //   this.$toast.success("This product already exists");
+      // }
     },
     addToCart() {
       this.$toast.success("added Successfully Cart");
-      this.$store.commit("products/addToCart", this.productId);
-      console.log(this.productId);
+      this.$store.commit("products/addToCart", this.products);
     },
+
     decrementQty() {
       if (this.initalValue == 1) {
       } else {
