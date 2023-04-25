@@ -33,11 +33,11 @@
           <!-- <div class="row" v-for="item in cart"> -->
           <div class="Item d-flex" v-for="item in cart" :key="item.id">
             <div class="image col-md-4">
-              <img :src="item.selectitem.image" width="100" height="100" />
+              <img :src="item.image" width="100" height="100" />
             </div>
             <div class="details col-md-6">
-              <h5>{{ item.selectitem.name }}</h5>
-              <span> {{ item.selectitem.price }} KWD</span>
+              <h5>{{ item.title }}</h5>
+              <!-- <span> {{ item.price }} KWD</span> -->
               <h6>quantity : {{ item.quantity }}</h6>
             </div>
             <div class="remove col-lg-1">
@@ -62,8 +62,8 @@
           <hr />
           <h5>
             {{ $t("placeholder.total") }}
-            <span v-if="cart.length"> {{ totalCost }} </span>
-            <span v-else> 00</span>
+            <!-- <span v-if="cart.length"> {{ totalCost }} </span> -->
+            <!-- <span v-else> 00</span> -->
             <button @click="cartt">mmm</button>
           </h5>
 

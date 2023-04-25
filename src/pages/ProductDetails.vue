@@ -201,25 +201,9 @@ export default {
       // this.$refs.changeBorder.classList.add("clickoptioon");
     },
     addToCart() {
-      const myData = new FormData();
-      myData.append("products", this.products);
-      this.axios({
-        method: "POST",
-        url: "cart-products",
-      })
-        .then((response) => {
-          console.log(response);
-          this.$toast.success("added Successfully Cart");
-          // this.$store.commit("products/addToCart", this.products);
-          // console.log("option id");
-          console.log(this.products);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      // this.$toast.success("added Successfully Cart");
-      // this.$store.commit("products/addToCart", this.optionsId);
-      // console.log("option id");
+      this.$toast.success("added Successfully Cart");
+      this.$store.commit("products/addToCart", this.productId);
+      console.log(this.productId);
     },
     decrementQty() {
       if (this.initalValue == 1) {
