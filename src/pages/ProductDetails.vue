@@ -196,38 +196,14 @@ export default {
     },
     // end getting data
     selectID(id) {
-      console.log("opt");
-
       this.selectitem = this.products.some((selectitem) => selectitem === id);
       console.log(this.selectitem);
-      // this.products.push(id);
       if (!this.selectitem) {
         this.products.push(id);
         localStorage.setItem("products", JSON.stringify(this.products));
       } else {
         this.$toast.success("This product already exists");
       }
-      // localStorage.setItem("products", JSON.stringify(this.products));
-      // const index = this.products.findIndex((object) => object.id === id);
-      // if (index === -1) {
-      //   this.products.push(id);
-      //   localStorage.setItem("products", JSON.stringify(this.products));
-      // }
-      // if(this.products.findIndex(item) === -1) {
-      //   this.products.push(item);
-
-      // this.products.push(id);
-      // this.products.find(
-      //   (selectitem) => selectitem.id === id  );
-      // if (!this.selectitem) {
-      //   this.products.push(id);
-      //   localStorage.setItem("products", JSON.stringify(this.products));
-      // }
-      // this.products.push(id);
-      // localStorage.setItem("products", JSON.stringify(this.products));
-      // if (this.products.id === id) {
-      //   this.$toast.success("This product already exists");
-      // }
     },
     addToCart() {
       this.$toast.success("added Successfully Cart");
