@@ -5,12 +5,12 @@ export default {
   namespaced: true,
   state() {
     return {
-      cart:[],
-      data:null,
-      dataOfProduct:[]
-
-    }
+      cart: [],
+      data: null,
+      dataOfProduct: [],
+      quantityArray: []
+    };
   },
-  getters ,
+  getters,
   mutations,
 };

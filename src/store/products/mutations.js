@@ -20,11 +20,23 @@ export default {
       }
     }
   },
+  // loadquantity(state) {
+  //   if (typeof window !== "undefined") {
+  //     let quantity = localStorage.getItem("quantity");
+  //     if (quantity) {
+  //       state.quntityArr = JSON.parse(quntityArr);
+  //     }
+  //   }
+  // },
   addToCart(state, payload) {
-    let itemFound = state.cart.some((p) => p === payload);
+    let itemFound = state.cart.some((p) => p === payload.idVaild);
     if (!itemFound) {
-      state.cart.push(payload);
-      console.log(` payload is valid ${payload}`);
+      state.cart.push(payload.idVaild);
+      console.log(` payload is valid ${payload.idVaild}`);
+      state.quantityArray.push(payload.quntityArr);
+      window.localStorage.setItem("quantity", JSON.stringify(state.quantityArray));
+
+      console.log(` quntity is ${payload.quntityArr}`);
     }
     const myData = new FormData();
     myData.append("products", localStorage.getItem("products"));

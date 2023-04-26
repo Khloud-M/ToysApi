@@ -131,6 +131,7 @@ export default {
       products: [],
       selectitem: null,
       valId: null,
+      // quantityArray: [],
     };
   },
   created() {
@@ -209,8 +210,15 @@ export default {
     // end getting data
     addToCart() {
       this.$toast.success("added Successfully Cart");
-      this.$store.commit("products/addToCart", this.valId);
-      console.log(this.valId);
+      this.$store.commit("products/addToCart", {
+        idVaild: this.valId,
+        quntityArr: this.initalValue,
+      });
+      // console.log(this.valId);
+      // if (this.valId) {
+      //   this.quantityArray.push(this.initalValue);
+      // }
+      // localStorage.setItem("quantity", this.quantityArray);
     },
 
     decrementQty() {
@@ -221,6 +229,7 @@ export default {
     },
     increaseQty() {
       this.initalValue++;
+      // localStorage.setItem("quantity", this.initalValue);
     },
   },
 };
