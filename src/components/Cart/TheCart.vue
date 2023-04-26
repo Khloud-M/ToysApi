@@ -30,15 +30,16 @@
       <hr />
       <div class="offcanvas-body">
         <div class="inCart" v-if="cart.length">
-          <!-- <div class="row" v-for="item in cart"> -->
-          <div class="Item d-flex" v-for="item in cart" :key="item.id">
+          <div class="Item d-flex" v-for="item in dataOfProduct" :key="item.id">
             <div class="image col-md-4">
               <img :src="item.image" width="100" height="100" />
             </div>
             <div class="details col-md-6">
-              <h5>{{ item.title }}</h5>
-              <!-- <span> {{ item.price }} KWD</span> -->
-              <h6>quantity : {{ item.quantity }}</h6>
+              <h5>{{ item.name }}</h5>
+              <h6>
+                1 X
+                <span>{{ item.price }} K.W </span>
+              </h6>
             </div>
             <div class="remove col-lg-1">
               <button @click="RemoveItem">
@@ -64,7 +65,8 @@
             {{ $t("placeholder.total") }}
             <!-- <span v-if="cart.length"> {{ totalCost }} </span> -->
             <!-- <span v-else> 00</span> -->
-            <button @click="cartt">mmm</button>
+            <!-- <button @click="cartt">mmm</button> -->
+            {{ total_price }}
           </h5>
 
           <router-link to="/ShoppingCart">
@@ -89,11 +91,21 @@ export default {
   computed: {
     ...mapGetters({
       cart: "products/cart",
+      dataOfProduct: "products/dataOfProduct",
     }),
-    totalCost() {
-      let cost = 0;
-      cost += this.cart[0].quantity * this.cart[0].selectitem.price;
-      return cost;
+    // totalCost() {
+    //   let cost = 0;
+    //    this.dataOfProduct.map((el) => {
+    //     cost +=
+    //   }).quantity * this.cart[0].selectitem.price;
+    //   return cost;
+    // },
+    total_price() {
+      let price = 0;
+      this.$store.state.cart.map((el) => {
+        price += el["price"];
+      });
+      return price;
     },
   },
   methods: {

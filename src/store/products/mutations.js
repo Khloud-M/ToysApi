@@ -12,15 +12,6 @@ export default {
       // router.push('/searchPage');
     });
   },
-  // decrementQty(state, payload) {
-  //   payload.qty -= 1;
-  //   if (payload.qty <= 1) {
-  //     payload.qty = 1;
-  //   }
-  // },
-  // increaseQty(state, payload) {
-  //   payload.qty += 1;
-  // },
   loadCart(state) {
     if (typeof window !== "undefined") {
       let cart = localStorage.getItem("freeCart");
@@ -30,17 +21,25 @@ export default {
     }
   },
   addToCart(state, payload) {
-    let itemFound = state.cart.find((p) => p.payload.id === payload);
+    let itemFound = state.cart.some((p) => p === payload);
     if (!itemFound) {
-      state.cart.push({
-        payload,
-      });
+      state.cart.push(payload);
+      console.log(` payload is valid ${payload}`);
     }
-    console.log(payload);
-    // if(itemFound) {
-    //   this.$toast.success("This product already exists");
-    //   console.log("founnnndd");
-    // }
+    const myData = new FormData();
+    myData.append("products", localStorage.getItem("products"));
+    axios({
+      method: "POST",
+      url: "cart-products",
+      data: myData,
+    })
+      .then((response) => {
+        console.log(response.data.data);
+        state.dataOfProduct = response.data.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     localStorage.setItem("freeCart", JSON.stringify(state.cart));
   },
   RemoveItem(state, index) {

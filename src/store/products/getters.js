@@ -17,6 +17,9 @@ export default {
   data(state) {
     return state.data;
   },
+  dataOfProduct(state) {
+    return state.dataOfProduct;
+  },
   ProductInCart(state) {
     return state.ProductInCart;
   },

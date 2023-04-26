@@ -72,16 +72,15 @@
         <hr />
         <h6 class="avilable">avalible</h6>
         <div class="option_product">
-          <ul
+          <button
             v-for="option in productId.option_values"
             @click="chooseItem(option)"
+            key="option.id"
           >
-            <li v-for="p in option.values" ref="changeBorder">
-              <button @click="selectID(p.id)">
-                {{ p.option_name }}: {{ p.name }}
-              </button>
-            </li>
-          </ul>
+            <span v-for="p in option.values" key="p.id">
+              {{ p.option_name }}: {{ p.name }}
+            </span>
+          </button>
         </div>
         <hr />
         <div class="product_option">
@@ -131,6 +130,7 @@ export default {
       optionId: null,
       products: [],
       selectitem: null,
+      valId: null,
     };
   },
   created() {
@@ -189,24 +189,28 @@ export default {
           console.log(error);
         });
     },
-    chooseItem(x) {
-      this.priceId = x.price;
-      this.quantityID = x.quantity;
+    chooseItem(option) {
+      this.priceId = option.price;
+      this.quantityID = option.quantity;
+      this.valId = option.id;
       this.show = !this.show;
-    },
-    // end getting data
-    selectID(id) {
-      this.selectitem = this.products.some((selectitem) => selectitem === id);
+      console.log(this.valId);
+      this.selectitem = this.products.some(
+        (selectitem) => selectitem === this.valId
+      );
       if (!this.selectitem) {
-        this.products.push(id);
+        // this.valId = id;
+        this.products.push(this.valId);
         localStorage.setItem("products", JSON.stringify(this.products));
       } else {
         this.$toast.success("This product already exists");
       }
     },
+    // end getting data
     addToCart() {
       this.$toast.success("added Successfully Cart");
-      this.$store.commit("products/addToCart", this.products);
+      this.$store.commit("products/addToCart", this.valId);
+      console.log(this.valId);
     },
 
     decrementQty() {
@@ -241,16 +245,16 @@ export default {
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  ul {
+  button {
     cursor: pointer;
-    padding: 0;
+    padding: 3px 5px;
     border: 1px solid var(--border-color);
     width: 100px;
     text-align: center;
-
-    li {
-      padding: 3px;
-    }
+    display: flex;
+    align-content: center;
+    gap: 3px;
+    flex-shrink: 0;
   }
 }
 
