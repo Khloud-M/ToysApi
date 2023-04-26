@@ -66,7 +66,7 @@
             <!-- <span v-if="cart.length"> {{ totalCost }} </span> -->
             <!-- <span v-else> 00</span> -->
             <!-- <button @click="cartt">mmm</button> -->
-            <!-- {{ total_price }} -->
+            {{ total_price }}
           </h5>
 
           <router-link to="/ShoppingCart">
@@ -93,22 +93,13 @@ export default {
       cart: "products/cart",
       dataOfProduct: "products/dataOfProduct",
     }),
-    //   total_price() {
-    //     let price = 0;
-    //     this.$store.state.cart.map((el) => {
-    //       price += el["qty"] * el["priceAfter"] * this.initialQuantity;
-    //     });
-    //     return price;
-    //   },
-    // },
-    // total_price() {
-    //   let price ;
-    //   price = this.dataOfProduct.find((p) => {
-    //     console.log(p);
-    //   });
-
-    //   return price;
-    // },
+    total_price() {
+      let price = 0;
+      this.dataOfProduct.map((el) => {
+        price += el["price"] * 1;
+      });
+      return price;
+    },
   },
   methods: {
     RemoveItem() {
