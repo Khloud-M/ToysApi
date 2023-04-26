@@ -63,10 +63,8 @@
           <hr />
           <h5>
             {{ $t("placeholder.total") }}
-            <!-- <span v-if="cart.length"> {{ totalCost }} </span> -->
-            <!-- <span v-else> 00</span> -->
-            <!-- <button @click="cartt">mmm</button> -->
-            {{ total_price }}
+            <span v-if="cart.length"> {{ total_price }} </span>
+            <span v-else> 00</span>
           </h5>
 
           <router-link to="/ShoppingCart">
