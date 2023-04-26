@@ -36,6 +36,11 @@
             </div>
             <div class="details col-md-6">
               <h5>{{ item.name }}</h5>
+              <ul>
+                <li v-for="option in item.values">
+                  {{ option.name }}
+                </li>
+              </ul>
               <h6>
                 1 X
                 <span>{{ item.price }} K.W </span>

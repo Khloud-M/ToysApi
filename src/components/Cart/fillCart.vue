@@ -13,16 +13,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in cart" :key="item.id">
+          <tr v-for="item in dataOfProduct" :key="item.id">
             <th class="image">
-              <img :src="item.selectitem.image" />
+              <img :src="item.image" />
             </th>
             <td>
-              {{ item.selectitem.name }}
+              {{ item.name }}
             </td>
-            <td>{{ item.selectitem.price }} KWD</td>
+            <td>{{ item.price }} KWD</td>
             <td>{{ item.quantity }}</td>
-            <td>uu</td>
+            <td>{{ total_price }}</td>
             <td>
               <button @click="RemoveItem">
                 <v-icon icon="mdi-trash-can-outline"></v-icon>
@@ -60,7 +60,15 @@ export default {
   computed: {
     ...mapGetters({
       cart: "products/cart",
+      dataOfProduct: "products/dataOfProduct",
     }),
+    total_price() {
+      let price = 0;
+      this.dataOfProduct.map((el) => {
+        price += el["price"] * 1;
+      });
+      return price;
+    },
   },
   methods: {
     RemoveItem() {
