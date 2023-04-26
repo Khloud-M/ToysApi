@@ -61,9 +61,9 @@
       <div class="offcanvas-foot">
         <div class="total_price">
           <hr />
-          <h5>
+          <h5 class="d-flex justify-content-between">
             {{ $t("placeholder.total") }}
-            <span v-if="cart.length"> {{ total_price }} </span>
+            <span v-if="cart.length"> {{ total_price }} K.W</span>
             <span v-else> 00</span>
           </h5>
 
