@@ -201,6 +201,26 @@ export default {
           console.log(error);
         });
     },
+    SubmitForm() {
+      const myData = new FormData();
+      myData.append("total", localStorage.getItem("products"));
+      myData.append("method", localStorage.getItem("products"));
+      myData.append("address_id", localStorage.getItem("products"));
+      myData.append("coupon_id", localStorage.getItem("products"));
+      myData.append("discount", localStorage.getItem("products"));
+      myData.append("shipping_cost", localStorage.getItem("products"));
+      axios({
+        method: "POST",
+        url: "order/store",
+        data: myData,
+      })
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
