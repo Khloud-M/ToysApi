@@ -1,7 +1,7 @@
 <template>
   <section>
     <landing-page />
-    <div class="container d-flex">
+    <form class="container d-flex" @submit.prevent="SubmitForm">
       <div class="col-lg-6">
         <div class="contact">
           <h2>{{ $t("placeholder.persnalInfo") }}</h2>
@@ -97,7 +97,7 @@
               type="text"
               id="coupon"
               :placeholder="$t('placeholder.coupon')"
-              v-model="coupon"
+              v-model="coupon_id"
             />
           </div>
           <!-- end enter copon -->
@@ -149,7 +149,7 @@
         </div>
         <!-- end summary -->
       </div>
-    </div>
+    </form>
   </section>
 </template>
 
@@ -163,7 +163,7 @@ export default {
       lastName: null,
       phone: null,
       address: null,
-      coupon: null,
+      coupon_id: null,
       select_city: null,
       citites: null,
       pay: null,
@@ -204,18 +204,18 @@ export default {
     SubmitForm() {
       const myData = new FormData();
       myData.append("total", localStorage.getItem("products"));
-      myData.append("method", localStorage.getItem("products"));
-      myData.append("address_id", localStorage.getItem("products"));
-      myData.append("coupon_id", localStorage.getItem("products"));
+      myData.append("method", this.check);
+      myData.append("address_id", this.address);
+      myData.append("coupon_id", this.coupon_id);
       myData.append("discount", localStorage.getItem("products"));
       myData.append("shipping_cost", localStorage.getItem("products"));
-      axios({
+      this.axios({
         method: "POST",
         url: "order/store",
         data: myData,
       })
         .then((res) => {
-          console.log(res)
+          console.log(res);
         })
         .catch((error) => {
           console.log(error);
