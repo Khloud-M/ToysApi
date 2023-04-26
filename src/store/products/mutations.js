@@ -34,7 +34,6 @@ export default {
       data: myData,
     })
       .then((response) => {
-        console.log(response.data.data);
         state.dataOfProduct = response.data.data;
       })
       .catch((error) => {
@@ -43,7 +42,7 @@ export default {
     localStorage.setItem("freeCart", JSON.stringify(state.cart));
   },
   RemoveItem(state, index) {
-    state.dataOfProduct.splice(index, 1);
+    state.cart.splice(index, 1);
     // update local Storage
     localStorage.setItem("freeCart", JSON.stringify(state.cart));
   },

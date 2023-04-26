@@ -7,7 +7,7 @@ export default {
     return {
       cart:[],
       data:null,
-      dataOfProduct:null
+      dataOfProduct:[]
 
     }
   },

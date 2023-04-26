@@ -66,7 +66,7 @@
             <!-- <span v-if="cart.length"> {{ totalCost }} </span> -->
             <!-- <span v-else> 00</span> -->
             <!-- <button @click="cartt">mmm</button> -->
-            {{ total_price }}
+            <!-- {{ total_price }} -->
           </h5>
 
           <router-link to="/ShoppingCart">
