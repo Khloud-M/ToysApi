@@ -45,6 +45,7 @@ export default {
     state.cart.splice(index, 1);
     // update local Storage
     localStorage.setItem("freeCart", JSON.stringify(state.cart));
+    // localStorage.removeItem("products");
   },
   // get product
 };
