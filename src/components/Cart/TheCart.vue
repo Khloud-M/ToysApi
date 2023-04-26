@@ -103,9 +103,9 @@ export default {
     RemoveItem() {
       this.$store.commit("products/RemoveItem", this.i);
     },
-    cartt() {
-      console.log(this.cart);
-    },
+    // cartt() {
+    //   console.log(this.cart);
+    // },
   },
 };
 </script>
