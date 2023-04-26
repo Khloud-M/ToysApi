@@ -93,20 +93,22 @@ export default {
       cart: "products/cart",
       dataOfProduct: "products/dataOfProduct",
     }),
-    // totalCost() {
-    //   let cost = 0;
-    //    this.dataOfProduct.map((el) => {
-    //     cost +=
-    //   }).quantity * this.cart[0].selectitem.price;
-    //   return cost;
+    //   total_price() {
+    //     let price = 0;
+    //     this.$store.state.cart.map((el) => {
+    //       price += el["qty"] * el["priceAfter"] * this.initialQuantity;
+    //     });
+    //     return price;
+    //   },
     // },
-    total_price() {
-      let price = 0;
-      this.$store.state.cart.map((el) => {
-        price += el["price"];
-      });
-      return price;
-    },
+    // total_price() {
+    //   let price ;
+    //   price = this.dataOfProduct.find((p) => {
+    //     console.log(p);
+    //   });
+
+    //   return price;
+    // },
   },
   methods: {
     RemoveItem() {
