@@ -115,6 +115,7 @@ export default {
   methods: {
     RemoveItem() {
       this.$store.commit("products/RemoveItem", this.i);
+      // console.log(id);
     },
     // cartt() {
     //   console.log(this.cart);

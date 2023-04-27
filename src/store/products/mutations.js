@@ -22,9 +22,9 @@ export default {
   },
   loadQty(state) {
     if (typeof window !== "undefined") {
-      let Qty = localStorage.getItem("quantity");
+      let Qty = localStorage.getItem("testproduct");
       if (Qty) {
-        state.quantityArray = JSON.parse(quantityArray);
+        state.testProducts = JSON.parse(testProducts);
       }
     }
   },
@@ -37,21 +37,21 @@ export default {
       // push qty
       state.quantityArray.push(payload.qty);
       // push
-      state.testProducts.push(payload.idVaild);
+      // state.testProducts.push(payload.idVaild);
       // localStorage.setItem("quantity", JSON.stringify(state.quantityArray));
       // window.localStorage.setItem(
       //   "testproduct",
       //   JSON.stringify(state.testProducts)
       // );
-      console.log(`test ${state.testProducts}`);
+      // console.log(`test ${state.testProducts}`);
     }
     localStorage.setItem("freeCart", JSON.stringify(state.cart));
     localStorage.setItem("quantity", JSON.stringify(state.quantityArray));
-    localStorage.setItem("testproduct", JSON.stringify(state.testProducts));
+    // localStorage.setItem("testproduct", JSON.stringify(state.testProducts));
 
     // append data and get date into cart
     const myData = new FormData();
-    myData.append("products", localStorage.getItem("testproduct"));
+    myData.append("products", localStorage.getItem("freeCart"));
     axios({
       method: "POST",
       url: "cart-products",
@@ -67,11 +67,13 @@ export default {
 
   RemoveItem(state, index) {
     state.cart.splice(index, 1);
+    console.log(`delet cart ${index}`);
     // update local Storage
     localStorage.setItem("freeCart", JSON.stringify(state.cart));
     // update local Storage of qty
     state.quantityArray.splice(index, 1);
     localStorage.setItem("quantity", JSON.stringify(state.quantityArray));
+    // state.testProducts.splice(index, 1);
     // localStorage.setItem("testproduct", JSON.stringify(this.testProducts));
   },
   // get product
