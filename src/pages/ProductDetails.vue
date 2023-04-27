@@ -195,30 +195,24 @@ export default {
       this.quantityID = option.quantity;
       this.valId = option.id;
       this.show = !this.show;
-      console.log(this.valId);
+      // console.log(this.valId);
       this.selectitem = this.products.some(
         (selectitem) => selectitem === this.valId
       );
       if (!this.selectitem) {
-        // this.valId = id;
         this.products.push(this.valId);
         localStorage.setItem("products", JSON.stringify(this.products));
       } else {
         this.$toast.success("This product already exists");
       }
     },
-    // end getting data
+    // start add cart
     addToCart() {
       this.$toast.success("added Successfully Cart");
       this.$store.commit("products/addToCart", {
         idVaild: this.valId,
-        quntityArr: this.initalValue,
+        qty: this.initalValue,
       });
-      // console.log(this.valId);
-      // if (this.valId) {
-      //   this.quantityArray.push(this.initalValue);
-      // }
-      // localStorage.setItem("quantity", this.quantityArray);
     },
 
     decrementQty() {

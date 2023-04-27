@@ -31,6 +31,10 @@
       <div class="offcanvas-body">
         <div class="inCart" v-if="cart.length">
           <div class="Item d-flex" v-for="item in dataOfProduct" :key="item.id">
+            <li v-for="p in q" key="p.id" :id="p.id">
+              {{ p.q }}
+            </li>
+            {{ q }}
             <div class="image col-md-4">
               <img :src="item.image" width="100" height="100" />
             </div>
@@ -90,11 +94,11 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  // data() {
-  //   return {
-  //     q: localStorage.getItem("quantity"),
-  //   };
-  // },
+  data() {
+    return {
+      q: localStorage.getItem("quantity"),
+    };
+  },
   computed: {
     ...mapGetters({
       cart: "products/cart",
@@ -103,7 +107,7 @@ export default {
     total_price() {
       let price = 0;
       this.dataOfProduct.map((el) => {
-        price += el["price"] * el[localStorage.getItem("quantity")];
+        price += el["price"] * 1;
       });
       return price;
     },
