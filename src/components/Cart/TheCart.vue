@@ -89,8 +89,12 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-// import ProductQuantity from "../Products/ProductQuantity.vue";
 export default {
+  // data() {
+  //   return {
+  //     q: localStorage.getItem("quantity"),
+  //   };
+  // },
   computed: {
     ...mapGetters({
       cart: "products/cart",
@@ -99,7 +103,7 @@ export default {
     total_price() {
       let price = 0;
       this.dataOfProduct.map((el) => {
-        price += el["price"] * 1;
+        price += el["price"] * el[localStorage.getItem("quantity")];
       });
       return price;
     },

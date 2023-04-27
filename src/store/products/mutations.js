@@ -35,11 +35,10 @@ export default {
       console.log(` payload is valid ${payload.idVaild}`);
       state.quantityArray.push(payload.quntityArr);
       window.localStorage.setItem("quantity", JSON.stringify(state.quantityArray));
-
       console.log(` quntity is ${payload.quntityArr}`);
     }
     const myData = new FormData();
-    myData.append("products", localStorage.getItem("products"));
+    myData.append("products", localStorage.getItem("products" ,"quantity"));
     axios({
       method: "POST",
       url: "cart-products",
