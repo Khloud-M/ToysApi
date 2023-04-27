@@ -20,6 +20,9 @@ export default {
   dataOfProduct(state) {
     return state.dataOfProduct;
   },
+  testProducts(state) {
+    return state.testProducts;
+  },
   quantityArray(state) {
     return state.quantityArray;
   },

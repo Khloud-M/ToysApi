@@ -8,7 +8,8 @@ export default {
       cart: [],
       data: null,
       dataOfProduct: [],
-      quantityArray: []
+      quantityArray: [],
+      testProducts: [],
     };
   },
   getters,

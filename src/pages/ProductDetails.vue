@@ -198,15 +198,15 @@ export default {
       this.valId = option.id;
       this.show = !this.show;
       // console.log(this.valId);
-      this.selectitem = this.products.some(
-        (selectitem) => selectitem === this.valId
-      );
-      if (!this.selectitem) {
-        this.products.push(this.valId);
-        localStorage.setItem("products", JSON.stringify(this.products));
-      } else {
-        this.$toast.success("This product already exists");
-      }
+      // this.selectitem = this.products.some(
+      //   (selectitem) => selectitem === this.valId
+      // );
+      // if (!this.selectitem) {
+      //   this.products.push(this.valId);
+      //   localStorage.setItem("products", JSON.stringify(this.products));
+      // } else {
+      //   this.$toast.success("This product already exists");
+      // }
     },
     // start add cart
     addToCart() {
