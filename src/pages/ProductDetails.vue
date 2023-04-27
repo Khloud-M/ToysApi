@@ -131,6 +131,8 @@ export default {
       products: [],
       selectitem: null,
       valId: null,
+      MainId: this.$route.params.id,
+
       // quantityArray: [],
     };
   },
@@ -212,6 +214,7 @@ export default {
       this.$store.commit("products/addToCart", {
         idVaild: this.valId,
         qty: this.initalValue,
+        MainId: this.MainId,
       });
     },
 
