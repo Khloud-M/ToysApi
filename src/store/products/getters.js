@@ -23,6 +23,10 @@ export default {
   testProducts(state) {
     return state.testProducts;
   },
+
+  itemsAfterRemove(state) {
+    return state.itemsAfterRemove;
+  },
   quantityArray(state) {
     return state.quantityArray;
   },

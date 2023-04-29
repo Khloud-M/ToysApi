@@ -19,6 +19,7 @@ export default {
     } else {
       document.body.dir = "rtl";
     }
+    this.$store.commit("products/addToCart");
   },
 };
 </script>

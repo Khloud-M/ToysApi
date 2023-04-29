@@ -10,6 +10,7 @@ export default {
       dataOfProduct: [],
       quantityArray: [],
       testProducts: [],
+      ItemsAfterRemove: [],
     };
   },
   getters,
