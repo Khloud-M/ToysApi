@@ -5,73 +5,69 @@
       <div class="col-lg-6">
         <div class="contact">
           <h2>{{ $t("placeholder.persnalInfo") }}</h2>
-          <form @submit.prevent="submit">
-            <div class="name d-flex justify-content-between">
-              <div class="firstName col-lg-6">
-                <label for="firstName">
-                  {{ $t("placeholder.firstName") }}</label
-                >
-                <input
-                  type="text"
-                  id="firstName"
-                  :placeholder="$t('placeholder.firstName')"
-                  v-model="firstName"
-                  required
-                />
-              </div>
-              <!-- end  first name -->
-              <div class="lastName col-lg-5">
-                <label for="lastName"> {{ $t("placeholder.lastName") }}</label>
-                <input
-                  type="text"
-                  id="lastName"
-                  :placeholder="$t('placeholder.lastName')"
-                  v-model="lastName"
-                  required
-                />
-              </div>
-              <!-- end last name -->
-            </div>
-            <!-- end name -->
-            <div class="phone">
-              <label for="phone"> {{ $t("placeholder.phone") }} </label>
-              <input
-                type="tel"
-                id="phone"
-                :placeholder="$t('placeholder.phone')"
-                v-model="phone"
-                required
-              />
-            </div>
-            <!-- end phone -->
-            <div>
-              <label> {{ $t("placeholder.city") }} </label>
-              <select
-                class="form-select"
-                aria-label="Default select example"
-                v-model="select_city"
-              >
-                <option v-for="city in citites" v-bind:value="city.id">
-                  {{ city.name }}
-                  <!-- {{ city.id }}
-                  {{ select_city }}
-                  <h2 >k</h2> -->
-                </option>
-              </select>
-            </div>
-            <!-- choose city -->
-            <div class="address">
-              <label for="address"> {{ $t("placeholder.address") }} </label>
+          <button @click="choseID()">test</button>
+          <div class="name d-flex justify-content-between">
+            <div class="firstName col-lg-6">
+              <label for="firstName"> {{ $t("placeholder.firstName") }}</label>
               <input
                 type="text"
-                id="address"
-                :placeholder="$t('placeholder.address')"
-                v-model="address"
+                id="firstName"
+                :placeholder="$t('placeholder.firstName')"
+                v-model="firstName"
                 required
               />
             </div>
-            <!-- end name -->
-          </form>
+            <!-- end  first name -->
+            <div class="lastName col-lg-5">
+              <label for="lastName"> {{ $t("placeholder.lastName") }}</label>
+              <input
+                type="text"
+                id="lastName"
+                :placeholder="$t('placeholder.lastName')"
+                v-model="lastName"
+                required
+              />
+            </div>
+            <!-- end last name -->
+          </div>
+          <!-- end name -->
+          <div class="phone">
+            <label for="phone"> {{ $t("placeholder.phone") }} </label>
+            <input
+              type="tel"
+              id="phone"
+              :placeholder="$t('placeholder.phone')"
+              v-model="phone"
+              required
+            />
+          </div>
+          <!-- end phone -->
+          <div>
+            <label> {{ $t("placeholder.city") }} </label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              v-model="select_city"
+            >
+              <option v-for="city in citites" v-bind:value="city.shipping_cost">
+                {{ city.name }}
+                <!-- {{ select_city }} -->
+                <!-- {{ city.shipping_cost }} -->
+              </option>
+            </select>
+          </div>
+          <!-- choose city -->
+          <div class="address">
+            <label for="address"> {{ $t("placeholder.address") }} </label>
+            <input
+              type="text"
+              id="address"
+              :placeholder="$t('placeholder.address')"
+              v-model="address"
+              required
+            />
+          </div>
+          <!-- end name -->
         </div>
         <!-- end  contact -->
         <div class="payment">
@@ -106,7 +102,7 @@
           <!-- end enter copon -->
 
           <h6>{{ $t("placeholder.remember5") }}</h6>
-          <base-button class="button_copon">
+          <base-button class="button_copon" @click="checkcopon">
             <v-icon icon="mdi-check"></v-icon>
             {{ $t("placeholder.addcopon") }}
           </base-button>
@@ -124,7 +120,7 @@
           <div class="d-flex justify-content-between">
             <h6>{{ $t("placeholder.shippingfee") }}</h6>
             <div class="d-flex">
-              <h6>{{ $t("placeholder.KWD") }}</h6>
+              <h6>{{ select_city }} {{ $t("placeholder.KWD") }}</h6>
               <span></span>
             </div>
           </div>
@@ -143,9 +139,9 @@
               <span></span>
             </div>
           </div>
-          <base-button class="btn">
-            {{ $t("placeholder.Completepay") }}
-          </base-button>
+          <input type="submit" class="btn" value="teeest" />
+          {{ $t("placeholder.Completepay") }}
+
           <router-link to="/ShoppingCart">
             {{ $t("placeholder.editcart") }}
           </router-link>
@@ -169,7 +165,7 @@ export default {
       phone: null,
       address: null,
       coupon_id: null,
-      select_city: null,
+      select_city: "",
       citites: null,
       pay: null,
       carts: [],
@@ -185,8 +181,25 @@ export default {
     this.payment();
   },
   methods: {
-    choseID(id) {
-      console.log(` choose methed ${id}`);
+    checkcopon() {
+      this.axios({
+        method: "GET",
+        url: `check-coupon?${this.coupon_id}`,
+      })
+        .then((res) => {
+          console.log(res);
+          // if(this.coupon_id === res.data.)
+          // this.citites = res.data.cities;
+          // console.log("res");
+          // console.log(res.data.cities[0].shipping_cost);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
+        });
+    },
+    choseID() {
+      console.log(this.select_city);
     },
     getCity() {
       this.axios({
@@ -210,6 +223,7 @@ export default {
       })
         .then((res) => {
           this.pay = res.data.data;
+          // window.location.reload();
         })
         .catch((error) => {
           console.log(error);
@@ -218,6 +232,7 @@ export default {
     total_price() {
       let price = this.carts.reduce((a, b) => a + b.total_price, 0);
       // window.location.reload();
+      console.log(price);
       return price;
     },
     SubmitForm() {
@@ -226,8 +241,13 @@ export default {
       // myData.append("last_name", this.lastName);
       myData.append("phone", this.phone);
       myData.append("method", this.check);
-      myData.append("address_text", this.address);
+      myData.append("address_id", 3);
       myData.append("coupon_id", this.coupon_id);
+      myData.append("product_ids", [1.2]);
+      myData.append("quantitys", [1, 1]);
+      myData.append("prices", 100);
+      myData.append("shipping_cost", this.select_city);
+      myData.append("discount", 100);
       this.axios({
         method: "POST",
         url: "post-checkout",

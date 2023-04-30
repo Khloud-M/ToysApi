@@ -82,7 +82,11 @@
             </base-button>
           </router-link>
           <router-link to="/CheckOut">
-            <base-button class="btn2" data-bs-dismiss="offcanvas">
+            <base-button
+              class="btn2"
+              data-bs-dismiss="offcanvas"
+              @click="reloadTest"
+            >
               {{ $t("buttons.CHECKOUT") }}
             </base-button>
           </router-link>
@@ -106,6 +110,11 @@ export default {
     }),
   },
   methods: {
+    // reloadTest() {
+
+    //   this.$router.push("/");
+    //   window.location.reload();
+    // },
     RemoveItem(item) {
       // let cartsInStorage = JSON.parse(localStorage.getItem("freeCart"));
       // cartsInStorage.splice(cartsInStorage.findIndex((el) => el.productId === item.id), 1);
