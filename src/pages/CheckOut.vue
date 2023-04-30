@@ -53,6 +53,9 @@
               >
                 <option v-for="city in citites" v-bind:value="city.id">
                   {{ city.name }}
+                  <!-- {{ city.id }}
+                  {{ select_city }}
+                  <h2 >k</h2> -->
                 </option>
               </select>
             </div>
@@ -114,7 +117,7 @@
           <div class="d-flex justify-content-between">
             <h6>{{ $t("placeholder.subtotal") }}</h6>
             <div class="d-flex">
-              <h6>{{ $t("placeholder.KWD") }}</h6>
+              <h6>{{ total_price() }} {{ $t("placeholder.KWD") }}</h6>
               <span></span>
             </div>
           </div>
@@ -155,6 +158,8 @@
 
 <script>
 import BaseButton from "@/components/ui/BaseButton.vue";
+import { mapGetters } from "vuex";
+
 export default {
   components: { BaseButton },
   data() {
@@ -167,13 +172,22 @@ export default {
       select_city: null,
       citites: null,
       pay: null,
+      carts: [],
     };
+  },
+  computed: {
+    ...mapGetters({
+      dataOfProduct: "products/dataOfProduct",
+    }),
   },
   created() {
     this.getCity();
     this.payment();
   },
   methods: {
+    choseID(id) {
+      console.log(` choose methed ${id}`);
+    },
     getCity() {
       this.axios({
         method: "GET",
@@ -181,8 +195,8 @@ export default {
       })
         .then((res) => {
           this.citites = res.data.cities;
-          console.log("res");
-          console.log(this.citites);
+          // console.log("res");
+          // console.log(res.data.cities[0].shipping_cost);
         })
         .catch((error) => {
           console.log(error);
@@ -201,16 +215,19 @@ export default {
           console.log(error);
         });
     },
+    total_price() {
+      let price = this.carts.reduce((a, b) => a + b.total_price, 0);
+      // window.location.reload();
+      return price;
+    },
     SubmitForm() {
       const myData = new FormData();
-      myData.append("first_name", this.firstName);
-      myData.append("last_name", this.lastName);
+      // myData.append("first_name", this.firstName);
+      // myData.append("last_name", this.lastName);
       myData.append("phone", this.phone);
       myData.append("method", this.check);
       myData.append("address_text", this.address);
       myData.append("coupon_id", this.coupon_id);
-      myData.append("discount", localStorage.getItem("products"));
-      myData.append("shipping_cost", localStorage.getItem("products"));
       this.axios({
         method: "POST",
         url: "post-checkout",
@@ -222,6 +239,14 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+  },
+  mounted() {},
+  watch: {
+    dataOfProduct(newVal) {
+      if (newVal) {
+        this.carts = newVal;
+      }
     },
   },
 };
