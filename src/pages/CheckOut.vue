@@ -203,15 +203,17 @@ export default {
     },
     SubmitForm() {
       const myData = new FormData();
-      myData.append("total", localStorage.getItem("products"));
+      myData.append("first_name", this.firstName);
+      myData.append("last_name", this.lastName);
+      myData.append("phone", this.phone);
       myData.append("method", this.check);
-      myData.append("address_id", this.address);
+      myData.append("address_text", this.address);
       myData.append("coupon_id", this.coupon_id);
       myData.append("discount", localStorage.getItem("products"));
       myData.append("shipping_cost", localStorage.getItem("products"));
       this.axios({
         method: "POST",
-        url: "order/store",
+        url: "post-checkout",
         data: myData,
       })
         .then((res) => {
