@@ -52,11 +52,15 @@ export default {
               item["qty"] = el.qty;
               item["total_price"] = +item.price * el.qty;
             }
+            // console.log(response.data.data.total_price);
+            // console.log("totot")
           })
         );
 
         state.dataOfProduct = response.data.data;
+        console.log("data");
         console.log(state.dataOfProduct);
+        // console.log(`total Price ${response.data.data}`);
       })
       .catch((error) => {
         console.log(error);
