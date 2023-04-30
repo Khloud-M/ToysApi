@@ -21,7 +21,7 @@
               {{ item.name }}
             </td>
             <td>{{ item.price }} KWD</td>
-            <td>{{ item.quantity }}</td>
+            <td>{{ item.qty }}</td>
             <td>{{ total_price }}</td>
             <td>
               <button @click="RemoveItem">

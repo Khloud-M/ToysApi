@@ -2,8 +2,8 @@
   <section>
     <landing-page />
     <div class="container">
-      <fill-cart v-if="cart.length" />
-      <empty-cart v-else="cart.length" />
+      <fill-cart />
+      <!-- <empty-cart v-else="cart.length" /> -->
     </div>
     <!-- end continaer -->
   </section>
