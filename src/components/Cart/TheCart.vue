@@ -108,6 +108,10 @@ export default {
   },
   methods: {
     RemoveItem(item) {
+      // let cartsInStorage = JSON.parse(localStorage.getItem("freeCart"));
+      // cartsInStorage.splice(cartsInStorage.findIndex((el) => el.productId === item.id), 1);
+      // localStorage.setItem("freeCart", JSON.stringify(cartsInStorage));
+      // this.$store.commit("products/addToCart");
       let cartsInStorage = JSON.parse(localStorage.getItem("freeCart"));
       cartsInStorage = cartsInStorage.filter((el) => el.productId != item.id);
       localStorage.setItem("freeCart", JSON.stringify(cartsInStorage));

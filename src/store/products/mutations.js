@@ -56,6 +56,7 @@ export default {
         );
 
         state.dataOfProduct = response.data.data;
+        console.log(state.dataOfProduct);
       })
       .catch((error) => {
         console.log(error);
