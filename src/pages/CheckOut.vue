@@ -199,19 +199,11 @@ export default {
           if (this.coupon_id === checkcode) {
             console.log("true done checkcode ");
           }
-          // if(this.coupon_id === res.data.)
-          // this.citites = res.data.cities;
-          // console.log("res");
-          // console.log(res.data.cities[0].shipping_cost);
         })
         .catch((error) => {
           console.log(error);
-          this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
         });
     },
-    // choseID() {
-    //   console.log(this.select_city);
-    // },
     getCity() {
       this.axios({
         method: "GET",
