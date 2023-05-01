@@ -249,8 +249,8 @@ export default {
 
     total() {
       let priceAgain = this.carts.reduce((a, b) => a + b.total_price, 0);
-      let totaldes = (priceAgain + this.select_city) * (this.discount / 100);
-      let correctprice =  priceAgain - totaldes ;
+      let totaldes = (priceAgain + this.shippingFee) * (this.discount / 100);
+      let correctprice = priceAgain - totaldes;
       console.log(`correctprice is ${correctprice}`);
       console.log(totaldes);
       return correctprice;
