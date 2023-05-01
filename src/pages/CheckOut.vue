@@ -191,10 +191,14 @@ export default {
     checkcopon() {
       this.axios({
         method: "GET",
-        url: `check-coupon?${this.coupon_id}`,
+        // url: `check-coupon?${this.coupon_id}`,
+        url: "check-coupon?code=1234",
       })
         .then((res) => {
-          console.log(res);
+          let checkcode = res.data.data.code;
+          if (this.coupon_id === checkcode) {
+            console.log("true done checkcode ");
+          }
           // if(this.coupon_id === res.data.)
           // this.citites = res.data.cities;
           // console.log("res");
