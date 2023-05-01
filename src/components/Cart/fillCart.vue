@@ -22,7 +22,7 @@
             </td>
             <td>{{ item.price }} KWD</td>
             <td>{{ item.qty }}</td>
-            <td>{{ total_price }}</td>
+            <td>{{ item.total_price }}</td>
             <td>
               <button @click="RemoveItem">
                 <v-icon icon="mdi-trash-can-outline"></v-icon>
@@ -37,8 +37,7 @@
       <div class="d-flex justify-content-between">
         <h6>{{ $t("placeholder.subtotal") }}</h6>
         <div class="d-flex">
-          <h6>{{ $t("placeholder.KWD") }}</h6>
-          <span></span>
+          <bdi>{{ totalCsot() + " " + "K.W " }}</bdi>
         </div>
       </div>
       <router-link to="/CheckOut">
@@ -62,17 +61,18 @@ export default {
       cart: "products/cart",
       dataOfProduct: "products/dataOfProduct",
     }),
-    total_price() {
-      let price = 0;
-      this.dataOfProduct.map((el) => {
-        price += el["price"] * 1;
-      });
-      return price;
-    },
   },
   methods: {
     RemoveItem() {
       this.$store.commit("products/RemoveItem", this.i);
+      console.log(this.dataOfProduct);
+    },
+    totalCsot() {
+      let price = 0;
+      this.dataOfProduct.map((el) => {
+        price += el["total_price"];
+      });
+      return price;
     },
   },
 };

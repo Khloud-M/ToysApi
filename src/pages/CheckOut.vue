@@ -135,13 +135,14 @@
           <div class="d-flex justify-content-between">
             <h6>{{ $t("placeholder.total") }}</h6>
             <div class="d-flex">
-              <h6>{{ $t("placeholder.KWD") }}</h6>
-              <span></span>
+              <bdi>{{ total() + " " + "K.W " }}</bdi>
             </div>
           </div>
-          <input type="submit" class="btn" value="teeest" />
-          {{ $t("placeholder.Completepay") }}
-
+          <input
+            type="submit"
+            class="btn"
+            :value="$t('placeholder.Completepay')"
+          />
           <router-link to="/ShoppingCart">
             {{ $t("placeholder.editcart") }}
           </router-link>
@@ -198,9 +199,9 @@ export default {
           this.$toast.error(`خد بالك وانت بتدخل بياناتك متفرهدنيش`);
         });
     },
-    choseID() {
-      console.log(this.select_city);
-    },
+    // choseID() {
+    //   console.log(this.select_city);
+    // },
     getCity() {
       this.axios({
         method: "GET",
@@ -208,8 +209,6 @@ export default {
       })
         .then((res) => {
           this.citites = res.data.cities;
-          // console.log("res");
-          // console.log(res.data.cities[0].shipping_cost);
         })
         .catch((error) => {
           console.log(error);
@@ -223,18 +222,23 @@ export default {
       })
         .then((res) => {
           this.pay = res.data.data;
-          // window.location.reload();
         })
         .catch((error) => {
           console.log(error);
         });
     },
     total_price() {
-      let price = this.carts.reduce((a, b) => a + b.total_price, 0);
-      // window.location.reload();
+      let price = this.dataOfProduct.reduce((a, b) => a + b.total_price, 0);
       console.log(price);
       return price;
     },
+    total() {
+      let priceAgain = this.carts.reduce((a, b) => a + b.total_price, 0);
+      let totaldes = priceAgain + this.select_city * 0.1;
+      console.log(totaldes);
+      return totaldes;
+    },
+
     SubmitForm() {
       const myData = new FormData();
       // myData.append("first_name", this.firstName);

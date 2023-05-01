@@ -130,6 +130,13 @@ export default {
       let price = this.carts.reduce((a, b) => a + b.total_price, 0);
       return price;
     },
+    // total_price() {
+    //   let price = 0;
+    //   this.carts.map((el) => {
+    //     price += el["total_price"];
+    //   });
+    //   return price;
+    // },
   },
   mounted() {},
   watch: {
