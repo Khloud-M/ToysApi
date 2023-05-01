@@ -5,6 +5,7 @@
       <div class="col-lg-6">
         <div class="contact">
           <h2>{{ $t("placeholder.persnalInfo") }}</h2>
+          <!-- {{ mount }} -->
           <form>
             <div class="name d-flex justify-content-between">
               <div class="firstName col-lg-6">
@@ -51,11 +52,9 @@
                 aria-label="Default select example"
                 v-model="select_city"
               >
-                <option
-                  v-for="city in citites"
-                  v-bind:value="city.shipping_cost"
-                >
+                <option v-for="city in citites" v-bind:value="city.id">
                   {{ city.name }}
+                  <!-- {{ city }} -->
                   <!-- {{ select_city }} -->
                   <!-- {{ city.shipping_cost }} -->
                 </option>
@@ -103,12 +102,13 @@
               id="coupon"
               :placeholder="$t('placeholder.coupon')"
               v-model="coupon_id"
+              name="code"
             />
           </div>
           <!-- end enter copon -->
 
           <h6>{{ $t("placeholder.remember5") }}</h6>
-          <base-button class="button_copon" @click="checkcopon">
+          <base-button class="button_copon" @click="checkcopon" type="button">
             <v-icon icon="mdi-check"></v-icon>
             {{ $t("placeholder.addcopon") }}
           </base-button>
@@ -126,15 +126,14 @@
           <div class="d-flex justify-content-between">
             <h6>{{ $t("placeholder.shippingfee") }}</h6>
             <div class="d-flex">
-              <h6>{{ select_city }} {{ $t("placeholder.KWD") }}</h6>
+              <h6>{{ shippingFee }} {{ $t("placeholder.KWD") }}</h6>
               <span></span>
             </div>
           </div>
           <div class="d-flex justify-content-between">
             <h6>{{ $t("placeholder.coupon") }}</h6>
             <div class="d-flex">
-              <h6>{{ $t("placeholder.KWD") }}</h6>
-              <span></span>
+              <bdi v-if="discount">{{ discount + " " + "K.W " }}</bdi>
             </div>
           </div>
           <hr />
@@ -162,6 +161,7 @@
 <script>
 import BaseButton from "@/components/ui/BaseButton.vue";
 import { mapGetters } from "vuex";
+import { parse } from "vue/compiler-sfc";
 
 export default {
   components: { BaseButton },
@@ -176,12 +176,20 @@ export default {
       citites: null,
       pay: null,
       carts: [],
+      shippingFee: null,
+      discount: null,
+      mount: null,
     };
   },
   computed: {
     ...mapGetters({
       dataOfProduct: "products/dataOfProduct",
     }),
+    testmount() {
+      let mounttt = parseInt(this.discount);
+      console.log(typeof mounttt);
+      return mounttt;
+    },
   },
   created() {
     this.getCity();
@@ -191,14 +199,18 @@ export default {
     checkcopon() {
       this.axios({
         method: "GET",
-        // url: `check-coupon?${this.coupon_id}`,
-        url: "check-coupon?code=1234",
+        url: `check-coupon?code=${this.coupon_id}`,
+        // url: "check-coupon?code=1234",
       })
         .then((res) => {
-          let checkcode = res.data.data.code;
-          if (this.coupon_id === checkcode) {
-            console.log("true done checkcode ");
-          }
+          this.discount = parseInt(res.data.data.amount);
+          // +this.discount;
+          // let checkcode = res.data.data.code;
+          // if (this.coupon_id === checkcode) {
+          //   console.log("true done checkcode ");
+          // }
+          // else()
+          // console.log(res);
         })
         .catch((error) => {
           console.log(error);
@@ -234,11 +246,14 @@ export default {
       console.log(price);
       return price;
     },
+
     total() {
       let priceAgain = this.carts.reduce((a, b) => a + b.total_price, 0);
-      let totaldes = priceAgain + this.select_city * 0.1;
+      let totaldes = (priceAgain + this.select_city) * (this.discount / 100);
+      let correctprice =  priceAgain - totaldes ;
+      console.log(`correctprice is ${correctprice}`);
       console.log(totaldes);
-      return totaldes;
+      return correctprice;
     },
 
     SubmitForm() {
@@ -247,12 +262,12 @@ export default {
       // myData.append("last_name", this.lastName);
       myData.append("phone", this.phone);
       myData.append("method", this.check);
-      myData.append("address_id", 3);
+      myData.append("address_id", 1);
       myData.append("coupon_id", this.coupon_id);
       myData.append("product_ids", [1.2]);
       myData.append("quantitys", [1, 1]);
-      myData.append("prices", 100);
-      myData.append("shipping_cost", this.select_city);
+      myData.append("prices", [100, 100]);
+      myData.append("shipping_cost", 0);
       myData.append("discount", 100);
       this.axios({
         method: "POST",
@@ -274,6 +289,17 @@ export default {
         this.carts = newVal;
       }
     },
+
+    select_city() {
+      this.citites.map((el) => {
+        this.shippingFee = el["shipping_cost"];
+      });
+    },
+    // discountMount() {
+    //   this.discount.map((el) => {
+    //     this.mount = el["amount"];
+    //   });
+    // },
   },
 };
 </script>
