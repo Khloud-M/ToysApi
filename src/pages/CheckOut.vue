@@ -5,7 +5,8 @@
       <div class="col-lg-6">
         <div class="contact">
           <h2>{{ $t("placeholder.persnalInfo") }}</h2>
-          <!-- {{ mount }} -->
+          <!-- {{ dataOfProduct }} -->
+          {{ carts }}
           <form>
             <div class="name d-flex justify-content-between">
               <div class="firstName col-lg-6">
@@ -140,7 +141,7 @@
           <div class="d-flex justify-content-between">
             <h6>{{ $t("placeholder.total") }}</h6>
             <div class="d-flex">
-              <bdi>{{ total() + " " + "K.W " }}</bdi>
+              <bdi>{{ checkoutTotal + " " + "K.W " }}</bdi>
             </div>
           </div>
           <input
@@ -161,8 +162,6 @@
 <script>
 import BaseButton from "@/components/ui/BaseButton.vue";
 import { mapGetters } from "vuex";
-import { parse } from "vue/compiler-sfc";
-
 export default {
   components: { BaseButton },
   data() {
@@ -179,6 +178,8 @@ export default {
       shippingFee: null,
       discount: null,
       mount: null,
+      checkoutTotal: null,
+      testcart: [],
     };
   },
   computed: {
@@ -194,6 +195,8 @@ export default {
   created() {
     this.getCity();
     this.payment();
+    this.total_price();
+    this.total();
   },
   methods: {
     checkcopon() {
@@ -244,16 +247,15 @@ export default {
     total_price() {
       let price = this.dataOfProduct.reduce((a, b) => a + b.total_price, 0);
       console.log(price);
+      this.total();
       return price;
     },
 
     total() {
-      let priceAgain = this.carts.reduce((a, b) => a + b.total_price, 0);
-      let totaldes = (priceAgain + this.shippingFee) * (this.discount / 100);
-      let correctprice = priceAgain - totaldes;
-      console.log(`correctprice is ${correctprice}`);
-      console.log(totaldes);
-      return correctprice;
+      let prodsSum = this.carts.reduce((a, b) => a + b.total_price, 0),
+        discVal = prodsSum * (this.discount / 100);
+      this.checkoutTotal = prodsSum - discVal + this.shippingFee;
+      console.log(prodsSum);
     },
 
     SubmitForm() {
@@ -264,7 +266,7 @@ export default {
       myData.append("method", this.check);
       myData.append("address_id", 1);
       myData.append("coupon_id", this.coupon_id);
-      myData.append("product_ids", [1.2]);
+      myData.append("product_ids", this.dataOfProduct);
       myData.append("quantitys", [1, 1]);
       myData.append("prices", [100, 100]);
       myData.append("shipping_cost", 0);
@@ -295,11 +297,10 @@ export default {
         this.shippingFee = el["shipping_cost"];
       });
     },
-    // discountMount() {
-    //   this.discount.map((el) => {
-    //     this.mount = el["amount"];
-    //   });
-    // },
+
+    discount() {
+      this.total();
+    },
   },
 };
 </script>
