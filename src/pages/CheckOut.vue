@@ -5,69 +5,75 @@
       <div class="col-lg-6">
         <div class="contact">
           <h2>{{ $t("placeholder.persnalInfo") }}</h2>
-          <button @click="choseID()">test</button>
-          <div class="name d-flex justify-content-between">
-            <div class="firstName col-lg-6">
-              <label for="firstName"> {{ $t("placeholder.firstName") }}</label>
+          <form>
+            <div class="name d-flex justify-content-between">
+              <div class="firstName col-lg-6">
+                <label for="firstName">
+                  {{ $t("placeholder.firstName") }}</label
+                >
+                <input
+                  type="text"
+                  id="firstName"
+                  :placeholder="$t('placeholder.firstName')"
+                  v-model="firstName"
+                  required
+                />
+              </div>
+              <!-- end  first name -->
+              <div class="lastName col-lg-5">
+                <label for="lastName"> {{ $t("placeholder.lastName") }}</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  :placeholder="$t('placeholder.lastName')"
+                  v-model="lastName"
+                  required
+                />
+              </div>
+              <!-- end last name -->
+            </div>
+            <!-- end name -->
+            <div class="phone">
+              <label for="phone"> {{ $t("placeholder.phone") }} </label>
               <input
-                type="text"
-                id="firstName"
-                :placeholder="$t('placeholder.firstName')"
-                v-model="firstName"
+                type="tel"
+                id="phone"
+                :placeholder="$t('placeholder.phone')"
+                v-model="phone"
                 required
               />
             </div>
-            <!-- end  first name -->
-            <div class="lastName col-lg-5">
-              <label for="lastName"> {{ $t("placeholder.lastName") }}</label>
+            <!-- end phone -->
+            <div>
+              <label> {{ $t("placeholder.city") }} </label>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                v-model="select_city"
+              >
+                <option
+                  v-for="city in citites"
+                  v-bind:value="city.shipping_cost"
+                >
+                  {{ city.name }}
+                  <!-- {{ select_city }} -->
+                  <!-- {{ city.shipping_cost }} -->
+                </option>
+              </select>
+            </div>
+            <!-- choose city -->
+            <div class="address">
+              <label for="address"> {{ $t("placeholder.address") }} </label>
               <input
                 type="text"
-                id="lastName"
-                :placeholder="$t('placeholder.lastName')"
-                v-model="lastName"
+                id="address"
+                :placeholder="$t('placeholder.address')"
+                v-model="address"
                 required
               />
             </div>
-            <!-- end last name -->
-          </div>
-          <!-- end name -->
-          <div class="phone">
-            <label for="phone"> {{ $t("placeholder.phone") }} </label>
-            <input
-              type="tel"
-              id="phone"
-              :placeholder="$t('placeholder.phone')"
-              v-model="phone"
-              required
-            />
-          </div>
-          <!-- end phone -->
-          <div>
-            <label> {{ $t("placeholder.city") }} </label>
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              v-model="select_city"
-            >
-              <option v-for="city in citites" v-bind:value="city.shipping_cost">
-                {{ city.name }}
-                <!-- {{ select_city }} -->
-                <!-- {{ city.shipping_cost }} -->
-              </option>
-            </select>
-          </div>
-          <!-- choose city -->
-          <div class="address">
-            <label for="address"> {{ $t("placeholder.address") }} </label>
-            <input
-              type="text"
-              id="address"
-              :placeholder="$t('placeholder.address')"
-              v-model="address"
-              required
-            />
-          </div>
-          <!-- end name -->
+            <!-- end name -->
+          </form>
         </div>
         <!-- end  contact -->
         <div class="payment">
