@@ -6,7 +6,7 @@
         <div class="contact">
           <h2>{{ $t("placeholder.persnalInfo") }}</h2>
           <!-- {{ dataOfProduct }} -->
-          {{ carts }}
+          {{ dataOfProduct }}
           <form>
             <div class="name d-flex justify-content-between">
               <div class="firstName col-lg-6">
