@@ -6,7 +6,10 @@
         <div class="contact">
           <h2>{{ $t("placeholder.persnalInfo") }}</h2>
           <!-- {{ dataOfProduct }} -->
-          {{ dataOfProduct }}
+          <!-- {{ dataOfProduct }} -->
+          <li v-for="testproduct in dataOfProduct">{{ testproduct.price }}</li>
+          {{ array_proucut }}
+
           <form>
             <div class="name d-flex justify-content-between">
               <div class="firstName col-lg-6">
@@ -180,6 +183,9 @@ export default {
       mount: null,
       checkoutTotal: null,
       testcart: [],
+      array_proucut: [],
+      qty_proucut: [],
+      price_product: [],
     };
   },
   computed: {
@@ -264,13 +270,13 @@ export default {
       // myData.append("last_name", this.lastName);
       myData.append("phone", this.phone);
       myData.append("method", this.check);
-      myData.append("address_id", 1);
+      myData.append("address_id", this.select_city);
       myData.append("coupon_id", this.coupon_id);
-      myData.append("product_ids", this.dataOfProduct);
-      myData.append("quantitys", [1, 1]);
-      myData.append("prices", [100, 100]);
-      myData.append("shipping_cost", 0);
-      myData.append("discount", 100);
+      myData.append("product_ids", JSON.stringify(this.array_proucut));
+      myData.append("quantitys", JSON.stringify(this.qty_proucut));
+      myData.append("prices", JSON.stringify(this.price_product));
+      myData.append("shipping_cost", this.shippingFee);
+      myData.append("discount", this.discount);
       this.axios({
         method: "POST",
         url: "post-checkout",
@@ -290,6 +296,16 @@ export default {
       if (newVal) {
         this.carts = newVal;
       }
+    },
+    dataOfProduct() {
+      this.dataOfProduct.map((el) => {
+        let id_prouducts = el["id"];
+        this.array_proucut.push(id_prouducts);
+        let qty_product = el["qty"];
+        this.qty_proucut.push(qty_product);
+        let price_product = el["price"];
+        this.price_proucut.push(price_product);
+      });
     },
 
     select_city() {
